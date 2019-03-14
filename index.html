@@ -1,0 +1,50 @@
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><head>
+	<script type="text/javascript" >
+		function admin() {
+			var s = './app.php?option=tasks&task=show'+
+		           '&projectid=demo1'+
+		           '&sessionid=0';
+			document.getElementById('ifrm').src = s;
+			return false;
+		}
+		function member() {
+			var s = './app.php?option=tasks&task=show'+
+		           '&projectid=demo2'+
+		           '&sessionid=0';
+			document.getElementById('ifrm').src = s;
+			return false;
+		}
+		function guest() {
+			var s = './app.php?option=tasks&task=show'+
+		           '&projectid=demo3'+
+		           '&sessionid=0';
+			document.getElementById('ifrm').src = s;
+			return false;
+		}
+	</script>
+
+</head>
+<body>
+<center>
+<p>
+	<h1>EnvientaPlatform / Projekt menedzser modul demo</h1>
+	<button type="button" onclick="admin()">
+		Teszt login<br /><img src="https://www.gravatar.com/avatar/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5" width="35" />
+		<br />utopszkij Project vezető
+	</button>
+	<button type="button" onclick="member()">
+		Teszt login<br /><img src="./images/user1.png" width="35" />
+		<br />user1 Project résztvevő
+	</button>
+	<button type="button" onclick="guest()">
+		Teszt login<br /><img src="./images/guest.jpg" width="35" />
+		<br />Látogató
+	</button>
+</p>
+<iframe src="" id="ifrm" width="1240" height="850"></iframe>
+</center>
+</body>
+</html>

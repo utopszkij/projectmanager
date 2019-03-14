@@ -1,0 +1,57 @@
+  body {font-size:14px; font-family:roman; background-color:white; line-height:120%; min-height:600px;}
+  div {margin:0px; padding:0px; }  
+  h1 {background-color: black; color:white; text-align:center; font-size: 20px; padding:6px;}
+  h2 {background-color: black; color:white; text-align:center; font-size: 18px; padding:4px; margin:0px;}
+  h3 {background-color: black; color:white; text-align:center; font-size: 16px; padding:2px;}
+  h4 {background-color: black; color:white; text-align:center; font-size: 15px; padding:2px;}
+  h5 {background-color: black; color:white; text-align:center; font-size: 14px; padding:2px;}
+  button {padding:4px; margin:0px; font-size:16px; height:30px; cursor:pointer}
+  #buttonLine {position:fixed; z-index:2; display:block; top:0px; left:0px; width:100%;
+    background-color:white; margin:0px; padding:4px;}
+  .col {float:left; width:194px; height:auto; min-height:600px; 
+        padding:1px; margin:58px 1px 1px 1px;
+  		  border-style:solid; border-width:1px; border-color:black; background-color:white}
+  waiting h2 {position:fixed; z-index:2; display:inline-block; top:36px; left:8px; width:190px;}	
+  canstart h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:208px; width:190px;}	
+  atwork  h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:408px; width:190px;}	
+  canverify h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:608px; width:190px;}	
+  atverify h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:808px; width:190px;}	
+  closed h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:1008px; width:190px;}	
+  members {display:none}
+  
+  button#deltask {background-color:red; color:white; margin:20px 5px 5px 5px}
+  button#Ok {background-color:green; color:white;  margin:20px 5px 5px 5px}	
+  button#cancel {background-color:orange; color:black;  margin:20px 5px 5px 5px}	
+  button#newTaskBtn {background-color:green; color:white; font-size:20px;}		  
+  button#memberskBtn {background-color:silver; color:black; font-size:20px;}		  
+  task {display:block; background-color:#e0e0e0; font-size:14px; 
+  		  border-style:solid; border-width:1px; padding:1px; margin:1px; cursor:pointer}
+  task id {display:inline-block; height:20%; max-height:20px; overflow:hidden; max-width:20%;margin-right:2px;}
+  task id:before {content:'#'}
+  task title {display:inline-block; font-weight:bold; height:20px; max-height:20px; max-width: 76%; overflow:hidden; margin-right:2px;}
+  task desc {display:block; height:50px; max-height:50px; width:100%; rovverflow: hidden}
+  
+  task type {display:inline-block; width:45%; height:40px; max-height:40px; overflow:hidden; max-width:45%;margin-right:2px;}
+  task type.question {background-color:green; width:10px; height:40px;}
+  task type.bug {background-color:red; width:10px; height:40px;}
+  task type.suggest {background-color:orange; width:10px; height:40px;}
+  task type.other {background-color:yellow; width:10px; height:40px;}
+  task assign {display:inline-block; width:40px; height:40px; max-height:40px; overflow:hidden; max-width:40px;margin-right:2px;}
+  task assign img {width: 100%; height: 100%}
+  task req {display:none}  
+    	  
+   #taskForm {display:none; position:fixed; z-index:99; left:100px; top:100px;
+      padding:5px; margin:5px; 
+   	border-style:solid; border-width:1px; background-color: #d0d0d0}  	  
+  	#taskForm label {display:inline-block; width:160px; text-align:right }  
+  	#taskForm fieldset {display:inline-block; width:auto; border-style:none}
+  	#taskForm .deltask {background-color:red; color:white;}
+
+   #membersForm {display:none; position:fixed; z-index:99; left:100px; top:100px;
+      padding:5px; margin:5px; width: 350px; 
+   	border-style:solid; border-width:1px; background-color: #d0d8d0}
+   #membersForm button {background-color:transparent;}	
+	#membersForm p {margin:0px; padding:0px;}   	  	  
+	#membersForm var {display:none}
+
+  .clear {clear:both}
