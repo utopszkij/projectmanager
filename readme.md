@@ -10,8 +10,11 @@ Ezt a wb applikációt az EnvientaPlatform hívja iframe -ben. Ez az applikáci�
 -  Projekt résztvevőinek megjelenítése,
 -  Projekt adminisztrátorok kezelése (kijelölés, törlés),
 -  Feladat "föggőségek" kezelése (pl. az "x" feladat munkálatai csak akkorkezdhetők meg ha az "y" és "z" feladat már le van zárva)
+-  Töbnnyelvü kezelő felület támogatás,
+-  Testreszabható megjelenés,
+-  Több kliens egyidejű munkájának támogatása (5 másodpercenként ellenörzi az adatbázis változásokat és szükség esetén frissiti a képernyőt)
 
-##Jogosultságok
+## Jogosultságok
 
 **A project adminisztrátorok lehetőségei:**
 
@@ -76,13 +79,19 @@ $('#ifrmProjectmanager').src = "https://szeszt.tk/projectmanager/app.php"+
 "&sessionid="+sesionId+"&projectid="+projectId;
 
 ```
+Opcionális további URL paraméterek:
+```
+&lng=hu vagy &lng=en
+&css=cssFileURL
+```
+
 ###Az EnvientaPlatform -ban megvalósítandó Rest API
 
-az API  **apiURL**/<sessionid>/<projectid> http -url -el van hívva.
+az API  **apiURL**/ **sessionid** / **projectid**    http -url -el van hívva.
 
 pl: https:/platform.envienta.org/api/projectinfo/abc....de/ef12.....23
 
-visszadnia "json" mime tipusban egy json stringet kell:
+visszadnia "json" content tipusban egy json stringet kell:
 ```
 {"users":[[avatarURL, nickName], ....],
   "admins":[avatarURL],
@@ -102,6 +111,9 @@ visszadnia "json" mime tipusban egy json stringet kell:
 
 Példa:
 ```
+<?php
+header('Content-Type: json');
+echo '
 {"users":[
 ["https://www.gravatar.com/avatar/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5","utopszkij"],
 ["https://www.gravatar.com/avatar/12345e6e2dc8b37f24ddb47dfb7e3eb5","user1j"],
@@ -110,6 +122,8 @@ Példa:
 "admins":["https://www.gravatar.com/avatar/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5"],
 "loggedUser":"https://www.gravatar.com/avatar/45670e6e2dc8b37f24ddb47dfb7e3eb5"
 }
+';
+?>
 ```
 
 

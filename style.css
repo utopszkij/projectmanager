@@ -29,7 +29,7 @@
   task id {display:inline-block; height:20%; max-height:20px; overflow:hidden; max-width:20%;margin-right:2px;}
   task id:before {content:'#'}
   task title {display:inline-block; font-weight:bold; height:20px; max-height:20px; max-width: 76%; overflow:hidden; margin-right:2px;}
-  task desc {display:block; height:50px; max-height:50px; width:100%; rovverflow: hidden}
+  task desc {display:block; height:50px; max-height:50px; width:100%; overflow: hidden}
   
   task type {display:inline-block; width:45%; height:40px; max-height:40px; overflow:hidden; max-width:45%;margin-right:2px;}
   task type.question {background-color:green; width:10px; height:40px;}

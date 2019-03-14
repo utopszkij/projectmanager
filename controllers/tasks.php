@@ -30,10 +30,13 @@ class tasksController {
 		}');
 		if ($request->input('projectid') == 'demo1') {
 			$res->loggedUser = $res->admins[0];
+			$request->set('projectid','demo');
 		} else if ($request->input('projectid') == 'demo2') {
-			$res->loggedUser = $res->users[1];
+			$res->loggedUser = $res->users[1][0];
+			$request->set('projectid','demo');
 		} else if ($request->input('projectid') == 'demo3') {
-			$res->loggedUser = '';
+			$res->loggedUser = './images/guest.jpg';
+			$request->set('projectid','demo');
 		} else if (($request->input('projectid') != '') && ($request->input('callerapiurl') != '')) {	
 			$lines = file($request->input('callerapiurl').
 			  '/'.$request->input('sessionid','0').
@@ -62,7 +65,7 @@ class tasksController {
 	*     echo json {"fileTime".num} vagy {"fileTime".num, "project":XMLstr}  
 	*/
 	public function refresh($request) {
-		$projectId = $request->input('projectId','0000');
+		$projectId = $request->input('projectid','0000');
 		$fileTime = $request->input('fileTime',0);
 
 		$model = getModel('tasks');
@@ -79,7 +82,7 @@ class tasksController {
 	*     echo json {"fileTime".num}  
 	*/
 	public function save($request) {
-		$projectId = $request->input('projectId','0000');
+		$projectId = $request->input('projectid','0000');
 		$project = $request->input('project','');
 		$model = getModel('tasks');
 	   header('Content-Type: json');

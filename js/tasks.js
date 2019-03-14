@@ -23,10 +23,14 @@
  	if (dbSaveEnable) {
  		dbRefreshEnable = false;
 	   var s = $('#database').html();
-	 	$.post('./app.php', {"option":"tasks", "task":"save", "projectId":projectId, "project": s}, function(res) {
-	 		fileTime = res.fileTime;
- 			dbRefreshEnable = true;
-	 	})
+	   if (projectId == 'demo') {
+	 			dbRefreshEnable = true;
+	   } else {
+		 	$.post('./app.php', {"option":"tasks", "task":"save", "projectid":projectId, "project": s}, function(res) {
+		 		fileTime = res.fileTime;
+	 			dbRefreshEnable = true;
+		 	})
+	   }
  	} else {
  		 clearTimeout(saveTimer);
  	 	 saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
@@ -39,11 +43,11 @@
  * server result: fileTime, project (json string)
  *  use global fileTime
  */
- function refreshFromDatabase(projectId) {
+ function refreshFromDatabase(projectId, fun = function() {} ) {
  	if ((dbRefreshEnable) && (!atDragging)) {
  		dbSaveEnable = false;
 	   var s = $('#database').html();
-	 	$.post('./app.php', {"option":"tasks", "task":"refresh", "projectId":projectId, "fileTime": fileTime}, function(res) {
+	 	$.post('./app.php', {"option":"tasks", "task":"refresh", "projectid":projectId, "fileTime": fileTime}, function(res) {
 	 		fileTime = res.fileTime;
 	 		var i=0;
 			var members = null; 		
@@ -53,21 +57,10 @@
 	 			$('#database').html(JSON.parse(res.project).trim().replace(/\n/,''));
 		      colTranslate(); 
 		      colResize();
-
-		      // copy member into taskFom user selecor'options
-		      $('#assign').html('');
-	      	s = '<option value=""></option>';
-				$('#assign').append(s); 		      
-		      members = $('members').find('member');
-		      for (i=0; i < members.length; i++) {
-		      	s = '<option value="'+members[i].attributes.avatar.nodeValue+'">'+
-		      		members[i].innerHTML+'</option>';
-					$('#assign').append(s); 		      
-		      }
-		      
 	 			setTaskEventHandlers();
 	 		}
  			dbSaveEnable = true;
+ 			fun();
  		   clearTimeout(refreshTimer);
 	  	   refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", 15000);
 	 	})
@@ -148,7 +141,7 @@
 			result = false;		
 		} else if ((oldAssign != assign) && /* hozzányult */ 
 			        (loggedAdmin() == false) && /* nem admin */
-		           (oldAssing != '') /* eddig nem volt üres */
+		           (oldAssign != 'https://www.gravtar.com/avatar/') /* eddig nem volt üres */
 		) {
 			alert("<?php echo ACCESSDENIED; ?>");
 			result = false;		
@@ -193,7 +186,7 @@
 
  function accessRight(task, viewMessage) {
    var result = true;
- 	if ((loggedUser == task.find('assign').html()) || (loggedAdmin())) {
+ 	if ((loggedUser == task.find('img').attr('src')) || (loggedAdmin())) {
 		result = true;
 	} else {
 		result = false;
@@ -212,7 +205,8 @@
  	taskForm.find('#state').attr('disabled','disabled');
  	taskForm.find('#prior').attr('disabled','disabled');
  	taskForm.find('#req').attr('disabled','disabled');
- 	if (userMember()) {
+ 	if ((userMember() && (taskForm.find('#assign').val() == 'https://www.gravatar.com/avatar/')) ||
+ 	    (loggedAdmin()))  {
  	   taskForm.find('#assign').attr('disabled',false);
  	} else {
  	   taskForm.find('#assign').attr('disabled','disabled');
@@ -253,27 +247,44 @@
   }  
 
   function setTaskEventHandlers() {	 
-      $('task').draggable(); 
-      $('task').click(function() {
-    	  this.style.zIndex=1;
-    	  var id = this.id;
-    	  var task = $('#'+id);
-    	  var taskForm = $('#taskForm');
-		  var state = getStateFromTask(task);	    	  
-    	  taskForm.find('#id').val(task.find('id').html());
-    	  taskForm.find('#title').val(task.find('title').html());
-    	  taskForm.find('#desc').val(task.find('desc').html().replace(/\<br\>/g,"\n"));
-    	  taskForm.find('#type').val(task.find('type').attr('class'));
-    	  taskForm.find('#assign').val(task.find('img').attr('src'));
-    	  taskForm.find('#req').val(task.find('req').html());
-    	  taskForm.find('#state').val(state);
-    	  oldAssign = task.find('assign').html();
-    	  if (!accessRight(task, false)) {
-    	  		setReadOnly(taskForm);
-    	  } else {
-				setWritable(taskForm);    	  
-    	  }
-		  $('#taskForm').toggle();
+        $('task').draggable(); 
+        $('task').click(function() {
+	        var members = $('members').find('member');
+	    	  var id = this.id;
+	    	  var task = $('#'+id);
+	    	  var taskForm = $('#taskForm');
+			  var state = getStateFromTask(task);	    	  
+	     	
+	        // copy member into taskFom user selecor'options
+	        var i = 0;
+	        var s = '<option value="https://www.gravatar.com/avatar/">?</option>';
+	        $('#assign').html('');
+		     $('#assign').append(s); 		      
+	        for (i=0; i < members.length; i++) {
+	      	 s = '<option value="'+members[i].attributes.avatar.nodeValue+'">'+
+		      		members[i].innerHTML+'</option>';
+				 $('#assign').append(s); 		      
+	        }
+	
+	        // load form'fields from <task>	
+	    	  this.style.zIndex=1;
+	    	  taskForm.find('#id').val(task.find('id').html());
+	    	  taskForm.find('#title').val(task.find('title').html());
+	    	  taskForm.find('#desc').val(task.find('desc').html().replace(/\<br\>/g,"\n"));
+	    	  taskForm.find('#type').val(task.find('type').attr('class'));
+	    	  taskForm.find('#assign').val(task.find('img').attr('src'));
+	    	  taskForm.find('#req').val(task.find('req').html());
+	    	  taskForm.find('#state').val(state);
+	    	  oldAssign = task.find('img').attr('src');
+	    	  if (!accessRight(task, false)) {
+	    	  		setReadOnly(taskForm);
+	    	  } else {
+					setWritable(taskForm);    	  
+	    	  }
+	    	  if (taskForm.find('#assign').val() == loggedUser) {
+					taskForm.find('#state').attr('disabled',false);    	  
+	    	  }
+			  $('#taskForm').toggle();
       });
       $('task').mousedown(function(){
       	atDragging = true;
@@ -303,7 +314,7 @@
     var i = 0;
     var col = null;
     for (i=0; i<cols.length; i++) {
-    	col = $('#'+cols[i].nodeName);
+    	col = $(cols[i].nodeName);
 		if (col.height() > maxHeight) {
 			maxHeight = col.height();		
 		}    
@@ -498,41 +509,40 @@
     // - users overwrite to database
     if (users.length > 0) {
     	
-	   refreshFromDatabase(projectId);
-	   dbRefreshEnable = false;
-	   
-	   //copy admins from <members> into admins array
-		var oldMembers = $('members').find('member');
-		var i = 0;
-		var s = '';
-		for (i=0; i < oldMembers.length; i++) {
-			if (oldMembers[i].attributes.admin.nodeValue == '1') {
-				admins.push(members[i].attributes.avatar.nodeValue);			
-			}		
-		}
-		// clear <members>
-		$('members').html('');
-		s = '<member avatar="https://www.gravatar.com/avatar/" admin="0">?</member>';
-		$('members').append(s);
-		
-		// copy users into <members> (first user is admin!)
-		for (i=0; i < users.length; i++) {
-			if ((admins.indexOf(users[i][0]) >= 0) || (i == 0)) {
-				s = '<member avatar="'+users[i][0]+'" admin="1">'+users[i][1]+'</member>';
-			} else {
-				s = '<member avatar="'+users[i][0]+'" admin="0">'+users[i][1]+'</member>';
+	   refreshFromDatabase(projectId,  function() {
+		   dbRefreshEnable = false;
+		   
+		   //copy admins from <members> into admins array
+			var oldMembers = $('members').find('member');
+			var i = 0;
+			var s = '';
+			for (i=0; i < oldMembers.length; i++) {
+				if (oldMembers[i].attributes.admin.nodeValue == '1') {
+					admins.push(oldMembers[i].attributes.avatar.nodeValue);			
+				}		
 			}
-			$('members').append(s);
-		}
-	   dbSaveEnable = true;
-    	saveToDatabase(projectId);
-	   dbRefreshEnable = true;
+			// clear <members>
+			$('members').html('');
+			
+			// copy users into <members> (first user is admin!)
+			for (i=0; i < users.length; i++) {
+				if ((admins.indexOf(users[i][0]) >= 0) || (i == 0)) {
+					s = '<member avatar="'+users[i][0]+'" admin="1">'+users[i][1]+'</member>';
+				} else {
+					s = '<member avatar="'+users[i][0]+'" admin="0">'+users[i][1]+'</member>';
+				}
+				$('members').append(s);
+			}
+		   dbSaveEnable = true;
+	    	saveToDatabase(projectId);
+		   dbRefreshEnable = true;
+		   if (loggedAdmin()) {
+		   	$('#newTaskBtn').show();
+		   } else {
+		   	$('#newTaskBtn').hide();
+		   }
+	   });
 	   
-	   if (loggedAdmin()) {
-	   	$('#newTaskBtn').show();
-	   } else {
-	   	$('#newTaskBtn').hide();
-	   }
     }
      
     // start refresh interval

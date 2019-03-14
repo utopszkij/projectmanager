@@ -52,7 +52,6 @@ class tasksView {
 				<h2>closed</h2>
 			</closed>
 			<members>
-				<member avatar="" admin="0">?</member>
 			</members>
 		</project>
 	</div>

@@ -52,7 +52,6 @@ class tasksView {
 				<h2>closed</h2>
 			</closed>
 			<members>
-				<member avatar="" admin="0">?</member>
 			</members>
 		</project>
 	</div>
@@ -66,7 +65,7 @@ class tasksView {
 			<title></title>
 			<desc></desc>
 			<type class="question"></type>
-			<assign><img src="https://www.gravatar.com/avatar/" title="?" /></assign>
+			<assign><img src="https://www/gravatar.com/avatar/" title="?" /></assign>
 			<req></req>
 		</task>
 	</div>"
