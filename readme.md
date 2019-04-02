@@ -57,11 +57,13 @@ Ezt a wb applikációt az EnvientaPlatform hívja iframe -ben. Ez az applikáci�
 
 Csak az unittestek számára:
 
-- phpunin 
-- Nodejs 
-- mocha nodejs modul
-- mocha-jsdom nodejs modul 
-- jquery nodejs modul 
+- phpunit 6.5.14+
+- Nodejs 8.9.4+
+- mocha 6.0.2+ nodejs modul
+- mocha-jsdom 2.0.0+  nodejs modul
+- mocha-rcov-reporter 1.3.0+ node.js modul 
+- jquery 3.3.1+ nodejs modul 
+- jscover 1.0.0+ nodejs modul
 
 
 A repo tartalmaz mysql interface-t (database.php), de ez jelenleg nincs használva. Az adat tárolás most json Text fileokban van megoldva.
@@ -146,7 +148,7 @@ cd repoRoot
 
 ```
 ## SonarCloud kód minőség ellenörzés 
-telepitve kell lennie a sonarclod kliensnek: /usr/local/sbin/sonar
+telepitve kell lennie a sonarclod kliensnek az /usr/local/sbin/sonar könyvtárba
 ```
 cd repoRoot
 ./tests/sonar.sh
