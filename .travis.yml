@@ -1,25 +1,15 @@
 language: php
 
-node_js: '8'
-cache: yarn
-
-install:
-  - yarn install
-
 php:
   - 7.0
-
-env:
-  - DB=mysql
 
 addons:
   sonarcloud:
     organization: "utopszkij-github"
       token:  
-        secure: 013traMarika= # encrypted value of your token
+        secure: 013traMarika= 
 
 script: 
-  - yarn build
   - tests/test.sh
   - sonar-scanner
 
