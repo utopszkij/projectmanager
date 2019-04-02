@@ -20,6 +20,10 @@ class tasksView {
   <?php endif; ?>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript">
+	var global = {};
+	
+  </script>
   <?php loadJavaScript('tasks',$p); ?>	
 </head>
 <body>
@@ -27,7 +31,8 @@ class tasksView {
 		<button type="button" class="" title="newTask" id="newTaskBtn">+ Új feladat</button>
 		&nbsp;
 		<button type="button" class="" title="members" id="membersBtn">Tagok</button>
-		<img src="<?php echo $p->loggedUser; ?>" width="35" style="z-index:10; float:right; margin:2px;" />
+		<img src="<?php echo $p->loggedUser; ?>" 
+			width="35" style="z-index:10; float:right; margin:2px;" alt="" />
 	</div>
 
 	<!-- data from database start php olvassa be a kapott projectId alapján -->
@@ -65,7 +70,7 @@ class tasksView {
 			<title></title>
 			<desc></desc>
 			<type class="question"></type>
-			<assign><img src="https://www.gravatar.com/avatar/" title="?" /></assign>
+			<assign><img src="https://www.gravatar.com/avatar/" title="?" alt="" /></assign>
 			<req></req>
 		</task>
 	</div>"
@@ -85,6 +90,7 @@ class tasksView {
 		</div>
 		<div>
 			<fieldset>
+				<legend></legend>
 				<label><?php echo TYPE; ?> :</label>
 				<select id="type">
 					<option value="question"><?php echo QUESTION; ?></option>
@@ -94,6 +100,7 @@ class tasksView {
 				</select>
 			</fieldset>
 			<fieldset>
+				<legend></legend>
 				<label><?php echo ASSIGN; ?> :</label>
 				<select id="assign">
 					<option value="https://www.gravatar.com/avatar/">?</option>			
@@ -102,6 +109,7 @@ class tasksView {
 		</div>
 		<div>	
 			<fieldset>
+				<legend></legend>
 				<label><?php echo STATE; ?> :</label>
 				<select id="state">
 					<option value="waiting"><?php echo WAITING; ?></option>

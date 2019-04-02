@@ -40,9 +40,15 @@ class tasksController {
 		} else if (($request->input('projectid') != '') && ($request->input('callerapiurl') != '')) {	
 			$lines = file($request->input('callerapiurl').
 			  '/'.$request->input('sessionid','0').
-			  '/'.$request->input('projectid'.'0'));
+			  '/'.$request->input('projectid','0'));
 			$res = JSON_decode(implode("",$lines));
-      }
+        }
+      
+        // store users, admins, loggedUser info into session
+        $request->sessionSet('loggedUser', $res->loggedUser);
+        $request->sessionSet('admins', $res->admins);
+        $request->sessionSet('users', $res->users);
+      
 		// forward params into viewer
 		$p = new stdClass();
 		$p->projectId = $request->input('projectid','0000');
@@ -62,32 +68,30 @@ class tasksController {
 	* @request projectId string  REQUED
 	* @request fileTime number   REQUED
 	* @return void, 
-	*     echo json {"fileTime".num} vagy {"fileTime".num, "project":XMLstr}  
+	*     echo json {"fileTime":num} vagy {"fileTime".num, "project":jsoStr}  
 	*/
 	public function refresh($request) {
 		$projectId = $request->input('projectid','0000');
 		$fileTime = $request->input('fileTime',0);
 
 		$model = getModel('tasks');
-	   header('Content-Type: json');
+		if (!headers_sent())  header('Content-Type: json');
 		echo $model->refresh($projectId, $fileTime);
-		exit();
 	}
 	
 	/**
 	* save tasks into database AJAX backend server
-	* @request projectId string  REQUED
-	* @request project XMLstr    REQUED
+	* @request string projectid REQUED
+	* @request jsonStr project   REQUED
 	* @return void, 
-	*     echo json {"fileTime".num}  
+	*     echo json {"fileTime":num, "errorMsg":""}  
 	*/
 	public function save($request) {
 		$projectId = $request->input('projectid','0000');
 		$project = $request->input('project','');
 		$model = getModel('tasks');
-	   header('Content-Type: json');
+		if (!headers_sent())  header('Content-Type: json');
 		echo $model->save($projectId, $project);
-		exit();
 	} 
 }
 ?>
