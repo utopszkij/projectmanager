@@ -1,18 +1,23 @@
-language: node_js
+language: php
 
 node_js: '8'
-
 cache: yarn
-
-addons:
-  sonarcloud:
-    organization: "proustibat-github"
-    token:
-      secure: "0.............="
 
 install:
   - yarn install
 
-script:
+php:
+  - 7.0
+
+env:
+  - DB=mysql
+
+addons:
+  sonarcloud:
+    organization: "utopszkij-github"
+
+script: 
   - yarn build
+  - tests/test.sh
   - sonar-scanner
+
