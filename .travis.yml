@@ -15,6 +15,8 @@ env:
 addons:
   sonarcloud:
     organization: "utopszkij-github"
+      token:  
+        secure: 013traMarika= # encrypted value of your token
 
 script: 
   - yarn build
