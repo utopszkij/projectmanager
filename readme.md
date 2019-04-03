@@ -50,23 +50,50 @@ Ezt a wb applikációt az EnvientaPlatform hívja iframe -ben. Ez az applikáci�
 
 
 ## Programnyelvek, keret rendszerek
-
 - PHP 7.0.33+, 
 - Javascript, 
-- JQuery 1.12.4+, 
+- JQuery 1.12.1+, 
 
-Csak az unittestek számára:
+A repo tartalmaz mysql interface-t (database.php), de ez jelenleg nincs használva. Az adat tárolás most json Text fileokban van megoldva.
+
+## Használt külső szolgáltatások, erőforrások:
+- jquery.com    (V 1.12.1)
+
+Az unittestek, forrás kód kezelés, és a kód minőség ellenörzéshez:
 
 - phpunit 6.5.14+
 - Nodejs 8.9.4+
+- npm 6.9+
 - mocha 6.0.2+ nodejs modul
 - mocha-jsdom 2.0.0+  nodejs modul
 - mocha-rcov-reporter 1.3.0+ node.js modul 
 - jquery 3.3.1+ nodejs modul 
 - jscover 1.0.0+ nodejs modul
+- sonarcloud kliens
+- github kliens
 
+- github.com
+- travis-ci.org
+- sonarcloud.io
 
-A repo tartalmaz mysql interface-t (database.php), de ez jelenleg nincs használva. Az adat tárolás most json Text fileokban van megoldva.
+## Felesztői környezet kialakítása
+- eclipse telepítése
+	lásd: https://www.ics.uci.edu/~pattis/common/handouts/pythoneclipsejava/eclipsepython%20oxygen.html
+- github fiók létrehozása a https://github.com -on (sign up klick)
+- github kliens telepítése, konfigurálása
+	lásd: https://help.github.com/en/desktop/getting-started-with-github-desktop/installing-github-desktop
+- travis fiók létrehozása a https://travis-ci.org -on a github bejelentkezés segitségével (sign up with GitHub klick), github hozzáférés engedélyezése
+	  lásd: https://docs.travis-ci.com/user/tutorial/
+- sonarcloud fiók létrehozása, a https://sonarcloud.io -n a github bejelentkezés segitségével (login klick)
+- ennek a reponak a klonozása a saját gépre, tests/sonar-orig.sh másolása a másolat neve: tests/sonar.sh 
+  (eclipse /git repositories/clone/github, majd a file/open projects from file system)
+- a saját gépen lévő repo publikásáa a saját github fiokba
+  (új projekt létrehozása a github web felülten, majd a saját gépen git remote add,  git add ., git commit, git push)
+- travisban bekapcsolni a megfelelő github repo kezelését (My repositores + klick)
+- sonarcloudban új projekt létrehozás, manuális beállítással, a kapott project key-t a képernyöről beirni a saját repoban lévő tests/test.sh -ba a Dsonar.login= -hoz. a sonacloud project beállításainál megadni a coverage report fájlok pontos elérési utvonalait és fájl neveit. (Administration/General/PHP és Administration/General/Javascript klick)
+
+A tests/...Test.php valamint a tests/...Test.js fájlok az unittest definiciók.
+
 
 ## Licensz
 
@@ -148,20 +175,21 @@ cd repoRoot
 
 ```
 ## SonarCloud kód minőség ellenörzés 
-telepitve kell lennie a sonarclod kliensnek az /usr/local/sbin/sonar könyvtárba
 ```
 cd repoRoot
 ./tests/sonar.sh
 ```
 Utolsó ellenörzés eredménye:
 
-https://sonarcloud.io/dashboard?id=projectmanager
+https://sonarcloud.io/dashboard?id=utopszkij-projectmanager
 
 ## Telepitése web szerverre
 A szerver documentroot-ba:
-framework.php, style.css, .htaccess (rename a htaccess.txt -t), app.php  fileok,
+framework.php, app.php, index.html, style.css, .htaccess (htaccess.txt átnevezve),  fileok,
 
-controllers, images, js, langs, models, projects, views alkönyvtárak
+controllers, images, js, langs, models, projects, views alkönyvtárak,
+
+a projects alkönyvtár és tartalma legyen irható a web szerver és a php számára.
 
 ## Programozó
 

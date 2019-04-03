@@ -1,4 +1,5 @@
 <?php
+DEFINE('LNGDEF',1);
 DEFINE('WAITING','Várakozik');
 DEFINE('CANSTART','Inditható');
 DEFINE('ATWORK','Munkában');

@@ -51,13 +51,13 @@ function loadJavaScript($jsName, $params) {
 
 function getModel($modelName) {
 	include_once './models/'.$modelName.'.php';
-	$className = $modelName.'Model';
+	$className = ucfirst($modelName).'Model';
 	return new $className ();
 }
 
 function getView($viewName) {
 	include_once './views/'.$viewName.'.php';
-	$className = $viewName.'View';
+	$className = ucfirst($viewName).'View';
 	return new $className ();
 }
 

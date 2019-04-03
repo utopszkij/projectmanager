@@ -1,5 +1,5 @@
 <?php
-class tasksModel {
+class TasksModel {
 
     protected $errorMsg = '';
     
@@ -69,12 +69,24 @@ class tasksModel {
     */
     protected function ContentNotChange($newTask, $oldTask): bool {
         $result = true;
-        if ($newTask->id  !=  $oldTask->id) $result = false;
-        if ($newTask->title !=  $oldTask->title) $result = false;
-        if ($newTask->desc !=  $oldTask->desc) $result = false;
-        if ($newTask->type  !=  $oldTask->type) $result = false;
-        if ($newTask->req  !=  $oldTask->req) $result = false;
-        if ($result == false) $this->errorMsg = 'CONTENTCHANGE';
+        if ($newTask->id  !=  $oldTask->id) {
+            $result = false;
+        }
+        if ($newTask->title !=  $oldTask->title) {
+            $result = false;
+        }
+        if ($newTask->desc !=  $oldTask->desc) {
+            $result = false;
+        }
+        if ($newTask->type  !=  $oldTask->type) {
+            $result = false;
+        }
+        if ($newTask->req  !=  $oldTask->req) {
+            $result = false;
+        }
+        if (!$result) {
+            $this->errorMsg = 'CONTENTCHANGE';
+        }
         return $result;
     }
 
@@ -102,7 +114,7 @@ class tasksModel {
              }
              
 	         // új javaslatot, kérdést, hibajelzést bárki felvihet
-             if ( ($oldTask == false) &&
+             if ( (!$oldTask) &&
                   (($newTask->type == 'suggest') || ($newTask->type == 'query') || ($newTask->type == 'bug')) &&
                   ($newTask->state == 'waiting') &&
                   ($newTask->assign == $freeAssign)) {
@@ -142,9 +154,37 @@ class tasksModel {
                          $result = true;
                  }
             }
-            if ($errorMsg != '') 
+            if ($errorMsg != '') {
                 $this->errorMsg = $errorMsg;
+            }
             return $result;    
+	}
+		
+	protected function saveCheckNoAdmin(& $accessRight, $projectId, $project) {
+	    $member = in_array($_SESSION['loggedUser'], $_SESSION['users']);
+	    $newTasks = $this->getTasks($project);
+	    if (file_exists('./projects/project_'.$projectId.'.json')) {
+	        $s = implode('',file('./projects/project_'.$projectId.'.json'));
+	    } else {
+	        $s = '{}';
+	    }
+	    $oldTasks = $this->getTasks($s);
+	    
+	    $loggedUser = $_SESSION['loggedUser'];
+	    foreach($newTasks as $newTask) {
+	        $oldTask = $this->findTask($oldTasks, $newTask);
+	        if (!$this->checkTaskAction($newTask,$oldTask, $member, $loggedUser)) {
+	            $accessRight = false;
+	        }
+	    }
+	    foreach($oldTasks as $oldTask) {
+	        $newTask = $this->findTask($newTasks, $oldTask);
+	        if (!$newTask) {
+	            $this->errorMsg = 'DELETE_ACCESSDENIED';
+	            $accessRight = false;
+	        }
+	    }
+	    
 	}
 		
 	/**
@@ -156,39 +196,18 @@ class tasksModel {
 	*/
 	public function save($projectId, $project) {
 		// sessionban lévő loggedUser, admins, users alapján jogosultság ellenörzés
-		$accessRight = true;
+	    $result = new stdClass();
+	    $accessRight = true;
 		$this->errorMsg = '';
 		if (!isset($_SESSION['loggedUser'])) {
 		    // fatal error
-		    echo '{"fileTime":0, "errorMsg":"WRONGSESSION"}';
-		    return;
+		    return '{"fileTime":0, "errorMsg":"WRONGSESSION"}';
 		}
+		
 		
 		if (!in_array($_SESSION['loggedUser'], $_SESSION['admins'])) {
 		    // nem admin
-		    $member = in_array($_SESSION['loggedUser'], $_SESSION['users']);
-            $newTasks = $this->getTasks($project);
-            if (file_exists('./projects/project_'.$projectId.'.json'))
-                $s = implode('',file('./projects/project_'.$projectId.'.json'));
-            else 
-                $s = '{}';
-            $oldTasks = $this->getTasks($s);
-            
-            $loggedUser = $_SESSION['loggedUser'];
-            foreach($newTasks as $newTask) {
-                $oldTask = $this->findTask($oldTasks, $newTask);
-                if (!$this->checkTaskAction($newTask,$oldTask, $member, $loggedUser)) {
-                    $accessRight = false;
-                }
-            }
-            foreach($oldTasks as $oldTask) {
-                $newTask = $this->findTask($newTasks, $oldTask);
-                if ($newTask == false) {
-                    $this->errorMsg = 'DELETE_ACCESSDENIED';
-                    $accessRight = false;
-                }
-            }
-            
+		    $this->saveCheckNoAdmin($accessRight, $projectId, $project);
 		}
 		
 		if ($accessRight) {
@@ -196,13 +215,13 @@ class tasksModel {
 		  fwrite($fp, $project);
 		  fclose($fp);
 		}
-		if (file_exists('./projects/project_'.$projectId.'.json'))
+		if (file_exists('./projects/project_'.$projectId.'.json')) {
 		    $fileTime = filemtime('./projects/project_'.$projectId.'.json');
-		else 
+		} else {
 		    $fileTime = '';
-	    $result = new stdClass();
-	    $result->fileTime = $fileTime;
-	    $result->errorMsg = $this->errorMsg;
+		}
+		$result->fileTime = $fileTime;
+		$result->errorMsg = $this->errorMsg;
 		return JSON_encode($result);
 	} 
 }

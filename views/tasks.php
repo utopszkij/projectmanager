@@ -1,11 +1,13 @@
 <?php
-class tasksView {
+class TasksView {
 	/**
 	* echo html page
 	* @param {users:[[avatar,nick], ...], mebers:[avatar], loggerUser:avatar, lng:hu, extraCSS:url}
 	*/
 	public function show($p) {
-	  include './langs/'.$p->lng.'.php'; 	
+	    if (!defined('LNGDEF')) {
+	        include './langs/'.$p->lng.'.php'; 	
+	    }
 		?>
 <!doctype html>
 <html lang="hu">
@@ -22,7 +24,18 @@ class tasksView {
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript">
 	var global = {};
-	
+	var global.alert = function(str) {
+			window.alert(str);
+		};
+	var global.confirm = function(str, yesfun, nofun) {
+			var res = wondow.confirm(str);
+			if (res & (yesfun != undefined)) {
+				yesfun();
+			} 
+			if (!res & (nofun != undefined)) {
+				nofun();
+			} 
+		};	
   </script>
   <?php loadJavaScript('tasks',$p); ?>	
 </head>
@@ -138,9 +151,9 @@ class tasksView {
 			<button type="button" onclick="$('#membersForm').toggle();" title="close">X</button>		
 		</p>
 		<h3><?php echo MEMBERS; ?></h3>
-		<table width="100%">
+		<table style="width:100%">
 		<thead>
-			<tr><th float="left" width="100"><?php echo ADMIN; ?></th><th></th></tr>
+			<tr><th float="left" style="width:100px"><?php echo ADMIN; ?></th><th></th></tr>
 		</thead>
 		<tbody>
 		</tbody>

@@ -24,7 +24,7 @@ $task = $request->input('task','default');
 
 if (file_exists('./controllers/'.$option.'.php')) {
 	include_once './controllers/'.$option.'.php';
-	$controllerName = $option.'Controller';
+	$controllerName = ucfirst($option).'Controller';
 	$controller = new $controllerName ();
 	$controller->$task ($request);
 } else {

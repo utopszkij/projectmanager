@@ -21,7 +21,7 @@
   */ 
  function stateToJson(state) {
    var tasks = $(state).find('task');
-   var i = 0;
+   var i;
    var result = '"'+state+'": [';
    var task = null;   
    for (i=0; i<tasks.length; i++) {
@@ -47,7 +47,7 @@
   */
  function membersToJson() {
 	var result = '"members":['; 
-	var i = 0;
+	var i;
 	var members = $('member');
 	for (i=0; i<members.length; i++) {
 		if (i > 0) {
@@ -97,7 +97,7 @@
  }
  
  function appendState(stateObj, stateName) {
-	 var i = 0;
+	 var i;
 	 var task = null;
 	 var s = '';
 	 for (i=0; i < stateObj.length; i++) {
@@ -123,12 +123,8 @@
  function refreshFromDatabase(projectId, fun) {
  	if ((dbRefreshEnable) && (!atDragging)) {
  		dbSaveEnable = false;
-	    var s = $('#database').html();
 	 	$.post('./app.php', {"option":"tasks", "task":"refresh", "projectid":projectId, "fileTime": fileTime}, function(res) {
 	 		fileTime = res.fileTime;
-	 		var i=0;
-			var members = null; 		
-			var s = '';
 	 		if (res.project != undefined) {
 	 			// json project --> #database html dom
 	 			$('task').remove();
@@ -159,7 +155,7 @@
  function getIdMax() {
 		var result = 0;
 		var tasks = $('task');
-		var i = 0;
+		var i;
 		var j = 0;
 		for (i=0; i<tasks.length; i++) {
 			j = Number(tasks[i].id);
@@ -172,7 +168,7 @@
  
  function userMember() {
  	var result = false;
- 	var i = 0;
+ 	var i;
  	var members = $('members').find('member');
  	for (i=0; i < members.length; i++) {
 		if (members[i].attributes.avatar.nodeValue == loggedUser) {
@@ -184,7 +180,7 @@
 
  function loggedAdmin() {
  	var result = false;
- 	var i = 0;
+ 	var i;
  	var members = $('members').find('member');
  	for (i=0; i < members.length; i++) {
 		if ((members[i].attributes.avatar.nodeValue == loggedUser) &&
@@ -196,9 +192,9 @@
  }
 
  function getClosedTasks() {
-	result = [];
+	var result = [];
 	var tasks = $('closed').find('task');
-	var i = 0;
+	var i;
 	for (i=0; i<tasks.length; i++) {
 		result.push(tasks[i].id);	
 	}
@@ -222,13 +218,13 @@
 			 (loggedAdmin() == false) && /* nem admin */
 		    (assign != loggedUser) /* nem önmgához rendelte */
 		) {
-			alert("<?php echo ACCESSDENIED; ?>");
+			global.alert("<?php echo ACCESSDENIED; ?>");
 			result = false;		
 		} else if ((oldAssign != assign) && /* hozzányult */ 
 			        (loggedAdmin() == false) && /* nem admin */
 		           (oldAssign != 'https://www.gravtar.com/avatar/') /* eddig nem volt üres */
 		) {
-			alert("<?php echo ACCESSDENIED; ?>");
+			global.alert("<?php echo ACCESSDENIED; ?>");
 			result = false;		
 		}			 
  	}
@@ -253,7 +249,8 @@
  */
  function checkState3(newState, req) {
 	var result = true;
-	var i = 0;
+	var i;
+	var closedTasks;
 	if ((newState != 'waiting') && (req != '')) {
 		req = req.split(',');
 		closedTasks = getClosedTasks();
@@ -264,19 +261,19 @@
 		}
 	}
 	if (!result) {
-		alert("<?php echo NOTSTARTING; ?>");	
+		global.alert("<?php echo NOTSTARTING; ?>");	
 	}
 	return result; 
  }
 
  function accessRight(task, viewMessage) {
-   var result = true;
+   var result;
  	if ((loggedUser == task.find('img').attr('src')) || (loggedAdmin())) {
 		result = true;
 	} else {
 		result = false;
 		if (viewMessage) {
-			alert("<?php echo ACCESSDENIED; ?>");		
+			global.alert("<?php echo ACCESSDENIED; ?>");		
 		}
 	}	 
 	return result;
@@ -343,7 +340,7 @@
 			  var state = getStateFromTask(task);	    	  
 	     	
 	        // copy member into taskFom user selecor'options
-	        var i = 0;
+	        var i;
 	        var s = '<option value="https://www.gravatar.com/avatar/">?</option>';
 	        $('#assign').html('');
 		     $('#assign').append(s); 		      
@@ -398,7 +395,7 @@
     $('.col').css('height', '');
 	 
     var cols = $('project').find('.col');
-    var i = 0;
+    var i;
     var col = null;
     for (i=0; i<cols.length; i++) {
     	col = $(cols[i].nodeName);
@@ -422,7 +419,7 @@
 			var scrolTop  = window.pageYOffset || document.documentElement.scrollTop;
 			
 			// calculate newState
-			var newState = 'waiting';
+			var newState;
 			if (ui.offset.left > 1000) {
 				newState = 'closed';
 			} else if (ui.offset.left > 800) {
@@ -441,7 +438,7 @@
 			var beforeSelector = 'h2';
 			if (ui.offset.top > (scrolTop+60)) {
 				var tasks = $(newState).find('task');
-				var i = 0;
+				var i;
 				for (i=0; i < tasks.length; i++) {
 					if (ui.draggable.position().top > $('#'+tasks[i].id).position().top) {
 						beforeSelector = '#'+tasks[i].id;				
@@ -456,7 +453,7 @@
 		 		   clearTimeout(saveTimer);
 		        	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
 		        	if (beforeSelector == 'h2') {
-						window,scrollTo(0,0);		        	
+						window.scrollTo(0,0);		        	
 		        	}
 		       	colResize();
 	      }
@@ -473,25 +470,22 @@
     	var task = $('#'+id);
     	var newState = taskForm.find('#state').val();
     	var oldState = getStateFromTask(task);
-	   var i = 0;
-	   var s = '';
-	   var members = [];
 		if (checkForm(taskForm)) { 
 	      task.find('title').html(taskForm.find('#title').val());
 	      task.find('desc').html(taskForm.find('#desc').val().replace(/\n/g,"<br>"));
 	      task.find('type').attr('class', taskForm.find('#type').val());
-			var assign = taskForm.find('#assign').val();
-			var assignSelect = taskForm.find('#assign')[0];
-			var selectedIndex = assignSelect.selectedIndex;
-			var nick = assignSelect.options[selectedIndex].label;
+		  var assign = taskForm.find('#assign').val();
+		  var assignSelect = taskForm.find('#assign')[0];
+		  var selectedIndex = assignSelect.selectedIndex;
+		  var nick = assignSelect.options[selectedIndex].label;
 	      task.find('img').attr('src',assign);
 	      task.find('img').attr('title',nick);
 	      task.find('req').html(taskForm.find('#req').val());
-			if (newState != oldState) {	      
+		  if (newState != oldState) {	      
 				task.insertAfter($(newState).find('h2'));
 	      }
-			dbRefreshEnable = false;
- 		   clearTimeout(saveTimer);
+	      dbRefreshEnable = false;
+ 		  clearTimeout(saveTimer);
        	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
        	colResize(); 
 		}
@@ -523,7 +517,6 @@
 	      newTask.attr('id',id);
 	      newTask.insertAfter($('waiting').find('h2'));
 	      setTaskEventHandlers();
-	      idMax = id;
 		  window.scrollTo(0,0);
 		  dbRefreshEnable = false;
 		  clearTimeout(saveTimer);
@@ -565,7 +558,6 @@
 	 	$('#membersForm tr input').click(function() {
 		 	var members = $('members').find('member');
 		 	var i = 0;
-		 	var members = $('members').find('member');
 		 	var avatar = this.parentNode.nextSibling.firstChild.alt;
 		 	// i=1 is the  creator it is admin.
 			members[1].attributes.admin.nodeValue = '1';
@@ -605,7 +597,7 @@
 		   
 		   //copy admins from <members> into admins array
 			var oldMembers = $('members').find('member');
-			var i = 0;
+			var i;
 			var s = '';
 			for (i=0; i < oldMembers.length; i++) {
 				if (oldMembers[i].attributes.admin.nodeValue == '1') {

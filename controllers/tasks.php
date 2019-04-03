@@ -1,5 +1,5 @@
 <?php
-class tasksController {
+class TasksController {
 
 	/**
 	* show projectmanager main page
@@ -75,7 +75,9 @@ class tasksController {
 		$fileTime = $request->input('fileTime',0);
 
 		$model = getModel('tasks');
-		if (!headers_sent())  header('Content-Type: json');
+		if (!headers_sent()) {
+		    header('Content-Type: json');
+		}
 		echo $model->refresh($projectId, $fileTime);
 	}
 	
@@ -90,7 +92,9 @@ class tasksController {
 		$projectId = $request->input('projectid','0000');
 		$project = $request->input('project','');
 		$model = getModel('tasks');
-		if (!headers_sent())  header('Content-Type: json');
+		if (!headers_sent()) {
+		    header('Content-Type: json');
+		}
 		echo $model->save($projectId, $project);
 	} 
 }

@@ -2878,7 +2878,7 @@ renamenameziparchive::renamename
 taskscontroller
 savetaskscontroller::save
 showtaskscontroller::show#
-refreshtaskscontroller::refreshì
+refreshtaskscontroller::refreshž
 
 tasksmodel.
 checktaskactiontasksmodel::checktaskaction0
@@ -2886,6 +2886,7 @@ tasksmodel.
 savetasksmodel::save 
 gettaskstasksmodel::gettasks
 refreshtasksmodel::refresh 
-findtasktasksmodel::findtask$
+findtasktasksmodel::findtask0
+savechecknoadmintasksmodel::savechecknoadmin$
 	tasksview
 showtasksview::show

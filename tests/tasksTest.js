@@ -5,6 +5,9 @@ const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 const $ = global.jQuery = require('jquery')(window);
 window.setTimeout = function(s) {};
+global.alert = function(str) {};
+global.confirm = function(str,yesfun, nofun) { yesfun(); };
+
 
 // params for controller	  
 var projectId  = '';	

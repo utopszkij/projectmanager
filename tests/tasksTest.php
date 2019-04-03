@@ -5,16 +5,8 @@ include_once './tests/mock.php';
 
 use PHPUnit\Framework\TestCase;
 
-
-/* CodeCovarage report start
-use SebastianBergmann\CodeCoverage\CodeCoverage;
-$coverage = new CodeCoverage;
-$coverage->filter()->addDirectoryToWhitelist('./controllers');
-$coverage->start('tasks');
-*/
-
 // test Cases
-class tasksTest extends TestCase 
+class TasksTest extends TestCase 
 {
     protected $controller;
     protected $request;
@@ -23,7 +15,7 @@ class tasksTest extends TestCase
         parent::__construct();
         if (file_exists('./projects/project_test.json'))
             unlink('./projects/project_test.json');
-        $this->controller = new tasksController();
+        $this->controller = new TasksController();
         $this->request = new Request();
     }
     
@@ -216,15 +208,24 @@ class tasksTest extends TestCase
         $this->expectOutputRegex('/html/');
     }
     
+    public function test_show_demo1() {
+        $this->request->set('projectid','demo1');
+        $this->controller->show($this->request);
+        $this->expectOutputRegex('/html/');
+    }
+    
+    public function test_show_demo2() {
+        $this->request->set('projectid','demo2');
+        $this->controller->show($this->request);
+        $this->expectOutputRegex('/html/');
+    }
+        
+    public function test_show_demo3() {
+        $this->request->set('projectid','demo3');
+        $this->controller->show($this->request);
+        $this->expectOutputRegex('/html/');
+    }
     
     
 }
 
-/* CodeCovarage report stop, report files: ./tmp/clover.xml  ./tmp/code-covarage-report
-$coverage->stop();
-$writer = new \SebastianBergmann\CodeCoverage\Report\Clover;
-$writer->process($coverage, './tmp/clover.xml');
-$writer = new \SebastianBergmann\CodeCoverage\Report\Html\Facade;
-$writer->process($coverage, './tmp/code-coverage-report');
-*/
-    
