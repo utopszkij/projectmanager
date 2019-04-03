@@ -1,0 +1,7 @@
+{
+            "canverify":[{"id":100, "title":"test100", "desc":"",
+                        "type":"other", "assign":"user1", "req":""}],
+            "waiting":[{"id":101, "title":"test101", "desc":"", "type":"bug", "assign":"https://www.gravatar.com/avatar/", "req":""},
+                       {"id":102, "title":"test102", "desc":"", "type":"query", "assign":"https://www.gravatar.com/avatar/", "req":""},
+                       {"id":103, "title":"test103", "desc":"", "type":"suggest", "assign":"https://www.gravatar.com/avatar/", "req":""}]
+        }

@@ -6,27 +6,86 @@
   var dbSaveEnable = true;     // false at RefresFromDatabase use in saveToDatabase
   var fileTime = 0;            // use in refreshFromDatabase
   var atDragging = false;      // mark at dragging, use refreshFromDatabase
-
+  
   // params for controller	  
-  // projectId = string  requed	
-  // loggedUser  str     requed
-  // users = array [avatarurl,nincname],...] project' members  OPTIONAL
-  // admins = array [avatarurl]    OPTIONAL
+  // projectId string  requed	
+  // loggedUser string requed
+  // users array [avatarurl,nincname],...] project' members  OPTIONAL
+  // admins array [avatarurl]    OPTIONAL
+  // sid string requed
+  
+ /**
+  * convert #database state into json string
+  * @param state
+  * @return string
+  */ 
+ function stateToJson(state) {
+   var tasks = $(state).find('task');
+   var i = 0;
+   var result = '"'+state+'": [';
+   var task = null;   
+   for (i=0; i<tasks.length; i++) {
+	   task = $('#'+tasks[i].id);
+	   if (i > 0) {
+		   result += ', ';
+	   }
+	   result += '{';
+	   result += '"id":'+task.find('id')[0].innerHTML+', ';
+	   result += '"title":'+JSON.stringify(task.find('title')[0].innerHTML)+', ';
+	   result += '"desc":'+JSON.stringify(task.find('desc')[0].innerHTML)+', ';
+	   result += '"type":"'+task.find('type')[0].class+'", ';
+	   result += '"req":'+JSON.stringify(task.find('req')[0].innerHTML)+', ';
+	   result += '"assign":"'+task.find('img')[0].src+'"';
+	   result += '}';
+   }
+   return result+'], '	 
+ } 
+ 
+ /**
+  * convert #database members into json string
+  * @return string
+  */
+ function membersToJson() {
+	var result = '"members":['; 
+	var i = 0;
+	var members = $('member');
+	for (i=0; i<members.length; i++) {
+		if (i > 0) {
+			result += ', ';
+		}
+		result += '{"avatar":"'+members[i].getAttribute('avatar')+'", ';
+		result += '"admin":"'+members[i].getAttribute('admin')+'", ';
+		result += '"nick":'+JSON.stringify(members[i].innerHTML)+'}';
+	}
+	result += ']';
+	return result; 
+ }
+  
   
  /**
  * save task into database
- * server input: act='save', projectId 
+ * server input: act='save', projectId, project 
  * server result: fileTime
  *  use global fileTime
  */
  function saveToDatabase(projectId) {
  	if (dbSaveEnable) {
  		dbRefreshEnable = false;
-	   var s = $('#database').html();
+
+ 	   // #database convert into  json string	
+	   var s = '{';
+	   s += stateToJson('waiting');
+	   s += stateToJson('canstart');
+	   s += stateToJson('atwork');
+	   s += stateToJson('canverify');
+	   s += stateToJson('atverify');
+	   s += stateToJson('closed');
+	   s += membersToJson();
+	   s += '}';
 	   if (projectId == 'demo') {
 	 			dbRefreshEnable = true;
 	   } else {
-		 	$.post('./app.php', {"option":"tasks", "task":"save", "projectid":projectId, "project": s}, function(res) {
+		 	$.post('./app.php', {"option":"tasks", "task":"save", "projectid":projectId, "project": s, "sid": sid}, function(res) {
 		 		fileTime = res.fileTime;
 	 			dbRefreshEnable = true;
 		 	})
@@ -37,32 +96,58 @@
  	}
  }
  
+ function appendState(stateObj, stateName) {
+	 var i = 0;
+	 var task = null;
+	 var s = '';
+	 for (i=0; i < stateObj.length; i++) {
+		task = stateObj[i];
+		s = '<task id="'+task.id+'">';
+		s += '<id>'+task.id+'</id>';
+		s += '<title>'+task.title+'</title>';
+		s += '<desc>'+task.desc+'</desc>';
+		s += '<type class="'+task.type+'">&nbsp;</type>';
+		s += '<assign><img src="'+task.assign+'" /></assign>';
+		s += '<req>'+task.req+'</req>';
+		$(stateName).append(s);
+	 }
+	 
+ }
+ 
  /**
  * refresh task from database
  * server input: act='refresh', projectId
  * server result: fileTime, project (json string)
  *  use global fileTime
  */
- function refreshFromDatabase(projectId, fun = function() {} ) {
+ function refreshFromDatabase(projectId, fun) {
  	if ((dbRefreshEnable) && (!atDragging)) {
  		dbSaveEnable = false;
-	   var s = $('#database').html();
+	    var s = $('#database').html();
 	 	$.post('./app.php', {"option":"tasks", "task":"refresh", "projectid":projectId, "fileTime": fileTime}, function(res) {
 	 		fileTime = res.fileTime;
 	 		var i=0;
 			var members = null; 		
 			var s = '';
 	 		if (res.project != undefined) {
-	 			$('#database').empty();
-	 			$('#database').html(JSON.parse(res.project).trim().replace(/\n/,''));
-		      colTranslate(); 
-		      colResize();
+	 			// json project --> #database html dom
+	 			$('task').remove();
+	 			appendState(res.project.waiting, 'waiting');
+	 			appendState(res.project.canstart, 'canstart');
+	 			appendState(res.project.atwork, 'atwork');
+	 			appendState(res.project.canverify, 'canverify');
+	 			appendState(res.project.atverify, 'atverify');
+	 			appendState(res.project.closed, 'closed');
+		        colTranslate(); 
+		        colResize();
 	 			setTaskEventHandlers();
 	 		}
  			dbSaveEnable = true;
- 			fun();
- 		   clearTimeout(refreshTimer);
-	  	   refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", 15000);
+ 			if (fun != undefined) {
+ 				fun();
+ 			}	
+ 		    clearTimeout(refreshTimer);
+	  	    refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", 15000);
 	 	})
  	} else {
  		 dbSaveEnable = true;
@@ -247,7 +332,9 @@
   }  
 
   function setTaskEventHandlers() {	 
-        $('task').draggable(); 
+        if ($('task').draggable != undefined) {
+        	$('task').draggable(); 
+        }
         $('task').click(function() {
 	        var members = $('members').find('member');
 	    	  var id = this.id;
@@ -328,6 +415,7 @@
     colResize();
     setTaskEventHandlers();
 
+    if ($('body').droppable != undefined) {
 	 $('body').droppable({
 		drop: function(event, ui) {
 			// drop into body
@@ -376,7 +464,8 @@
      	 	ui.draggable.css('top','0px');
 		}	 
 	 });
-	
+    }
+    
     $('#Ok').click(function() {
       // taskForm --> task (!!! update parent !!!)
     	var taskForm = $('#taskForm');
@@ -435,12 +524,12 @@
 	      newTask.insertAfter($('waiting').find('h2'));
 	      setTaskEventHandlers();
 	      idMax = id;
-			window.scrollTo(0,0);
-			dbRefreshEnable = false;
-		   clearTimeout(saveTimer);
+		  window.scrollTo(0,0);
+		  dbRefreshEnable = false;
+		  clearTimeout(saveTimer);
 	      saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
-	     	colResize(); 
-			$('#'+id).click();
+	      colResize(); 
+		  $('#'+id).click();
 		}
     }); // newTask
 
@@ -492,14 +581,16 @@
 				}		
 			}			 	
  		   clearTimeout(saveTimer);
-	      saveToDatabase(projectId);
+	       saveToDatabase(projectId);
 	 	});
 		$('#membersForm').toggle();	 
 	 });
 
-    $(window).unload(function() {
+	if ($(window).unload != undefined) { 
+		$(window).unload(function() {
 			saveToDatabase(projectId);    
-    });
+		});
+	}
     
     // init application
     // ================
@@ -546,5 +637,6 @@
     }
      
     // start refresh interval
-	 refreshFromDatabase(projectId);
+	refreshFromDatabase(projectId);
+	
   }); // pageLoad

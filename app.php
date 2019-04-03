@@ -1,7 +1,15 @@
 <?php
    
 error_reporting(E_ALL);
+
+if (isset($_GET['sid'])) {
+    session_id(strip_tags($_GET['sid']));
+}
+if (isset($_POST['sid'])) {
+    session_id(strip_tags($_POST['sid']));
+}
 session_start();
+
 include_once './framework.php';
 
 $request = new Request();

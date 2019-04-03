@@ -51,7 +51,22 @@ Ezt a wb applikációt az EnvientaPlatform hívja iframe -ben. Ez az applikáci�
 
 ## Programnyelvek, keret rendszerek
 
-PHP, Javascript, JQuery
+- PHP 7.0.33+, 
+- Javascript, 
+- JQuery 1.12.4+, 
+
+Csak az unittestek számára:
+
+- phpunit 6.5.14+
+- Nodejs 8.9.4+
+- mocha 6.0.2+ nodejs modul
+- mocha-jsdom 2.0.0+  nodejs modul
+- mocha-rcov-reporter 1.3.0+ node.js modul 
+- jquery 3.3.1+ nodejs modul 
+- jscover 1.0.0+ nodejs modul
+
+
+A repo tartalmaz mysql interface-t (database.php), de ez jelenleg nincs használva. Az adat tárolás most json Text fileokban van megoldva.
 
 ## Licensz
 
@@ -126,6 +141,27 @@ echo '
 ?>
 ```
 
+## Unit tesztek
+```
+cd repoRoot
+./tests/test.sh
+
+```
+## SonarCloud kód minőség ellenörzés 
+telepitve kell lennie a sonarclod kliensnek az /usr/local/sbin/sonar könyvtárba
+```
+cd repoRoot
+./tests/sonar.sh
+```
+Utolsó ellenörzés eredménye:
+
+https://sonarcloud.io/dashboard?id=projectmanager
+
+## Telepitése web szerverre
+A szerver documentroot-ba:
+framework.php, style.css, .htaccess (rename a htaccess.txt -t), app.php  fileok,
+
+controllers, images, js, langs, models, projects, views alkönyvtárak
 
 ## Programozó
 

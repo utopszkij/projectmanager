@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="tests" tests="13" assertions="13" errors="0" failures="0" skipped="0" time="0.038893">
+    <testsuite name="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" tests="13" assertions="13" errors="0" failures="0" skipped="0" time="0.038893">
+      <testcase name="test_saveNewOtherByAdmin" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="30" assertions="1" time="0.023441"/>
+      <testcase name="test_saveNewBugByGuest" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="54" assertions="1" time="0.000788"/>
+      <testcase name="test_saveNewQueryByGuest" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="68" assertions="1" time="0.000768"/>
+      <testcase name="test_saveNewSuggestByGuest" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="83" assertions="1" time="0.000827"/>
+      <testcase name="test_saveNewOtherByGuest" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="99" assertions="1" time="0.000877"/>
+      <testcase name="test_savePickupByMember" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="116" assertions="1" time="0.000996"/>
+      <testcase name="test_saveMoveMyTaskByMember" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="132" assertions="1" time="0.000987"/>
+      <testcase name="test_savePickUpForeignTaskByMember" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="148" assertions="1" time="0.000935"/>
+      <testcase name="test_saveMoveForeignTaskByMember" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="164" assertions="1" time="0.000925"/>
+      <testcase name="test_saveChangeTitleByMember" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="181" assertions="1" time="0.000946"/>
+      <testcase name="test_refresh" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="197" assertions="1" time="0.000567"/>
+      <testcase name="test_refreshNotChange" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="205" assertions="1" time="0.000535"/>
+      <testcase name="test_show" class="tasksTest" classname="tasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="213" assertions="1" time="0.006301"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

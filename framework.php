@@ -44,7 +44,7 @@ function loadJavaScript($jsName, $params) {
 			}
 		}
 	}
-	echo "\n";
+	echo 'var sid = "'.session_id().'";'."\n";
 	include_once './js/'.$jsName.'.js';
 	echo "\n".'</script>'."\n";
 }
