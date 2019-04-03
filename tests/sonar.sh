@@ -1,10 +1,10 @@
 #!/bin/bash
-/usr/local/sbin/sonar/bin/sonar-scanner \
-  -Dsonar.projectKey=projectmanager \
+./sonar/bin/sonar-scanner \
+  -Dsonar.projectKey=utopszkij-projectmanager \
   -Dsonar.organization=utopszkij-github \
   -Dsonar.sources=./controllers,./models,./views,./js \
   -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=dccc26a7cf5ee7707dfdd8945e4bc32293537f7f;
+  -Dsonar.login=7ea93a426ed7ecccfa4e7b1401d88cc5f6a9a027;
   
 
   

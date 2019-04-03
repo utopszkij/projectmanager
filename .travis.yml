@@ -15,16 +15,9 @@ matrix:
     - php: 7.0
       env: WITH_COVERAGE=true
 
-addons:
-  sonarcloud:
-    organization: "utopszkij-github"
-    token:
-      secure: 013Marika=
-
-#before_script:
-# - composer require "phpunit/phpunit:6.5.14"
+before_script:
   
 script:
  - ./tests/test.sh 
- - sonar-scanner -X
+ - ./tests/sonar.sh
  

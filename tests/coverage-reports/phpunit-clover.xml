@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1554192767">
-  <project timestamp="1554192767">
+<coverage generated="1554272152">
+  <project timestamp="1554272152">
     <file name="/var/www/html/projectmanager/controllers/default.php">
       <class name="defaultController" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="8" coveredelements="0"/>
