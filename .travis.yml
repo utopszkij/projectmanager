@@ -18,10 +18,13 @@ matrix:
 addons:
   sonarcloud:
     organization: "utopszkij-github"
+    token:
+      secure: 013Marika=
 
 #before_script:
 # - composer require "phpunit/phpunit:6.5.14"
   
 script:
  - ./tests/test.sh 
- - sonar-scanner 
+ - sonar-scanner -X
+ 
