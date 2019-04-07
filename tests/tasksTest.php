@@ -226,6 +226,13 @@ class TasksTest extends TestCase
         $this->expectOutputRegex('/html/');
     }
     
+    public function test_show_testProject() {
+        $this->request->set('projectid','testProject');
+        $this->request->set('sessionid',0);
+        $this->request->set('callerapiurl','.tests/testapi.json');
+        $this->controller->show($this->request);
+        $this->expectOutputRegex('/html/');
+    }
     
 }
 

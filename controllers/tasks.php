@@ -37,10 +37,13 @@ class TasksController {
 		} else if ($request->input('projectid') == 'demo3') {
 			$res->loggedUser = './images/guest.jpg';
 			$request->set('projectid','demo');
-		} else if (($request->input('projectid') != '') && ($request->input('callerapiurl') != '')) {	
-			$lines = file($request->input('callerapiurl').
+		} else if (($request->input('projectid') != '') && ($request->input('callerapiurl') != '')) {
+		    $lines = ['{"loggedUser":"", "admins":[], "users":[]}'];
+		    if (file_exists($request->input('callerapiurl'))) {
+			    $lines = file($request->input('callerapiurl').
 			  '/'.$request->input('sessionid','0').
 			  '/'.$request->input('projectid','0'));
+		    }
 			$res = JSON_decode(implode("",$lines));
         }
       

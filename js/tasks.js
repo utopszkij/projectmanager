@@ -85,7 +85,7 @@
 	   if (projectId == 'demo') {
 	 			dbRefreshEnable = true;
 	   } else {
-		 	$.post('./app.php', {"option":"tasks", "task":"save", "projectid":projectId, "project": s, "sid": sid}, function(res) {
+		 	global.post('./app.php', {"option":"tasks", "task":"save", "projectid":projectId, "project": s, "sid": sid}, function(res) {
 		 		fileTime = res.fileTime;
 	 			dbRefreshEnable = true;
 		 	})
@@ -100,18 +100,22 @@
 	 var i;
 	 var task = null;
 	 var s = '';
-	 for (i=0; i < stateObj.length; i++) {
-		task = stateObj[i];
-		s = '<task id="'+task.id+'">';
-		s += '<id>'+task.id+'</id>';
-		s += '<title>'+task.title+'</title>';
-		s += '<desc>'+task.desc+'</desc>';
-		s += '<type class="'+task.type+'">&nbsp;</type>';
-		s += '<assign><img src="'+task.assign+'" /></assign>';
-		s += '<req>'+task.req+'</req>';
-		$(stateName).append(s);
+	 if (stateObj == undefined) {
+		 return;
 	 }
-	 
+	 if ((stateObj.length != undefined) && (stateObj.length > 0)) {
+		 for (i=0; i < stateObj.length; i++) {
+			task = stateObj[i];
+			s = '<task id="'+task.id+'">';
+			s += '<id>'+task.id+'</id>';
+			s += '<title>'+task.title+'</title>';
+			s += '<desc>'+task.desc+'</desc>';
+			s += '<type class="'+task.type+'">&nbsp;</type>';
+			s += '<assign><img src="'+task.assign+'" /></assign>';
+			s += '<req>'+task.req+'</req>';
+			$(stateName).append(s);
+		 }
+	 }
  }
  
  /**
@@ -123,7 +127,7 @@
  function refreshFromDatabase(projectId, fun) {
  	if ((dbRefreshEnable) && (!atDragging)) {
  		dbSaveEnable = false;
-	 	$.post('./app.php', {"option":"tasks", "task":"refresh", "projectid":projectId, "fileTime": fileTime}, function(res) {
+	 	global.post('./app.php', {"option":"tasks", "task":"refresh", "projectid":projectId, "fileTime": fileTime}, function(res) {
 	 		fileTime = res.fileTime;
 	 		if (res.project != undefined) {
 	 			// json project --> #database html dom
@@ -171,7 +175,7 @@
  	var i;
  	var members = $('members').find('member');
  	for (i=0; i < members.length; i++) {
-		if (members[i].attributes.avatar.nodeValue == loggedUser) {
+		if (members[i].getAttribute('avatar') == loggedUser) {
 			result = true;		
 		} 	
  	}
@@ -183,8 +187,8 @@
  	var i;
  	var members = $('members').find('member');
  	for (i=0; i < members.length; i++) {
-		if ((members[i].attributes.avatar.nodeValue == loggedUser) &&
-		    (members[i].attributes.admin.nodeValue == "1")) {
+		if ((members[i].getAttribute('avatar') == loggedUser) &&
+		    (members[i].getAttribute('admin') == "1")) {
 			result = true;		
 		} 	
  	}
@@ -238,6 +242,9 @@
  */
  function checkState2(task, newState) {
 	var req = task.find('req').html();
+	if (req == undefined) {
+		req = '';
+	}
  	return checkState3(newState, req);
  } 
  
@@ -345,7 +352,7 @@
 	        $('#assign').html('');
 		     $('#assign').append(s); 		      
 	        for (i=0; i < members.length; i++) {
-	      	 s = '<option value="'+members[i].attributes.avatar.nodeValue+'">'+
+	      	 s = '<option value="'+members[i].getAttribute('avatar')+'">'+
 		      		members[i].innerHTML+'</option>';
 				 $('#assign').append(s); 		      
 	        }
@@ -368,16 +375,17 @@
 	    	  if (taskForm.find('#assign').val() == loggedUser) {
 					taskForm.find('#state').attr('disabled',false);    	  
 	    	  }
-			  $('#taskForm').toggle();
+			  $('#taskForm').show();
       });
       $('task').mousedown(function(){
       	atDragging = true;
 			this.style.zIndex = 99;      
-      })
+      });
       $('task').mouseup(function(){
       	atDragging = false;
 			this.style.zIndex = 1;
-      })
+      });
+      $('task').css('zIndex',1);
   }
   
   function colTranslate() {
@@ -406,61 +414,66 @@
     $('.col').css('height', maxHeight+'px');
   }
   
-  $(function() {
-  	 
+  /**
+   * task drop
+   * @param event
+   * @param ui {"offset":{"left":0}, "draggable":jQueryElement}
+   * @returns
+   */
+  function taskDrop(event, ui) {
+		// drop into body
+		var scrolTop  = window.pageYOffset || document.documentElement.scrollTop;
+		
+		// calculate newState
+		var newState;
+		if (ui.offset.left > 1000) {
+			newState = 'closed';
+		} else if (ui.offset.left > 800) {
+			newState = 'atverify';
+		} else if (ui.offset.left > 600) {
+			newState = 'canverify';
+		} else if (ui.offset.left > 400) {
+			newState = 'atwork';
+		} else if (ui.offset.left > 200) {
+			newState = 'canstart';
+		} else {
+			newState = 'waiting';
+		}
+		
+		// calculate beforSelector
+		var beforeSelector = 'h2';
+		if (ui.offset.top > (scrolTop+60)) {
+			var tasks = $(newState).find('task');
+			var i;
+			for (i=0; i < tasks.length; i++) {
+				if (ui.draggable.position().top > $('#'+tasks[i].id).position().top) {
+					beforeSelector = '#'+tasks[i].id;				
+				}			
+			}
+		}
+
+		// check, if ok process
+		if ((checkState2(ui.draggable, newState)) && (accessRight(ui.draggable, true))) {
+      	 	ui.draggable.insertAfter($(newState).find(beforeSelector));
+				dbRefreshEnable = false;
+	 		    clearTimeout(saveTimer);
+	        	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
+	        	if (beforeSelector == 'h2') {
+					window.scrollTo(0,0);		        	
+	        	}
+	       	colResize();
+		}
+	 	ui.draggable.css('left','0px');
+	 	ui.draggable.css('top','0px');
+  }
+  
+  function pageOnLoad() {	  
     colTranslate(); 
     colResize();
     setTaskEventHandlers();
 
     if ($('body').droppable != undefined) {
-	 $('body').droppable({
-		drop: function(event, ui) {
-			// drop into body
-			var scrolTop  = window.pageYOffset || document.documentElement.scrollTop;
-			
-			// calculate newState
-			var newState;
-			if (ui.offset.left > 1000) {
-				newState = 'closed';
-			} else if (ui.offset.left > 800) {
-				newState = 'atverify';
-			} else if (ui.offset.left > 600) {
-				newState = 'canverify';
-			} else if (ui.offset.left > 400) {
-				newState = 'atwork';
-			} else if (ui.offset.left > 200) {
-				newState = 'canstart';
-			} else {
-				newState = 'waiting';
-			}
-			
-			// calculate beforSelector
-			var beforeSelector = 'h2';
-			if (ui.offset.top > (scrolTop+60)) {
-				var tasks = $(newState).find('task');
-				var i;
-				for (i=0; i < tasks.length; i++) {
-					if (ui.draggable.position().top > $('#'+tasks[i].id).position().top) {
-						beforeSelector = '#'+tasks[i].id;				
-					}			
-				}
-			}
-
-			// check, if ok process
-        	if ((checkState2(ui.draggable, newState)) && (accessRight(ui.draggable, true))) {
-	        	 	ui.draggable.insertAfter($(newState).find(beforeSelector));
-					dbRefreshEnable = false;
-		 		   clearTimeout(saveTimer);
-		        	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
-		        	if (beforeSelector == 'h2') {
-						window.scrollTo(0,0);		        	
-		        	}
-		       	colResize();
-	      }
-     	 	ui.draggable.css('left','0px');
-     	 	ui.draggable.css('top','0px');
-		}	 
-	 });
+    	$('body').droppable({drop: taskDrop});
     }
     
     $('#Ok').click(function() {
@@ -490,32 +503,37 @@
        	colResize(); 
 		}
 	 	$('#savedMsg').hide();
-		$('#taskForm').toggle();  
+		$('#taskForm').hide();  
     });
 
     $('#cancel').click(function() {
-		$('#taskForm').toggle();    
+		$('#taskForm').hide();    
     });
 
     $('#deltask').click(function() {
-    		if (loggedAdmin()) {
+    	if (loggedAdmin()) {
            var id = $('#taskForm').find('#id').val();
            $('#'+id).remove();
-			  dbRefreshEnable = false;
- 		     clearTimeout(saveTimer);
-     	 	  saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
-	 	 	  $('#savedMsg').hide();
-	 		  $('#taskForm').toggle();
-	 		}    
+		   dbRefreshEnable = false;
+ 		   clearTimeout(saveTimer);
+     	   saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
+	 	   $('#savedMsg').hide();
+	 	   $('#taskForm').hide();
+	 	}    
     });
     
     $('#newTaskBtn').click(function() {
     	if (loggedAdmin()) {
 	      var id = 1 + getIdMax();
-	      var newTask = $('#taskInit').clone(false);
-	      newTask.find('id').html(''+id);
-	      newTask.attr('id',id);
-	      newTask.insertAfter($('waiting').find('h2'));
+	      var s = '<task id="'+id+'" style="z-index:1">'+
+				'<id>'+id+'</id>'+
+				'<title></title>'+
+				'<desc></desc>'+
+				'<type class="question"></type>'+
+				'<assign><img src="https://www.gravatar.com/avatar/" title="?" alt="" /></assign>'+
+				'<req></req>'+
+			'</task>';
+	      $('waiting h2').after(s);
 	      setTaskEventHandlers();
 		  window.scrollTo(0,0);
 		  dbRefreshEnable = false;
@@ -534,12 +552,12 @@
  		var checked = '';
 	 	tbody.html('');
 	 	for (i=1; i < members.length; i++) {
-	 		if (members[i].attributes.admin.nodeValue == '1') {
+	 		if (members[i].getAttribute('admin') == '1') {
 	 			checked = ' checked=\"1\"';
 	 		} else {
 	 			checked = '';
 	 		}
-	 		var avatar = members[i].attributes.avatar.nodeValue;
+	 		var avatar = members[i].getAttribute('avatar');
 	 		if (loggedAdmin() && (i > 1)) {
 				s = '<tr><td><input type="checkbox" id="" value="1"+'+checked+' /></td>'+
 				   '<td>'+
@@ -560,15 +578,15 @@
 		 	var i = 0;
 		 	var avatar = this.parentNode.nextSibling.firstChild.alt;
 		 	// i=1 is the  creator it is admin.
-			members[1].attributes.admin.nodeValue = '1';
+			members[1].setAttribute('admin','1');
 		 	// i=0 is the guest it is not admin
-			members[0].attributes.admin.nodeValue = '0';
+			members[0].setAttribute('admin','0');
 			for (i=2; i < members.length; i++) {
-				if (members[i].attributes.avatar.nodeValue == avatar) {
+				if (members[i].getAttribute('avatar') == avatar) {
 					if (this.checked) {
-						members[i].attributes.admin.nodeValue = '1';
+						members[i].setAttribute('admin','1');
 					} else {
-						members[i].attributes.admin.nodeValue = '0';
+						members[i].setAttribute('admin','0');
 					}				
 				}		
 			}			 	
@@ -600,8 +618,8 @@
 			var i;
 			var s = '';
 			for (i=0; i < oldMembers.length; i++) {
-				if (oldMembers[i].attributes.admin.nodeValue == '1') {
-					admins.push(oldMembers[i].attributes.avatar.nodeValue);			
+				if (oldMembers[i].getAttribute('admin') == '1') {
+					admins.push(oldMembers[i].getAttribute('avatar'));			
 				}		
 			}
 			// clear <members>
@@ -631,4 +649,9 @@
     // start refresh interval
 	refreshFromDatabase(projectId);
 	
-  }); // pageLoad
+  } // pageOnLoad function
+
+  // jquery pageOnLoad
+  $(function() {
+  	pageOnLoad();
+  });	

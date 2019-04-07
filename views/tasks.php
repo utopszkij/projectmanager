@@ -24,10 +24,10 @@ class TasksView {
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript">
 	var global = {};
-	var global.alert = function(str) {
+	global.alert = function(str) {
 			window.alert(str);
-		};
-	var global.confirm = function(str, yesfun, nofun) {
+	};
+	global.confirm = function(str, yesfun, nofun) {
 			var res = wondow.confirm(str);
 			if (res & (yesfun != undefined)) {
 				yesfun();
@@ -35,7 +35,10 @@ class TasksView {
 			if (!res & (nofun != undefined)) {
 				nofun();
 			} 
-		};	
+	};
+	global.post = function(url, options, fun) {
+		$.post(url, options, fun);
+	}	
   </script>
   <?php loadJavaScript('tasks',$p); ?>	
 </head>

@@ -3,5 +3,5 @@ projectKey=utopszkij-projectmanager
 serverUrl=https://sonarcloud.io
 serverVersion=7.8.0.23279
 dashboardUrl=https://sonarcloud.io/dashboard?id=utopszkij-projectmanager
-ceTaskId=AWnjCwG0cuf6R8N43DOU
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWnjCwG0cuf6R8N43DOU
+ceTaskId=AWn2fSiHAeX8nbrg2uBc
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWn2fSiHAeX8nbrg2uBc

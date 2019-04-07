@@ -12,6 +12,9 @@ rm -rf js
 mv js-orig js
 # a mocha.lcov -ban az filenév -ből hiányzik a js/
 sed -i -e 's/SF:/SF:js\//g' ./tests/coverage-reports/mocha.lcov
+node_modules/.bin/mocha tests
+
+
 
 
 
