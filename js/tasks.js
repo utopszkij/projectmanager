@@ -552,9 +552,6 @@
 	 	var s = '';
 	 	var i = 0;
 	 	var members = $('members').find('member');
-	 	
-	 	console.log(members);
-	 	
  		var checked = '';
 	 	tbody.html('');
 	 	for (i=0; i < members.length; i++) {
@@ -577,9 +574,6 @@
 				   '<span>'+members[i].innerHTML+'</span>'+
 				   '</td></tr>';
 			}   
-	 		
-	 		console.log(s);
-	 		
 			tbody.append(s);
 	 	}
 	 	$('#membersForm tr input').click(function() {
