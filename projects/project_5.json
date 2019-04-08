@@ -1,0 +1,1 @@
+{"waiting": [{"id":1, "title":"új task", "desc":"123456", "type":"undefined", "req":"", "assign":"https://www.gravatar.com/avatar/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5"}], "canstart": [], "atwork": [], "canverify": [], "atverify": [], "closed": [], "members":[{"avatar":"https://www.gravatar.com/avatar/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5", "admin":"1", "nick":"user1"}]}

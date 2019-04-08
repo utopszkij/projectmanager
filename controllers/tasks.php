@@ -20,7 +20,10 @@ class TasksController {
 	*/
 	public function show($request) {
 		
-		// set demo params or call from callerAPI 
+	    
+	    echo JSON_encode($request).'<br>';
+	    
+	    // set demo params or call from callerAPI 
 		$res = JSON_decode('{"users":[["https://www.gravatar.com/avatar/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5","utopszkij"],
 							               ["./images/user1.png","user1"],
 					                     ["./images/user2.png","user2"]
@@ -38,13 +41,22 @@ class TasksController {
 			$res->loggedUser = './images/guest.jpg';
 			$request->set('projectid','demo');
 		} else if (($request->input('projectid') != '') && ($request->input('callerapiurl') != '')) {
-		    $lines = ['{"loggedUser":"", "admins":[], "users":[]}'];
-		    if (file_exists($request->input('callerapiurl'))) {
-			    $lines = file($request->input('callerapiurl').
-			  '/'.$request->input('sessionid','0').
-			  '/'.$request->input('projectid','0'));
+		    // get infos from caller api
+		    $options = array(
+		        CURLOPT_URL => $request->input('callerapiurl').
+		          '/'.$request->input('sessionid','0').
+		          '/'.$request->input('projectid','0'),
+		        CURLOPT_HEADER => 0,
+		        CURLOPT_RETURNTRANSFER => TRUE,
+		        CURLOPT_TIMEOUT => 4
+		    );
+		    $ch = curl_init();
+		    curl_setopt_array($ch, $options);
+		    if( ! $lines = curl_exec($ch)) {
+		        trigger_error(curl_error($ch));
 		    }
-			$res = JSON_decode(implode("",$lines));
+		    curl_close($ch); 
+			$res = JSON_decode($lines);
         }
       
         // store users, admins, loggedUser info into session

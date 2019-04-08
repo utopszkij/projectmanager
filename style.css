@@ -9,7 +9,7 @@
   #buttonLine {position:fixed; z-index:2; display:block; top:0px; left:0px; width:100%;
     background-color:white; margin:0px; padding:4px;}
   .col {float:left; width:194px; height:auto; min-height:600px; 
-        padding:1px; margin:58px 1px 1px 1px;
+        padding:1px; margin:28px 1px 1px 1px;
   		  border-style:solid; border-width:1px; border-color:black; background-color:white}
   waiting h2 {position:fixed; z-index:2; display:inline-block; top:36px; left:8px; width:190px;}	
   canstart h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:208px; width:190px;}	
@@ -24,6 +24,8 @@
   button#cancel {background-color:orange; color:black;  margin:20px 5px 5px 5px}	
   button#newTaskBtn {background-color:green; color:white; font-size:20px;}		  
   button#memberskBtn {background-color:silver; color:black; font-size:20px;}		  
+  
+  #database {width:1240px}
   task {display:block; background-color:#e0e0e0; font-size:14px; 
   		  border-style:solid; border-width:1px; padding:1px; margin:1px; cursor:pointer}
   task id {display:inline-block; height:20%; max-height:20px; overflow:hidden; max-width:20%;margin-right:2px;}

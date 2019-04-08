@@ -546,12 +546,18 @@
 
 	 $('#membersBtn').click(function() {
 	 	var tbody = $('#membersForm tbody');
+	 	
+	 	console.log(tbody);
+	 	
 	 	var s = '';
 	 	var i = 0;
 	 	var members = $('members').find('member');
+	 	
+	 	console.log(members);
+	 	
  		var checked = '';
 	 	tbody.html('');
-	 	for (i=1; i < members.length; i++) {
+	 	for (i=0; i < members.length; i++) {
 	 		if (members[i].getAttribute('admin') == '1') {
 	 			checked = ' checked=\"1\"';
 	 		} else {
@@ -570,7 +576,10 @@
 				   '<img src="'+avatar+'" alt="'+avatar+'" width="40" height="40" />'+
 				   '<span>'+members[i].innerHTML+'</span>'+
 				   '</td></tr>';
-			}   	
+			}   
+	 		
+	 		console.log(s);
+	 		
 			tbody.append(s);
 	 	}
 	 	$('#membersForm tr input').click(function() {

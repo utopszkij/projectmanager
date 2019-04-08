@@ -104,23 +104,58 @@ A tests/...Test.php valamint a tests/...Test.js fájlok az unittest definiciók.
 
 ## Hívása az EnvientaPlatform -ból
 
-HTML:
-```
-<h2>{{projectTitle}}</h2>
-<iframe id="ifrmProjectManager" src="" width="1240" height="850"></iframe>
-```
-
-JavaScript:
-```
-var sessionId = "{{ $request->session(); }}";
-var projectId = "........";
-var apiURL = "https://platform.envienta.org/api/projectinfo";.
-$('#ifrmProjectmanager').src = "https://szeszt.tk/projectmanager/app.php"+
-"?callerapiurl="+apiURL+
-"&sessionid="+sesionId+"&projectid="+projectId;
+A config/app.php -be:
 
 ```
-Opcionális további URL paraméterek:
+    "remoteModules" => [
+        "projectManager" => "../projectmanager/app.php"
+    ]
+```
+
+Megjegyzések:
+- Ha ez a rész nem szerepel, akkor a project menüben nem jelenik meg a "tasks" menüpont
+- A confog/app.php editálása után: 
+
+```
+$ php artisan config:clear
+$ php artisan config:cache
+```
+
+### controllerben
+
+```
+<?php
+// $request, $slug input paraméterek
+$param = array(); // viewernek átadott paraméterek 
+$param['project'] = DB::table('projects')->where('slug',$slug)->first();
+$param['sessionid'] = $request->session()->getId();
+...
+?>
+
+```
+### viewerben
+
+```
+<?php
+$remoteModules = config('app.remoteModules');
+?>
+<div id="tasks" style="width:100%; height:100%;">
+<h2>{{$project->title}}</h2>
+<iframe id="ifrmProjectManager" src="" style="width:100%; height:600px"></iframe>
+</div>
+<script type="text/javascript">
+var sessionId = "{{ $sessionid }}";
+var projectId = "{{ $project->id }}";
+var apiURL = "{{ url('./pmapi') }}";
+var url = "{{$remoteModules['projectManager'] }}"+
+"?option=tasks&task=show"+
+"&sessionid="+sessionId+"&projectid="+projectId+"&callerapiurl="+encodeURI(apiURL);
+$('#ifrmProjectManager').attr('src',url);
+</script>
+
+```
+Opcionális további URL paraméterek a projectmanagernek:
+
 ```
 &lng=hu vagy &lng=en
 &css=cssFileURL
