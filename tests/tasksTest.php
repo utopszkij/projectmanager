@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-include_once './tests/.config.php';
+include_once './tests/config.php';
+include_once './core/database.php';
 include_once './controllers/tasks.php';
 include_once './tests/mock.php';
 
@@ -18,6 +19,8 @@ class TasksTest extends TestCase
             unlink('./projects/project_test.json');
         $this->controller = new TasksController();
         $this->request = new Request();
+        $db = new DB();
+        $db->statement('CREATE DATABSE IF NOT EXISTS test');
     }
     
     public function test_saveNewOtherByAdmin() {

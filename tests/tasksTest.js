@@ -23,6 +23,9 @@ var loggedUser = 'guest';
 var users = [];
 var admins = [];
 var sid = '';	
+var REFRESHMIN = 2;
+var REFRESHMAX = 10;
+var SESSIONCOUNT = 1;
 
 // test html kialakitása
 $('body').append('<button type="tuppon" id="newTaskBtn">New task</button>');

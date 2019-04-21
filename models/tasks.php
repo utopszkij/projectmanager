@@ -32,7 +32,7 @@ class TasksModel {
 	* @return string jsonStr 
 	* - {"fileTime":num} vagy {"fileTime":num, "project":JsonStr}  
 	*/
-	public function refresh(string $projectId, int $fileTime): string {
+	public function refresh($projectId, $fileTime): string {
 	    $result = new stdClass();
 		$result->fileTime = 0;
 		if (file_exists('./projects/project_'.$projectId.'.json')) {
@@ -72,7 +72,7 @@ class TasksModel {
 	 * @param Task $task
 	 * @return Task object or false  
 	 */
-	protected function findTask(array $tasks, Task $task): mixed {
+	protected function findTask(array $tasks, $task) {
 	   $result = false;
        foreach ($tasks as $i => $t) {
           if ($t->id == $task->id) {
@@ -89,7 +89,7 @@ class TasksModel {
     * @param object $oldTask
     * @return bool
     */
-    protected function ContentNotChange(Task $newTask, Task $oldTask): bool {
+    protected function ContentNotChange($newTask, $oldTask): bool {
         $result = true;
         if ($newTask->id  !=  $oldTask->id) {
             $result = false;
@@ -184,11 +184,11 @@ class TasksModel {
 		
 	/**
 	 * @param bool $accessRight I/O
-	 * @param int $projectId
-	 * @param Task $project
+	 * @param int|string $projectId
+	 * @param object $project
 	 * @return void
 	 */
-	protected function saveCheckNoAdmin(bool & $accessRight, int $projectId, Task $project) {
+	protected function saveCheckNoAdmin(bool & $accessRight, $projectId, $project) {
 	    $member = in_array($_SESSION['loggedUser'], $_SESSION['users']);
 	    $newTasks = $this->getTasks($project);
 	    if (file_exists('./projects/project_'.$projectId.'.json')) {
@@ -217,12 +217,12 @@ class TasksModel {
 		
 	/**
 	* save tasks into database 
-	* @param int $projectId  REQUED
+	* @param int|string $projectId  REQUED
 	* @param project jsonStr REQUED
 	* @return string jsonStr 
 	* - {"fileTime":num}  
 	*/
-	public function save(int $projectId, $project): string {
+	public function save($projectId, $project): string {
 		// sessionban lévő loggedUser, admins, users alapján jogosultság ellenörzés
 	    $result = new stdClass();
 	    $accessRight = true;
