@@ -1,8 +1,7 @@
+
+// mock
 var assert = require('assert');
-
 const { JSDOM } = require('jsdom');
-
-// javascript mock
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 const $ = global.jQuery = require('jquery')(window);
@@ -17,7 +16,6 @@ global.confirm = function(str,yesfun, nofun) { yesfun(); };
 global.post = function(url, options, fun) {
 	fun(global.postResult);
 }	
-
 
 // params for controller	  
 var projectId  = '';	
@@ -63,7 +61,7 @@ $('#membersForm').append('<table>'+
 		'<tbody></tbody>'+
 		'</table>');
 
-// include js file for test 
+//include js file for test
 var fs = require('fs');
 eval(fs.readFileSync('./js/tasks.js')+'');
 

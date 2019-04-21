@@ -1,16 +1,38 @@
 <?php
+
+/*
+ interface Task {
+     public const id = 0;
+     public const title = '';
+     public const desc = '';
+     public const req = '';
+     public const assign = '';
+     public const type = '';
+}
+*/
+
+class Task {
+     public $id = 0;
+     public $title = '';
+     public $desc = '';
+     public $req = '';
+     public $assign = '';
+     public $type = '';
+}
+
+
 class TasksModel {
 
     protected $errorMsg = '';
     
 	/**
 	* refresh tasks from database
-	* @param projectId string  REQUED
-	* @param fileTime number   REQUED
-	* @return jsonStr 
-	*      {"fileTime".num} vagy {"fileTime".num, "project":XMLstr}  
+	* @param string $projectId REQUED
+	* @param integer $fileTime REQUED
+	* @return string jsonStr 
+	* - {"fileTime":num} vagy {"fileTime":num, "project":JsonStr}  
 	*/
-	public function refresh($projectId, $fileTime) {
+	public function refresh(string $projectId, int $fileTime): string {
 	    $result = new stdClass();
 		$result->fileTime = 0;
 		if (file_exists('./projects/project_'.$projectId.'.json')) {
@@ -29,7 +51,7 @@ class TasksModel {
 	 * @param string $s
 	 * @return array of task
 	 */
-	protected function getTasks(string $s) {
+	protected function getTasks(string $s): array {
 	    $result = array();
 	    $project = JSON_decode($s);
 	    foreach ($project as $stateName => $stateObj) {
@@ -47,10 +69,10 @@ class TasksModel {
 	/**
 	 * find task from tasks array
 	 * @param array of task objects $tasks
-	 * @param object $task
-	 * @retrun task object or false  
+	 * @param Task $task
+	 * @return Task object or false  
 	 */
-	protected function findTask(array $tasks, $task) {
+	protected function findTask(array $tasks, Task $task): mixed {
 	   $result = false;
        foreach ($tasks as $i => $t) {
           if ($t->id == $task->id) {
@@ -67,7 +89,7 @@ class TasksModel {
     * @param object $oldTask
     * @return bool
     */
-    protected function ContentNotChange($newTask, $oldTask): bool {
+    protected function ContentNotChange(Task $newTask, Task $oldTask): bool {
         $result = true;
         if ($newTask->id  !=  $oldTask->id) {
             $result = false;
@@ -92,8 +114,8 @@ class TasksModel {
 
 	/**
 	 * check task action access right
-	 * @param task object $newTask
-	 * @param task object $oldTask
+	 * @param Task $newTask
+	 * @param Task $oldTask
 	 * @param bool $member
 	 * @param string $loggedUser
 	 * @return bool
@@ -160,7 +182,13 @@ class TasksModel {
             return $result;    
 	}
 		
-	protected function saveCheckNoAdmin(& $accessRight, $projectId, $project) {
+	/**
+	 * @param bool $accessRight I/O
+	 * @param int $projectId
+	 * @param Task $project
+	 * @return void
+	 */
+	protected function saveCheckNoAdmin(bool & $accessRight, int $projectId, Task $project) {
 	    $member = in_array($_SESSION['loggedUser'], $_SESSION['users']);
 	    $newTasks = $this->getTasks($project);
 	    if (file_exists('./projects/project_'.$projectId.'.json')) {
@@ -189,12 +217,12 @@ class TasksModel {
 		
 	/**
 	* save tasks into database 
-	* @param projectId string  REQUED
-	* @param project jsoStr    REQUED
-	* @return jsonStr 
-	*    {"fileTime":num}  
+	* @param int $projectId  REQUED
+	* @param project jsonStr REQUED
+	* @return string jsonStr 
+	* - {"fileTime":num}  
 	*/
-	public function save($projectId, $project) {
+	public function save(int $projectId, $project): string {
 		// sessionban lévő loggedUser, admins, users alapján jogosultság ellenörzés
 	    $result = new stdClass();
 	    $accessRight = true;

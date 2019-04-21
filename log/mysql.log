@@ -1,0 +1,108 @@
+2019-04-21 08:45:28 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:45:28 DELETE FROM sessions WHERE `time` < "2019-04-21 08:21:28"
+
+2019-04-21 08:45:28 SELECT * FROM sessions  WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" ORDER BY 1 LIMIT 0,1
+
+2019-04-21 08:45:28 UPDATE sessions SET `time`="2019-04-21 08:45:28" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 08:45:28 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:45:28 UPDATE sessions SET `data`="\"h{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 08:45:28" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 08:45:28 DELETE FROM sessions WHERE `time` < "2019-04-21 08:21:28"
+
+2019-04-21 08:45:29 UPDATE sessions SET `time`="2019-04-21 08:45:28" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 08:45:29 DELETE FROM sessions WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `time` < "2019-04-21 08:21:29"
+
+2019-04-21 08:45:29 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:45:29 UPDATE sessions SET `data`="\"A{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 08:45:29" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 08:45:29 DELETE FROM sessions WHERE `time` < "2019-04-21 08:21:29"
+
+2019-04-21 08:45:29 UPDATE sessions SET `time`="2019-04-21 08:45:29" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 08:45:29 DELETE FROM sessions WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `time` < "2019-04-21 08:21:29"
+
+2019-04-21 08:45:29 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:45:29 UPDATE sessions SET `data`="\"A{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 08:45:29" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 08:45:29 DELETE FROM sessions WHERE `time` < "2019-04-21 08:21:29"
+
+2019-04-21 08:45:29 SELECT count(*) AS cc FROM sessions WHERE 1
+
+2019-04-21 08:54:19 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:54:19 DELETE FROM sessions WHERE `time` < "2019-04-21 08:30:19"
+
+2019-04-21 08:54:19 SELECT * FROM sessions  WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" ORDER BY 1 LIMIT 0,1
+
+2019-04-21 08:54:19 UPDATE sessions SET `time`="2019-04-21 08:54:19" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 08:54:19 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:54:19 UPDATE sessions SET `data`="\"h{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 08:54:19" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 08:54:19 DELETE FROM sessions WHERE `time` < "2019-04-21 08:30:19"
+
+2019-04-21 08:54:19 UPDATE sessions SET `time`="2019-04-21 08:54:19" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 08:54:19 DELETE FROM sessions WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `time` < "2019-04-21 08:30:19"
+
+2019-04-21 08:54:19 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:54:19 UPDATE sessions SET `data`="\"A{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 08:54:19" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 08:54:19 DELETE FROM sessions WHERE `time` < "2019-04-21 08:30:19"
+
+2019-04-21 08:54:19 UPDATE sessions SET `time`="2019-04-21 08:54:19" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 08:54:19 DELETE FROM sessions WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `time` < "2019-04-21 08:30:19"
+
+2019-04-21 08:54:19 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 08:54:19 UPDATE sessions SET `data`="\"A{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 08:54:19" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 08:54:19 DELETE FROM sessions WHERE `time` < "2019-04-21 08:30:19"
+
+2019-04-21 08:54:19 SELECT count(*) AS cc FROM sessions WHERE 1
+
+2019-04-21 09:00:48 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 09:00:48 DELETE FROM sessions WHERE `time` < "2019-04-21 08:36:48"
+
+2019-04-21 09:00:48 SELECT * FROM sessions  WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" ORDER BY 1 LIMIT 0,1
+
+2019-04-21 09:00:48 UPDATE sessions SET `time`="2019-04-21 09:00:48" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 09:00:48 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 09:00:48 UPDATE sessions SET `data`="\"h{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 09:00:48" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 09:00:48 DELETE FROM sessions WHERE `time` < "2019-04-21 08:36:48"
+
+2019-04-21 09:00:48 UPDATE sessions SET `time`="2019-04-21 09:00:48" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 09:00:48 DELETE FROM sessions WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `time` < "2019-04-21 08:36:48"
+
+2019-04-21 09:00:48 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 09:00:48 UPDATE sessions SET `data`="\"A{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 09:00:48" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 09:00:48 DELETE FROM sessions WHERE `time` < "2019-04-21 08:36:48"
+
+2019-04-21 09:00:48 UPDATE sessions SET `time`="2019-04-21 09:00:48" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+
+2019-04-21 09:00:48 DELETE FROM sessions WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4" AND `time` < "2019-04-21 08:36:48"
+
+2019-04-21 09:00:48 CREATE TABLE IF NOT EXISTS sessions (id varchar(256), data text, time datetime)
+
+2019-04-21 09:00:48 UPDATE sessions SET `data`="\"A{\\\\"loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"admins\\\\":[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\"],\\\\"users\\\\":[[\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37f24ddb47dfb7e3eb5\\\\",\\\\"utopszkij\\\\"],[\\\\".\\\/images\\\/user1.png\\\\",\\\\"user1\\\\"],[\\\\".\\\/images\\\/user2.png\\\\",\\\\"user2\\\\"]]}\\"\"",`time`="2019-04-21 09:00:48" WHERE `id` = "qsrrncmv6n1lrjsbf8pqs8dfm4"
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'loggedUser\\\\":\\\\"https:\\\/\\\/www.gravatar.com\\\/avatar\\\/2c0a0e6e2dc8b37' at line 1
+2019-04-21 09:00:48 DELETE FROM sessions WHERE `time` < "2019-04-21 08:36:48"
+
+2019-04-21 09:00:48 SELECT count(*) AS cc FROM sessions WHERE 1
+

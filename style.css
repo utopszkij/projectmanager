@@ -1,4 +1,5 @@
-  body {font-size:14px; font-family:roman; background-color:white; line-height:120%; min-height:600px;}
+  body {font-size:14px; font-family:roman; background-color:white; line-height:120%;
+   width:1240px; min-width:1040px;height:600px;  min-height:600px;}
   div {margin:0px; padding:0px; }  
   h1 {background-color: black; color:white; text-align:center; font-size: 20px; padding:6px;}
   h2 {background-color: black; color:white; text-align:center; font-size: 18px; padding:4px; margin:0px;}
@@ -9,14 +10,16 @@
   #buttonLine {position:fixed; z-index:2; display:block; top:0px; left:0px; width:100%;
     background-color:white; margin:0px; padding:4px;}
   .col {float:left; width:194px; height:auto; min-height:600px; 
-        padding:1px; margin:28px 1px 1px 1px;
+        padding:34px 1px 1px 1px; margin:34px 1px 1px 1px;
   		  border-style:solid; border-width:1px; border-color:black; background-color:white}
-  waiting h2 {position:fixed; z-index:2; display:inline-block; top:36px; left:8px; width:190px;}	
+  .col h2 {position:absolute; z-index:2; display:inline-block; top:2px; left:2px; width:190px;}	
+  /*
   canstart h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:208px; width:190px;}	
   atwork  h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:408px; width:190px;}	
   canverify h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:608px; width:190px;}	
   atverify h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:808px; width:190px;}	
   closed h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:1008px; width:190px;}	
+  */
   members {display:none}
   
   button#deltask {background-color:red; color:white; margin:20px 5px 5px 5px}

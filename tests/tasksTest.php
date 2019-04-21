@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+include_once './tests/.config.php';
 include_once './controllers/tasks.php';
 include_once './tests/mock.php';
 
@@ -229,7 +230,7 @@ class TasksTest extends TestCase
     public function test_show_testProject() {
         $this->request->set('projectid','testProject');
         $this->request->set('sessionid',0);
-        $this->request->set('callerapiurl','.tests/testapi.json');
+        $this->request->set('callerapiurl','http://localhost/projectmanager/tests/testapi.json');
         $this->controller->show($this->request);
         $this->expectOutputRegex('/html/');
     }

@@ -12,7 +12,7 @@ Ezt a wb applikációt az EnvientaPlatform hívja iframe -ben. Ez az applikáci�
 -  Feladat "föggőségek" kezelése (pl. az "x" feladat munkálatai csak akkor kezdhetők meg ha az "y" és "z" feladat már le van zárva)
 -  Töbnnyelvű kezelő felület támogatás,
 -  Testreszabható megjelenés,
--  Több kliens egyidejű munkájának támogatása (5 másodpercenként ellenörzi az adatbázis változásokat és szükség esetén frissíti a képernyőt)
+-  Több kliens egyidejű munkájának támogatása (aktív userszámtól függően idöközönként ellenörzi az adatbázis változásokat és szükség esetén frissíti a képernyőt)
 
 ## Jogosultságok
 
@@ -114,7 +114,7 @@ A config/app.php -be:
 
 Megjegyzések:
 - Ha ez a rész nem szerepel, akkor a project menüben nem jelenik meg a "tasks" menüpont
-- A confog/app.php editálása után: 
+- A config/app.php editálása után: 
 
 ```
 $ php artisan config:clear
@@ -161,7 +161,7 @@ Opcionális további URL paraméterek a projectmanagernek:
 &css=cssFileURL
 ```
 
-###Az EnvientaPlatform -ban megvalósítandó Rest API
+### Az EnvientaPlatform -ban megvalósítandó Rest API
 
 az API  **apiURL**/ **sessionid** / **projectid**    http -url -el van hívva.
 
@@ -205,23 +205,35 @@ echo '
 ## Unit tesztek
 ```
 cd repoRoot
-./tests/test.sh
+./tools/test.sh
 
 ```
 ## SonarCloud kód minőség ellenörzés 
 ```
 cd repoRoot
-./tests/sonar.sh
+./tools/sonar.sh
 ```
 Utolsó ellenőrzés eredménye:
 
 https://sonarcloud.io/dashboard?id=utopszkij-projectmanager
 
+## php dokumentáció előállítása
+```
+cd repoRoot
+./tools/documentor.sh
+```
+utolsó futtatás eredménye: 
+http://szeszt.tk/projektmanager/doc/index.html
+
 ## Telepítése web szerverre
-A szerver documentroot-ba:
-framework.php, app.php, index.html, style.css, .htaccess (htaccess.txt átnevezve),  fileok,
-controllers, images, js, langs, models, projects, views alkönyvtárak teljes tartalmukkal együtt,
-a projects alkönyvtár és tartalma legyen írható a web szerver és a php számára.
+1. mysql adatbázis kreálás (utf-8 hungaryan_ci).
+2. htaccess.txt átnevezése .htaccess -re
+3. config.txt átnevezése .config.php -ra és értelem szerü editálása.
+4. A szerver documentroot-ba másolni:
+app.php, index.html, style.css, .htaccess, config.php  
+fileok és
+controllers, images, js, langs, models, projects, views, log alkönyvtárak teljes tartalmukkal együtt.
+5. a projects és a log alkönyvtár és tartalma legyen írható a web szerver és a php számára.
 
 ## Programozó
 

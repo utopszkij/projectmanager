@@ -1,27 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="tests" tests="18" assertions="18" errors="0" failures="0" skipped="0" time="0.014684">
-    <testsuite name="DefaultTest" file="/var/www/html/projectmanager/tests/defaultTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.002438">
-      <testcase name="test_default" class="DefaultTest" classname="DefaultTest" file="/var/www/html/projectmanager/tests/defaultTest.php" line="22" assertions="1" time="0.002438"/>
+  <testsuite name="tests" tests="18" assertions="7" errors="11" failures="1" skipped="0" time="0.706554">
+    <testsuite name="DefaultTest" file="/var/www/html/projectmanager/tests/defaultTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.049057">
+      <testcase name="test_default" class="DefaultTest" classname="DefaultTest" file="/var/www/html/projectmanager/tests/defaultTest.php" line="22" assertions="1" time="0.049057"/>
     </testsuite>
-    <testsuite name="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" tests="17" assertions="17" errors="0" failures="0" skipped="0" time="0.012246">
-      <testcase name="test_saveNewOtherByAdmin" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="22" assertions="1" time="0.000663"/>
-      <testcase name="test_saveNewBugByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="46" assertions="1" time="0.000713"/>
-      <testcase name="test_saveNewQueryByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="60" assertions="1" time="0.000727"/>
-      <testcase name="test_saveNewSuggestByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="75" assertions="1" time="0.000774"/>
-      <testcase name="test_saveNewOtherByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="91" assertions="1" time="0.001023"/>
-      <testcase name="test_savePickupByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="108" assertions="1" time="0.000940"/>
-      <testcase name="test_saveMoveMyTaskByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="124" assertions="1" time="0.000854"/>
-      <testcase name="test_savePickUpForeignTaskByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="140" assertions="1" time="0.000787"/>
-      <testcase name="test_saveMoveForeignTaskByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="156" assertions="1" time="0.000787"/>
-      <testcase name="test_saveChangeTitleByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="173" assertions="1" time="0.000795"/>
-      <testcase name="test_refresh" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="189" assertions="1" time="0.000536"/>
-      <testcase name="test_refreshNotChange" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="197" assertions="1" time="0.000851"/>
-      <testcase name="test_show" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="205" assertions="1" time="0.000613"/>
-      <testcase name="test_show_demo1" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="211" assertions="1" time="0.000622"/>
-      <testcase name="test_show_demo2" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="217" assertions="1" time="0.000522"/>
-      <testcase name="test_show_demo3" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="223" assertions="1" time="0.000504"/>
-      <testcase name="test_show_testProject" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="229" assertions="1" time="0.000534"/>
+    <testsuite name="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" tests="17" assertions="6" errors="11" failures="1" skipped="0" time="0.657497">
+      <testcase name="test_saveNewOtherByAdmin" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="23" assertions="0" time="0.010651">
+        <error type="TypeError">TasksTest::test_saveNewOtherByAdmin
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:34
+</error>
+      </testcase>
+      <testcase name="test_saveNewBugByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="47" assertions="0" time="0.000583">
+        <error type="TypeError">TasksTest::test_saveNewBugByGuest
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:57
+</error>
+      </testcase>
+      <testcase name="test_saveNewQueryByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="61" assertions="0" time="0.000528">
+        <error type="TypeError">TasksTest::test_saveNewQueryByGuest
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:72
+</error>
+      </testcase>
+      <testcase name="test_saveNewSuggestByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="76" assertions="0" time="0.000529">
+        <error type="TypeError">TasksTest::test_saveNewSuggestByGuest
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:88
+</error>
+      </testcase>
+      <testcase name="test_saveNewOtherByGuest" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="92" assertions="0" time="0.000530">
+        <error type="TypeError">TasksTest::test_saveNewOtherByGuest
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:105
+</error>
+      </testcase>
+      <testcase name="test_savePickupByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="109" assertions="0" time="0.000532">
+        <error type="TypeError">TasksTest::test_savePickupByMember
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:121
+</error>
+      </testcase>
+      <testcase name="test_saveMoveMyTaskByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="125" assertions="0" time="0.000560">
+        <error type="TypeError">TasksTest::test_saveMoveMyTaskByMember
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:137
+</error>
+      </testcase>
+      <testcase name="test_savePickUpForeignTaskByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="141" assertions="0" time="0.000546">
+        <error type="TypeError">TasksTest::test_savePickUpForeignTaskByMember
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:153
+</error>
+      </testcase>
+      <testcase name="test_saveMoveForeignTaskByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="157" assertions="0" time="0.000550">
+        <error type="TypeError">TasksTest::test_saveMoveForeignTaskByMember
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:169
+</error>
+      </testcase>
+      <testcase name="test_saveChangeTitleByMember" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="174" assertions="0" time="0.000531">
+        <error type="TypeError">TasksTest::test_saveChangeTitleByMember
+TypeError: Argument 1 passed to TasksModel::save() must be of the type integer, string given, called in /var/www/html/projectmanager/controllers/tasks.php on line 120
+
+/var/www/html/projectmanager/models/tasks.php:225
+/var/www/html/projectmanager/controllers/tasks.php:120
+/var/www/html/projectmanager/tests/tasksTest.php:186
+</error>
+      </testcase>
+      <testcase name="test_refresh" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="190" assertions="1" time="0.000998">
+        <failure type="PHPUnit\Framework\ExpectationFailedException">TasksTest::test_refresh
+Failed asserting that '{"fileTime":0}' matches PCRE pattern "/"project":/".
+
+</failure>
+      </testcase>
+      <testcase name="test_refreshNotChange" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="198" assertions="0" time="0.000547">
+        <error type="TypeError">TasksTest::test_refreshNotChange
+TypeError: Argument 2 passed to TasksModel::refresh() must be of the type integer, float given, called in /var/www/html/projectmanager/controllers/tasks.php on line 102
+
+/var/www/html/projectmanager/models/tasks.php:35
+/var/www/html/projectmanager/controllers/tasks.php:102
+/var/www/html/projectmanager/tests/tasksTest.php:201
+</error>
+      </testcase>
+      <testcase name="test_show" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="206" assertions="1" time="0.000538"/>
+      <testcase name="test_show_demo1" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="212" assertions="1" time="0.000514"/>
+      <testcase name="test_show_demo2" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="218" assertions="1" time="0.000515"/>
+      <testcase name="test_show_demo3" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="224" assertions="1" time="0.000530"/>
+      <testcase name="test_show_testProject" class="TasksTest" classname="TasksTest" file="/var/www/html/projectmanager/tests/tasksTest.php" line="230" assertions="1" time="0.638316"/>
     </testsuite>
   </testsuite>
 </testsuites>

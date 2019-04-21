@@ -1,11 +1,12 @@
   // globals	
-  var saveTimer = 0;	
-  var refreshTimer = 0;	
+  var saveTimer = 0;	       // windows timer handler 
+  var refreshTimer = 0;	       // windows timer handler
   var oldAssign = '';	       // use in checTaskForm
   var dbRefreshEnable = true;  // false at saveToDatabase use in refreshFromdatabase
   var dbSaveEnable = true;     // false at RefresFromDatabase use in saveToDatabase
   var fileTime = 0;            // use in refreshFromDatabase
   var atDragging = false;      // mark at dragging, use refreshFromDatabase
+  var refreshTime = 0;         // refresh time milisec
   
   // params for controller	  
   // projectId string  requed	
@@ -13,6 +14,9 @@
   // users array [avatarurl,nincname],...] project' members  OPTIONAL
   // admins array [avatarurl]    OPTIONAL
   // sid string requed
+  // REFRESHMIN  sec
+  // REFRESHMAX  sec
+  // SESSIONCOUNT session counts
   
  /**
   * convert #database state into json string
@@ -147,12 +151,12 @@
  				fun();
  			}	
  		    clearTimeout(refreshTimer);
-	  	    refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", 15000);
+	  	    refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", refreshTime);
 	 	})
  	} else {
  		 dbSaveEnable = true;
  		 clearTimeout(refreshTimer);
- 	 	 refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", 5000);
+ 	 	 refreshTimer = window.setTimeout("refreshFromDatabase(projectId)", refreshTime);
  	}
  }
 
@@ -399,19 +403,24 @@
   
   function colResize() {  
     // adjust heights
-	 var maxHeight = 0;	
-    $('.col').css('height', '');
-	 
+	var maxHeight = 0;	
     var cols = $('project').find('.col');
     var i;
     var col = null;
+    var tasks = [];
+    var maxTaskCount = 0;
     for (i=0; i<cols.length; i++) {
     	col = $(cols[i].nodeName);
-		if (col.height() > maxHeight) {
-			maxHeight = col.height();		
-		}    
+    	tasks = col.find('task');
+    	if (tasks != undefined) {
+    		if (tasks.length > maxTaskCount) {
+    			maxTaskCount = tasks.length;
+    		}
+    	}
     }
+   	maxHeight = 38 + (maxTaskCount * 122);
     $('.col').css('height', maxHeight+'px');
+    $('body').css('height', (maxHeight+200)+'px');
   }
   
   /**
@@ -422,19 +431,18 @@
    */
   function taskDrop(event, ui) {
 		// drop into body
-		var scrolTop  = window.pageYOffset || document.documentElement.scrollTop;
 		
 		// calculate newState
 		var newState;
-		if (ui.offset.left > 1000) {
+		if (ui.offset.left > 970) {
 			newState = 'closed';
-		} else if (ui.offset.left > 800) {
+		} else if (ui.offset.left > 776) {
 			newState = 'atverify';
-		} else if (ui.offset.left > 600) {
+		} else if (ui.offset.left > 582) {
 			newState = 'canverify';
-		} else if (ui.offset.left > 400) {
+		} else if (ui.offset.left > 388) {
 			newState = 'atwork';
-		} else if (ui.offset.left > 200) {
+		} else if (ui.offset.left > 194) {
 			newState = 'canstart';
 		} else {
 			newState = 'waiting';
@@ -442,7 +450,7 @@
 		
 		// calculate beforSelector
 		var beforeSelector = 'h2';
-		if (ui.offset.top > (scrolTop+60)) {
+		//if (ui.offset.top > (scrolTop+60)) {
 			var tasks = $(newState).find('task');
 			var i;
 			for (i=0; i < tasks.length; i++) {
@@ -450,7 +458,7 @@
 					beforeSelector = '#'+tasks[i].id;				
 				}			
 			}
-		}
+		//}
 
 		// check, if ok process
 		if ((checkState2(ui.draggable, newState)) && (accessRight(ui.draggable, true))) {
@@ -458,9 +466,9 @@
 				dbRefreshEnable = false;
 	 		    clearTimeout(saveTimer);
 	        	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
-	        	if (beforeSelector == 'h2') {
-					window.scrollTo(0,0);		        	
-	        	}
+	        	//if (beforeSelector == 'h2') {
+				//	window.scrollTo(scrollLeft,0);
+	        	//}
 	       	colResize();
 		}
 	 	ui.draggable.css('left','0px');
@@ -546,9 +554,6 @@
 
 	 $('#membersBtn').click(function() {
 	 	var tbody = $('#membersForm tbody');
-	 	
-	 	console.log(tbody);
-	 	
 	 	var s = '';
 	 	var i = 0;
 	 	var members = $('members').find('member');
@@ -605,6 +610,12 @@
 		});
 	}
     
+	$(window).scroll(function() {
+		var scrollTop  = window.pageYOffset || document.documentElement.scrollTop;
+		var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+		$('.col h2').css('top',(scrollTop)+'px');
+	});
+	
     // init application
     // ================
     
@@ -648,7 +659,17 @@
 	   });
 	   
     }
-     
+    
+    // calculate refreshTime
+    refreshTime = REFRESHMAX * (SESSIONCOUNT / 100);
+    if (refreshTime < REFRESHMIN) {
+    	refreshTime = REFRESHMIN;
+    }
+    if (refreshTime > REFRESHMAX) {
+    	refreshTime = REFRESHMAX;
+    }
+    refreshTime = refreshTime * 1000;
+    
     // start refresh interval
 	refreshFromDatabase(projectId);
 	
