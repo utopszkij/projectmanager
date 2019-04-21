@@ -18,6 +18,6 @@ matrix:
 before_script:
   
 script:
- - ./tests/test.sh 
- - ./tests/sonar.sh
+ - ./tools/test.sh 
+ - ./tools/sonar.sh
  
