@@ -1,0 +1,13 @@
+<?php
+   
+error_reporting(E_ALL);
+define('MYSQLHOST','localhost');
+define('MYSQLUSER','****');
+define('MYSQLPSW','******');
+define('MYSQLDB','projectmanager');
+define('MYSQLLOG',false);
+
+define('REFRESHMIN', 2); // sec  - for userCount >= 100
+define('REFRESHMAX', 10); // sec - for userCount <= 1
+
+?>

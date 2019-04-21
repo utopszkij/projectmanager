@@ -1,5 +1,5 @@
 <?php
-class defaultController {
+class DefaultController {
 	public function default($request) {
 		
 		// set default params
@@ -9,7 +9,7 @@ class defaultController {
 
 		// call default task
 		include_once './controllers/tasks.php';
-		$ctrl = new tasksController();
+		$ctrl = new TasksController();
 		$ctrl->show($request); 
 	}
 }

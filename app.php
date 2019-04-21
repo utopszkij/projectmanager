@@ -1,7 +1,5 @@
 <?php
    
-error_reporting(E_ALL);
-
 if (isset($_GET['sid'])) {
     session_id(strip_tags($_GET['sid']));
 }
@@ -10,7 +8,9 @@ if (isset($_POST['sid'])) {
 }
 session_start();
 
-include_once './framework.php';
+include_once './.config.php';
+include_once './core/database.php';
+include_once './core/framework.php';
 
 $request = new Request();
 foreach ($_POST as $name => $value) {
@@ -24,7 +24,7 @@ $task = $request->input('task','default');
 
 if (file_exists('./controllers/'.$option.'.php')) {
 	include_once './controllers/'.$option.'.php';
-	$controllerName = $option.'Controller';
+	$controllerName = ucfirst($option).'Controller';
 	$controller = new $controllerName ();
 	$controller->$task ($request);
 } else {

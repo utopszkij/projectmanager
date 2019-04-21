@@ -1,18 +1,25 @@
 <?php
-class tasksView {
+class TasksView {
 	/**
 	* echo html page
-	* @param {users:[[avatar,nick], ...], mebers:[avatar], loggerUser:avatar, lng:hu, extraCSS:url}
+	* @param object $p
+	* - extraCSS
+	* - loggedUser
+	* - projectId
+	* @return void
 	*/
 	public function show($p) {
-	  include './langs/'.$p->lng.'.php'; 	
+	    if (!defined('LNGDEF')) {
+	        include './langs/'.$p->lng.'.php'; 	
+	    }
 		?>
 <!doctype html>
 <html lang="hu">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=1240px, initial-scale=1">
   <title>projektmanager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="./style.css">
   <?php if ($p->extraCSS != '') :?>
@@ -22,17 +29,75 @@ class tasksView {
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script type="text/javascript">
 	var global = {};
-	
+	global.alert = function(str) {
+		// window.alert(str);
+		$("#popupYes").hide(); 
+		$("#popupNo").hide(); 
+		$("#popupClose").show();
+		$("#popup p").html(str);
+		$("#popup").show(); 
+		$("#popupClose").click(function(){
+			$("#popup").hide();
+		});
+	};
+	global.confirm = function(str, yesfun, nofun) {
+		if (yesfun != undefined) {
+			$("#popupYes").mouseup(yesfun);
+		} else {
+			$("#popupYes").mouseup(function() {});
+		}
+		if (nofun != undefined) {
+			$("#popupNo").mouseup(nofun);
+		} else {
+			$("#popupNo").mouseup(function() {});
+		}	
+		$("#popupYes").show(); 
+		$("#popupNo").show(); 
+		$("#popupClose").hide();
+		$("#popup p").html(str);
+		$("#popupNo").click(function(){
+			$("#popup").hide();
+		});
+		$("#popupYes").click(function(){
+			$("#popup").hide();
+		});
+		$("#popup").show(); 
+		/*
+			var res = wondow.confirm(str);
+			if (res & (yesfun != undefined)) {
+				yesfun();
+			} 
+			if (!res & (nofun != undefined)) {
+				nofun();
+			}
+		*/ 
+	};
+	global.post = function(url, options, fun) {
+		$.post(url, options, fun);
+	}	
   </script>
   <?php loadJavaScript('tasks',$p); ?>	
 </head>
 <body>
+    <div id="popup" style="display:none; z-index:20; position:fixed;
+        top:100px; left:100px; width:auto; max-width:70%; height:auto;
+        background-color:#f0f0f0; padding:10px; margin:5px;
+        border-style:solid; border-width:1px; text-align:center">
+		<p class="alert alert-danger"></p>
+		<div>
+			<button type="button" id="popupYes"><?php echo YES; ?></button>
+			<button type="button" id="popupNo"><?php echo NO; ?></button>
+			<button type="button" id="popupClose"><?php echo CLOSE; ?></button>
+		</div>
+    </div>
 	<div id="buttonLine">
 		<button type="button" class="" title="newTask" id="newTaskBtn">+ Új feladat</button>
 		&nbsp;
 		<button type="button" class="" title="members" id="membersBtn">Tagok</button>
+		<?php if($p->projectId == 'demo') : ?>
 		<img src="<?php echo $p->loggedUser; ?>" 
 			width="35" style="z-index:10; float:right; margin:2px;" alt="" />
+		<?php endif; ?>	
 	</div>
 
 	<!-- data from database start php olvassa be a kapott projectId alapján -->
@@ -138,9 +203,9 @@ class tasksView {
 			<button type="button" onclick="$('#membersForm').toggle();" title="close">X</button>		
 		</p>
 		<h3><?php echo MEMBERS; ?></h3>
-		<table width="100%">
+		<table style="width:100%">
 		<thead>
-			<tr><th float="left" width="100"><?php echo ADMIN; ?></th><th></th></tr>
+			<tr><th float="left" style="width:100px"><?php echo ADMIN; ?></th><th></th></tr>
 		</thead>
 		<tbody>
 		</tbody>

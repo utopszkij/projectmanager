@@ -1,4 +1,5 @@
 <?php
+DEFINE('LNGDEF',1);
 DEFINE('WAITING','Várakozik');
 DEFINE('CANSTART','Inditható');
 DEFINE('ATWORK','Munkában');
@@ -7,7 +8,10 @@ DEFINE('ATVERIFY','Ellenörzés alatt');
 DEFINE('CLOSED','Lezárt');
 DEFINE('NEWTASK','Új feladat');
 DEFINE('OK','Tárol');
+DEFINE('YES','Igen');
+DEFINE('NO','Nem');
 DEFINE('CANCEL','Mégsem');
+DEFINE('CLOSE','Bezár');
 DEFINE('DELTASK','Feladat törlése');
 DEFINE('QUESTION','Kérdés');
 DEFINE('BUG','Hiba');

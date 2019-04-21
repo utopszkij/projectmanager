@@ -2874,11 +2874,14 @@ locatenameziparchive::locatename&
 renamenameziparchive::renamename
 openziparchive::open:
 defaultcontroller%
-defaultdefaultcontroller::defaultt
-taskscontroller
+defaultdefaultcontroller::defaultÂ
+taskscontroller'
+	newtickettaskscontroller::newticket
 savetaskscontroller::save
 showtaskscontroller::show#
-refreshtaskscontroller::refreshì
+refreshtaskscontroller::refresh#
+addtasktaskscontroller::addtask
+taskž
 
 tasksmodel.
 checktaskactiontasksmodel::checktaskaction0
@@ -2886,6 +2889,7 @@ tasksmodel.
 savetasksmodel::save 
 gettaskstasksmodel::gettasks
 refreshtasksmodel::refresh 
-findtasktasksmodel::findtask$
+findtasktasksmodel::findtask0
+savechecknoadmintasksmodel::savechecknoadmin$
 	tasksview
 showtasksview::show

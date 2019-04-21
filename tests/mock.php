@@ -20,6 +20,9 @@ class Request {
         if (isset($this->sessions->$name)) $result = $this->sessions->$name;
         return $result;
     }
+    public function session_count() {
+        return 1;
+    }
 }
 
 function getModel($modelName) {
