@@ -11,12 +11,34 @@
   // params for controller	  
   // projectId string  requed	
   // loggedUser string requed
-  // users array [avatarurl,nincname],...] project' members  OPTIONAL
+  // users array [avatarurl,nickname],...] project' members  OPTIONAL
   // admins array [avatarurl]    OPTIONAL
   // sid string requed
   // REFRESHMIN  sec
   // REFRESHMAX  sec
   // SESSIONCOUNT session counts
+ 
+  
+  /**
+   * convert task domm element into json string
+   * @param domElement task
+   * @param string projectid 
+   * @param staring state
+   * @returns string
+   */
+  function taskToJson(task) {
+	  if (task.find('id')[0] == undefined) {
+		  return '{}';
+	  }
+	   return '{'+
+	   '"id":"'+task.find('id')[0].innerHTML+'", '+
+	   '"title":'+JSON.stringify(task.find('title')[0].innerHTML)+', '+
+	   '"desc":'+JSON.stringify(task.find('desc')[0].innerHTML)+', '+
+	   '"type":"'+task.find('type')[0].className+'", '+
+	   '"req":'+JSON.stringify(task.find('req')[0].innerHTML)+', '+
+	   '"assign":"'+task.find('img').attr('avatar')+'"'+
+	   '}';
+  }
   
  /**
   * convert #database state into json string
@@ -33,14 +55,7 @@
 	   if (i > 0) {
 		   result += ', ';
 	   }
-	   result += '{';
-	   result += '"id":'+task.find('id')[0].innerHTML+', ';
-	   result += '"title":'+JSON.stringify(task.find('title')[0].innerHTML)+', ';
-	   result += '"desc":'+JSON.stringify(task.find('desc')[0].innerHTML)+', ';
-	   result += '"type":"'+task.find('type')[0].class+'", ';
-	   result += '"req":'+JSON.stringify(task.find('req')[0].innerHTML)+', ';
-	   result += '"assign":"'+task.find('img')[0].src+'"';
-	   result += '}';
+	   result += taskToJson(task);
    }
    return result+'], '	 
  } 
@@ -50,7 +65,7 @@
   * @return string
   */
  function membersToJson() {
-	var result = '"members":['; 
+	var result = '['; 
 	var i;
 	var members = $('member');
 	for (i=0; i<members.length; i++) {
@@ -67,7 +82,7 @@
   
   
  /**
- * save task into database
+ * save complette project into database
  * server input: act='save', projectId, project 
  * server result: fileTime
  *  use global fileTime
@@ -100,9 +115,35 @@
  	}
  }
  
+ /**
+  * save all members into database
+  * server input: act='save', projectId, project 
+  * server result: fileTime
+  * use global fileTime
+  */
+  function saveAllMembers(projectId) {
+  	if (dbSaveEnable) {
+  		dbRefreshEnable = false;
+ 	   var s = membersToJson();
+ 	   
+ 	   if (projectId == 'demo') {
+ 	 			dbRefreshEnable = true;
+ 	   } else {
+ 		 	global.post('./app.php', {"option":"members", "task":"saveallmembers", "projectid":projectId, "members": s, "sid": sid}, function(res) {
+ 	 			dbRefreshEnable = true;
+ 		 	})
+ 	   }
+  	} else {
+  		 clearTimeout(saveTimer);
+  	 	 saveTimer = window.setTimeout("saveAllMembers(projectId)", 5000);
+  	}
+  }
+ 
+ 
  function appendState(stateObj, stateName) {
-	 var i;
+	 var i,j;
 	 var task = null;
+	 var nick = '';
 	 var s = '';
 	 if (stateObj == undefined) {
 		 return;
@@ -110,12 +151,18 @@
 	 if ((stateObj.length != undefined) && (stateObj.length > 0)) {
 		 for (i=0; i < stateObj.length; i++) {
 			task = stateObj[i];
+			nick = '?';
+			for (j=0; j < users.length; j++) {
+				if (users[j][0] == task.assign) {
+					nick = users[j][1];
+				}
+			}
 			s = '<task id="'+task.id+'">';
 			s += '<id>'+task.id+'</id>';
 			s += '<title>'+task.title+'</title>';
 			s += '<desc>'+task.desc+'</desc>';
 			s += '<type class="'+task.type+'">&nbsp;</type>';
-			s += '<assign><img src="'+task.assign+'" /></assign>';
+			s += '<assign><img src="'+task.assign+'" avatar="'+task.assign+'" title="'+nick+'"/></assign>';
 			s += '<req>'+task.req+'</req>';
 			$(stateName).append(s);
 		 }
@@ -131,8 +178,11 @@
  function refreshFromDatabase(projectId, fun) {
  	if ((dbRefreshEnable) && (!atDragging)) {
  		dbSaveEnable = false;
-	 	global.post('./app.php', {"option":"tasks", "task":"refresh", "projectid":projectId, "fileTime": fileTime}, function(res) {
-	 		fileTime = res.fileTime;
+ 		global.post('./app.php', {"option":"tasks", "task":"refresh", 
+ 			"projectid":projectId, "fileTime": fileTime}, function(res) {
+	 		var i, member;
+			var s = '';
+ 			fileTime = res.fileTime;
 	 		if (res.project != undefined) {
 	 			// json project --> #database html dom
 	 			$('task').remove();
@@ -145,6 +195,18 @@
 		        colTranslate(); 
 		        colResize();
 	 			setTaskEventHandlers();
+	 			if (res.project.members != undefined) {
+	 				$('member').remove();
+	 				for (i=0; i< res.project.members.length; i++) {
+	 					member = res.project.members[i];
+	 					s = '<member';
+	 					s += ' avatar="'+member.avatar+'"';
+	 					s += ' admin="'+member.admin+'">';
+	 					s += member.nick;
+	 					s += '</member>';
+	 					$('members').append(s);
+	 				}
+	 			}
 	 		}
  			dbSaveEnable = true;
  			if (fun != undefined) {
@@ -223,18 +285,15 @@
  	if (result) {
 		var assign = taskForm.find('#assign').val();
 		if ((oldAssign != assign) && /* hozzányult */ 
-			 (loggedAdmin() == false) && /* nem admin */
-		    (assign != loggedUser) /* nem önmgához rendelte */
-		) {
-			global.alert("<?php echo ACCESSDENIED; ?>");
-			result = false;		
-		} else if ((oldAssign != assign) && /* hozzányult */ 
-			        (loggedAdmin() == false) && /* nem admin */
-		           (oldAssign != 'https://www.gravtar.com/avatar/') /* eddig nem volt üres */
+			(loggedAdmin() == false) && /* nem admin */
+		    ((assign != loggedUser) || (oldAssign != 'https://www.gravatar.com/avatar/'))  /* nem önmgához rendelte vagy nem volt üres */
 		) {
 			global.alert("<?php echo ACCESSDENIED; ?>");
 			result = false;		
 		}			 
+ 	} else {
+		global.alert("<?php echo ACCESSDENIED.'(2)'; ?>");
+		result = false;		
  	}
  	return result;
  }	
@@ -304,6 +363,16 @@
  	} else {
  	   taskForm.find('#assign').attr('disabled','disabled');
  	}
+ 	if (userMember()) {
+ 	 	$('#cancel').html('<?php echo CANCEL; ?>');
+ 	 	$('#Ok').show();
+ 	 	$('#cancel').show();
+ 	} else {
+ 	 	$('#cancel').html('<?php echo CLOSE; ?>');
+ 	 	$('#Ok').hide();
+ 	 	$('#cancel').show();
+ 	}
+ 	$('#deltask').hide();
  }
 
  function setWritable(taskForm) {
@@ -314,6 +383,14 @@
  	taskForm.find('#prior').attr('disabled',false);
  	taskForm.find('#req').attr('disabled',false);
  	taskForm.find('#assign').attr('disabled',false);
+ 	$('#cancel').html('<?php echo CANCEL; ?>');
+ 	$('#Ok').show();
+ 	$('#cancel').show();
+ 	if (loggedAdmin()) {
+		$('#deltask').show();
+	} else {
+		$('#deltask').hide();
+	}	
  }    	  
 
  function getStateFromTask(task) {    	  
@@ -345,16 +422,16 @@
         }
         $('task').click(function() {
 	        var members = $('members').find('member');
-	    	  var id = this.id;
-	    	  var task = $('#'+id);
-	    	  var taskForm = $('#taskForm');
-			  var state = getStateFromTask(task);	    	  
+	    	var id = this.id;
+	    	var task = $('#'+id);
+	    	var taskForm = $('#taskForm');
+			var state = getStateFromTask(task);	    	  
 	     	
 	        // copy member into taskFom user selecor'options
 	        var i;
 	        var s = '<option value="https://www.gravatar.com/avatar/">?</option>';
 	        $('#assign').html('');
-		     $('#assign').append(s); 		      
+		    $('#assign').append(s); 		      
 	        for (i=0; i < members.length; i++) {
 	      	 s = '<option value="'+members[i].getAttribute('avatar')+'">'+
 		      		members[i].innerHTML+'</option>';
@@ -365,12 +442,13 @@
 	    	  this.style.zIndex=1;
 	    	  taskForm.find('#id').val(task.find('id').html());
 	    	  taskForm.find('#title').val(task.find('title').html());
-	    	  taskForm.find('#desc').val(task.find('desc').html().replace(/\<br\>/g,"\n"));
+	    	  taskForm.find('#desc').val(task.find('desc').html().replace('<br>',"\n"));
+
 	    	  taskForm.find('#type').val(task.find('type').attr('class'));
-	    	  taskForm.find('#assign').val(task.find('img').attr('src'));
+	    	  taskForm.find('#assign').val(task.find('img').attr('avatar'));
 	    	  taskForm.find('#req').val(task.find('req').html());
 	    	  taskForm.find('#state').val(state);
-	    	  oldAssign = task.find('img').attr('src');
+	    	  oldAssign = task.find('img').attr('avatar');
 	    	  if (!accessRight(task, false)) {
 	    	  		setReadOnly(taskForm);
 	    	  } else {
@@ -431,7 +509,10 @@
    */
   function taskDrop(event, ui) {
 		// drop into body
-		
+		if (ui.draggable.attr('id') == 'popup') {
+			return;
+		}
+	  
 		// calculate newState
 		var newState;
 		if (ui.offset.left > 970) {
@@ -463,13 +544,19 @@
 		// check, if ok process
 		if ((checkState2(ui.draggable, newState)) && (accessRight(ui.draggable, true))) {
       	 	ui.draggable.insertAfter($(newState).find(beforeSelector));
-				dbRefreshEnable = false;
-	 		    clearTimeout(saveTimer);
-	        	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
-	        	//if (beforeSelector == 'h2') {
-				//	window.scrollTo(scrollLeft,0);
-	        	//}
+			dbRefreshEnable = false;
+	 		   clearTimeout(saveTimer);
 	       	colResize();
+	       	// update into database
+	       	var s = taskToJson(ui.draggable);
+ 			dbRefreshEnable = false;
+		 	global.post('./app.php', {"option":"tasks", "task":"taskupdate", 
+		 		"projectid":projectId, "data": s, "sid": sid, "state": newState}, function(res) {
+		 			dbRefreshEnable = true;
+		 			if (res.errorMsg != '') {
+		 				global.alert(res.errorMsg);
+		 			}
+		 	});
 		}
 	 	ui.draggable.css('left','0px');
 	 	ui.draggable.css('top','0px');
@@ -485,21 +572,23 @@
     }
     
     $('#Ok').click(function() {
-      // taskForm --> task (!!! update parent !!!)
+      // taskForm --> task dom element (!!! update parent !!!)
     	var taskForm = $('#taskForm');
     	var id = taskForm.find('#id').val();
     	var task = $('#'+id);
     	var newState = taskForm.find('#state').val();
     	var oldState = getStateFromTask(task);
+    	var assign = taskForm.find('#assign').val();
+		var assignSelect = taskForm.find('#assign')[0];
+		var selectedIndex = assignSelect.selectedIndex;
+		var nick = assignSelect.options[selectedIndex].label;
+
 		if (checkForm(taskForm)) { 
 	      task.find('title').html(taskForm.find('#title').val());
 	      task.find('desc').html(taskForm.find('#desc').val().replace(/\n/g,"<br>"));
 	      task.find('type').attr('class', taskForm.find('#type').val());
-		  var assign = taskForm.find('#assign').val();
-		  var assignSelect = taskForm.find('#assign')[0];
-		  var selectedIndex = assignSelect.selectedIndex;
-		  var nick = assignSelect.options[selectedIndex].label;
 	      task.find('img').attr('src',assign);
+	      task.find('img').attr('avatar',assign);
 	      task.find('img').attr('title',nick);
 	      task.find('req').html(taskForm.find('#req').val());
 		  if (newState != oldState) {	      
@@ -507,8 +596,18 @@
 	      }
 	      dbRefreshEnable = false;
  		  clearTimeout(saveTimer);
-       	saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
-       	colResize(); 
+       	  //saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
+       	  colResize();
+	      // update into database
+	      s = taskToJson(task);
+		  dbRefreshEnable = false;
+		  global.post('./app.php', {"option":"tasks", "task":"taskupdate", 
+		 		"projectid": projectId, "data": s, "sid": sid, "state": newState}, function(res) {
+		 			dbRefreshEnable = true;
+		 			if (res.errorMsg != '') {
+		 				global.alert(res.errorMsg);
+		 			}
+		  });
 		}
 	 	$('#savedMsg').hide();
 		$('#taskForm').hide();  
@@ -524,9 +623,17 @@
            $('#'+id).remove();
 		   dbRefreshEnable = false;
  		   clearTimeout(saveTimer);
-     	   saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
 	 	   $('#savedMsg').hide();
 	 	   $('#taskForm').hide();
+		   // delete from database
+		   dbRefreshEnable = false;
+		   global.post('./app.php', {"option":"tasks", "task":"taskdelete", 
+			 		"projectid":projectId, "id": id, "sid": sid}, function(res) {
+			 			dbRefreshEnable = true;
+			 			if (res.errorMsg != '') {
+			 				global.alert(res.errorMsg);
+			 			}
+		   });
 	 	}    
     });
     
@@ -538,7 +645,7 @@
 				'<title></title>'+
 				'<desc></desc>'+
 				'<type class="question"></type>'+
-				'<assign><img src="https://www.gravatar.com/avatar/" title="?" alt="" /></assign>'+
+				'<assign><img src="https://www.gravatar.com/avatar/" avatar="https://www.gravatar.com/avatar/" title="?" alt="" /></assign>'+
 				'<req></req>'+
 			'</task>';
 	      $('waiting h2').after(s);
@@ -546,16 +653,27 @@
 		  window.scrollTo(0,0);
 		  dbRefreshEnable = false;
 		  clearTimeout(saveTimer);
-	      saveTimer = window.setTimeout("saveToDatabase(projectId)", 5000);
 	      colResize(); 
-		  $('#'+id).click();
+	      
+	      // insert  into database
+		  dbRefreshEnable = false;
+		  global.post('./app.php', {"option":"tasks", "task":"taskinsert", 
+		 		"projectid": projectId, "id": id, "sid": sid}, function(res) {
+		 		  dbRefreshEnable = true;
+		 		  if (res.errorMsg == '') {
+		 			  $('#'+id).click();
+		 		  } else {
+		 			  global.alert(res.errorMsg);
+		 		  }	  
+		  });
+	      
 		}
     }); // newTask
 
 	 $('#membersBtn').click(function() {
 	 	var tbody = $('#membersForm tbody');
 	 	var s = '';
-	 	var i = 0;
+	 	var i;
 	 	var members = $('members').find('member');
  		var checked = '';
 	 	tbody.html('');
@@ -566,7 +684,8 @@
 	 			checked = '';
 	 		}
 	 		var avatar = members[i].getAttribute('avatar');
-	 		if (loggedAdmin() && (i > 1)) {
+	 		if (loggedAdmin() && (i >=
+	 			1)) {
 				s = '<tr><td><input type="checkbox" id="" value="1"+'+checked+' /></td>'+
 				   '<td>'+
 				   '<img src="'+avatar+'" alt="'+avatar+'" width="40" height="40" />'+
@@ -584,22 +703,32 @@
 	 	$('#membersForm tr input').click(function() {
 		 	var members = $('members').find('member');
 		 	var i = 0;
+		 	var admin = 0;
+		 	// actual avatar
 		 	var avatar = this.parentNode.nextSibling.firstChild.alt;
-		 	// i=1 is the  creator it is admin.
-			members[1].setAttribute('admin','1');
-		 	// i=0 is the guest it is not admin
-			members[0].setAttribute('admin','0');
-			for (i=2; i < members.length; i++) {
+		 	
+		 	// i=0 is the  creator it is admin.
+			members[0].setAttribute('admin','1');
+			for (i=1; i < members.length; i++) {
 				if (members[i].getAttribute('avatar') == avatar) {
 					if (this.checked) {
 						members[i].setAttribute('admin','1');
+						admin = 1;
 					} else {
 						members[i].setAttribute('admin','0');
+						admin = 0;
 					}				
 				}		
 			}			 	
  		   clearTimeout(saveTimer);
-	       saveToDatabase(projectId);
+ 		   
+ 		   // update one member into database
+ 		   global.post('./app.php', {"option":"members", "task":"memberupdate", 
+		 		"projectid":projectId, "avatar": avatar, "admin": admin, "sid": sid}, function(res) {
+		 		  dbRefreshEnable = true;
+		   });
+ 		   
+ 		   
 	 	});
 		$('#membersForm').toggle();	 
 	 });
@@ -612,23 +741,35 @@
     
 	$(window).scroll(function() {
 		var scrollTop  = window.pageYOffset || document.documentElement.scrollTop;
-		var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 		$('.col h2').css('top',(scrollTop)+'px');
 	});
 	
     // init application
     // ================
+	
+    // calculate refreshTime
+    refreshTime = REFRESHMAX * (SESSIONCOUNT / 100);
+    if (refreshTime < REFRESHMIN) {
+    	refreshTime = REFRESHMIN;
+    }
+    if (refreshTime > REFRESHMAX) {
+    	refreshTime = REFRESHMAX;
+    }
+    refreshTime = refreshTime * 1000;
     
-    // is set users in request then 
-    // - admins merge to database,
-    // - users overwrite to database
+    // start refresh interval
+	refreshFromDatabase(projectId);
+	if ($('#popup').draggable != undefined) {
+		$('#popup').draggable();
+	}
     if (users.length > 0) {
-    	
-	   refreshFromDatabase(projectId,  function() {
-		   dbRefreshEnable = false;
+		   console.log('member load');
 		   
-		   //copy admins from <members> into admins array
+		   //copy admins from members dom element into admins array
 			var oldMembers = $('members').find('member');
+
+			console.log(oldMembers.length);
+			
 			var i;
 			var s = '';
 			for (i=0; i < oldMembers.length; i++) {
@@ -649,29 +790,15 @@
 				$('members').append(s);
 			}
 		   dbSaveEnable = true;
-	    	saveToDatabase(projectId);
+		   saveAllMembers(projectId);
 		   dbRefreshEnable = true;
 		   if (loggedAdmin()) {
-		   	$('#newTaskBtn').show();
+		   		$('#newTaskBtn').show();
 		   } else {
-		   	$('#newTaskBtn').hide();
+		   		$('#newTaskBtn').hide();
 		   }
-	   });
-	   
-    }
-    
-    // calculate refreshTime
-    refreshTime = REFRESHMAX * (SESSIONCOUNT / 100);
-    if (refreshTime < REFRESHMIN) {
-    	refreshTime = REFRESHMIN;
-    }
-    if (refreshTime > REFRESHMAX) {
-    	refreshTime = REFRESHMAX;
-    }
-    refreshTime = refreshTime * 1000;
-    
-    // start refresh interval
-	refreshFromDatabase(projectId);
+    	
+    }	
 	
   } // pageOnLoad function
 

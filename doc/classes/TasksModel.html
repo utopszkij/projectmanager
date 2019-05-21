@@ -106,12 +106,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">47</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">54</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -136,16 +136,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1190335047"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-228681726"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1190335047" class="accordion-body collapse in">
+            <div id="namespace-228681726" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
                     <ul>
                                                                                                     <li class="class"><a href="../classes/DB.html">DB</a></li>
                                                     <li class="class"><a href="../classes/Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/MembersController.html">MembersController</a></li>
+                                                    <li class="class"><a href="../classes/MembersModel.html">MembersModel</a></li>
+                                                    <li class="class"><a href="../classes/Relation.html">Relation</a></li>
                                                     <li class="class"><a href="../classes/Request.html">Request</a></li>
                                                     <li class="class"><a href="../classes/Table.html">Table</a></li>
                                                     <li class="class"><a href="../classes/Task.html">Task</a></li>
@@ -189,8 +192,12 @@
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
+                                                                    <a href="../classes/TasksModel.html#method___construct" class="">__construct()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_refresh" class="">refresh()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_save" class="">save()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_newTask" class="">newTask()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_delTask" class="">delTask()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_updateTask" class="">updateTask()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -201,11 +208,21 @@
                         </section>
                         <section class="row-fluid protected">
                             <section class="span4">
+                                                                    <a href="../classes/TasksModel.html#method_isMember" class="">isMember()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_getTasks" class="">getTasks()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_findTask" class="">findTask()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_ContentNotChange" class="">ContentNotChange()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_noChanged" class="">noChanged()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_publicEnabledNewtask" class="">publicEnabledNewtask()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_pickupTask" class="">pickupTask()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_selfTaskStateChange" class="">selfTaskStateChange()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_checkTaskAction" class="">checkTaskAction()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_accesRightNewTaskUpdate" class="">accesRightNewTaskUpdate()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_doDeletedTask" class="">doDeletedTask()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_loadOldTasks" class="">loadOldTasks()</a><br />
                                                                     <a href="../classes/TasksModel.html#method_saveCheckNoAdmin" class="">saveCheckNoAdmin()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_saveAllTaskFromJson" class="">saveAllTaskFromJson()</a><br />
+                                                                    <a href="../classes/TasksModel.html#method_setLastUpdate" class="">setLastUpdate()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <a href="../classes/TasksModel.html#property_errorMsg" class="">$errorMsg</a><br />
@@ -266,12 +283,12 @@
             <a id="property_errorMsg" name="property_errorMsg" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$errorMsg</h3>
-                <pre class="signature">$errorMsg : </pre>
-                <p><em></em></p>
+                <pre class="signature">$errorMsg : string</pre>
+                <p><em>error Message</em></p>
                 
 
                                 <h4>Type</h4>
-                
+                string
                                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -291,6 +308,34 @@
                 <div class="span8 content class"><h2>Methods</h2></div>
                 <aside class="span4 detailsbar"></aside>
             </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
@@ -345,14 +390,19 @@
             <article class="method">
                 <h3 class="public ">save()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">save(integer  <span class="argument">$projectId</span>,   <span class="argument">$project</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">save(  <span class="argument">$request</span>, integer|string  <span class="argument">$projectId</span>,   <span class="argument">$project</span>) : string</pre>
                 <p><em>save tasks into database</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>integer</td>
+                                <td></td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|string</td>
                                 <td>$projectId </td>
                                 <td><p>REQUED</p></td>
                             </tr>
@@ -386,7 +436,192 @@
         </aside>
     </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_newTask" name="method_newTask" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">newTask()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">newTask(string  <span class="argument">$projectId</span>, \int  <span class="argument">$id</span>) : string</pre>
+                <p><em>create one default new task into database</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$projectId </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\int</td>
+                                <td>$id </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>{&quot;errorMsg&quot;:&quot;...&quot;}</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delTask" name="method_delTask" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delTask()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delTask(  <span class="argument">$request</span>, string  <span class="argument">$projectId</span>, \int  <span class="argument">$id</span>) : string</pre>
+                <p><em>delete one task from database + accesRight control</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$projectId </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\int</td>
+                                <td>$id </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>{&quot;errorMsg&quot;:&quot;...&quot;}</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateTask" name="method_updateTask" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">updateTask()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateTask(\Request  <span class="argument">$request</span>, string  <span class="argument">$projectId</span>, object  <span class="argument">$task</span>) : string</pre>
+                <p><em>update ont task</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Request.html">\Request</a></td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$projectId </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>object</td>
+                                <td>$task </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>{&quot;errorMsg&quot;:&quot;...&quot;}</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                                                     <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isMember" name="method_isMember" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">isMember()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isMember(string  <span class="argument">$loggedUser</span>, array  <span class="argument">$users</span>) : boolean</pre>
+                <p><em>chek loggedUser is member?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$loggedUser </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$users </td>
+                                <td><p>[[avatar, nick],...]</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
         <div class="span8 content class">
             <a id="method_getTasks" name="method_getTasks" class="anchor"></a>
             <article class="method">
@@ -514,6 +749,208 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="method_noChanged" name="method_noChanged" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">noChanged()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">noChanged(\Task  <span class="argument">$oldTask</span>, \Task  <span class="argument">$newTask</span>) : boolean</pre>
+                <p><em>chack changed task ?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a></td>
+                                <td>$oldTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a></td>
+                                <td>$newTask </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_publicEnabledNewtask" name="method_publicEnabledNewtask" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">publicEnabledNewtask()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">publicEnabledNewtask(\Task|false  <span class="argument">$oldTask</span>, \Task  <span class="argument">$newTask</span>, string  <span class="argument">$freeAssign</span>) : boolean</pre>
+                <p><em>public add enabled this task type?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a>|false</td>
+                                <td>$oldTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a></td>
+                                <td>$newTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$freeAssign </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pickupTask" name="method_pickupTask" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">pickupTask()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pickupTask(\Task|false  <span class="argument">$oldTask</span>, \Task  <span class="argument">$newTask</span>, string  <span class="argument">$loggedUser</span>, boolean  <span class="argument">$member</span>, string  <span class="argument">$freeAssign</span>) : boolean</pre>
+                <p><em>check this action picup free task into loggedUser?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a>|false</td>
+                                <td>$oldTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a></td>
+                                <td>$newTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$loggedUser </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$member </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$freeAssign </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_selfTaskStateChange" name="method_selfTaskStateChange" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">selfTaskStateChange()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">selfTaskStateChange(\Task|false  <span class="argument">$oldTask</span>, \Task  <span class="argument">$newTask</span>, string  <span class="argument">$loggedUser</span>, boolean  <span class="argument">$member</span>) : boolean</pre>
+                <p><em>check this action only state change and assign == loggedUser ?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a>|false</td>
+                                <td>$oldTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Task.html">\Task</a></td>
+                                <td>$newTask </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$loggedUser </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$member </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="method_checkTaskAction" name="method_checkTaskAction" class="anchor"></a>
             <article class="method">
                 <h3 class="protected ">checkTaskAction()</h3>
@@ -567,11 +1004,147 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="method_accesRightNewTaskUpdate" name="method_accesRightNewTaskUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">accesRightNewTaskUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">accesRightNewTaskUpdate(array  <span class="argument">$newTasks</span>, array  <span class="argument">$oldTasks</span>, boolean  <span class="argument">$member</span>, string  <span class="argument">$loggedUser</span>) : boolean</pre>
+                <p><em>Minden newtask -ra ellenörzi, hogy a loggeduser jososult-e erre a modositásra?</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$newTasks </td>
+                                <td><p>array of Task</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$oldTasks </td>
+                                <td><p>array of Task</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$member </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$loggedUser </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_doDeletedTask" name="method_doDeletedTask" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">doDeletedTask()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">doDeletedTask(array  <span class="argument">$newTasks</span>, array  <span class="argument">$oldTasks</span>) : boolean</pre>
+                <p><em>task törlés nem megengedett</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$newTasks </td>
+                                <td><p>array of Task</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$oldTasks </td>
+                                <td><p>array of Task</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>(true - ok nem történik törlés, false- neme jó törlés történne)</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadOldTasks" name="method_loadOldTasks" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">loadOldTasks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadOldTasks(string  <span class="argument">$projectId</span>) : array</pre>
+                <p><em>load oldTasks from database by projectId</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$projectId </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>of Task</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="method_saveCheckNoAdmin" name="method_saveCheckNoAdmin" class="anchor"></a>
             <article class="method">
                 <h3 class="protected ">saveCheckNoAdmin()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">saveCheckNoAdmin(boolean  <span class="argument">$accessRight</span>, integer  <span class="argument">$projectId</span>, \Task  <span class="argument">$project</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px;">saveCheckNoAdmin(boolean  <span class="argument">$accessRight</span>,   <span class="argument">$request</span>, integer|string  <span class="argument">$projectId</span>, object  <span class="argument">$project</span>) : void</pre>
                 <p><em></em></p>
                 
 
@@ -583,12 +1156,17 @@
                                 <td><p>I/O</p></td>
                             </tr>
                                                     <tr>
-                                <td>integer</td>
+                                <td></td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|string</td>
                                 <td>$projectId </td>
                                 <td></td>
                             </tr>
                                                     <tr>
-                                <td><a href="../classes/Task.html">\Task</a></td>
+                                <td>object</td>
                                 <td>$project </td>
                                 <td></td>
                             </tr>
@@ -596,6 +1174,78 @@
                 
                 
                 
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveAllTaskFromJson" name="method_saveAllTaskFromJson" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">saveAllTaskFromJson()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveAllTaskFromJson(string  <span class="argument">$projectId</span>, string  <span class="argument">$project</span>) : void</pre>
+                <p><em>save all task from project json string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$projectId </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$project </td>
+                                <td><p>json string</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksModel.html"><div class="path-wrapper">\TasksModel</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastUpdate" name="method_setLastUpdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setLastUpdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastUpdate() : integer</pre>
+                <p><em>set lastUpdate time into database</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>latUpdateTime</p>
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -660,7 +1310,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on April 19th, 2019 at 08:37.
+                    on May 21st, 2019 at 13:34.
                 </section>
             </section>
         </section>

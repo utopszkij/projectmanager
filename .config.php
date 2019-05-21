@@ -1,6 +1,7 @@
 <?php
    
 error_reporting(E_ALL);
+define('DEFLNG','hu');
 define('MYSQLHOST','localhost');
 define('MYSQLUSER','root');
 define('MYSQLPSW','13Marika');

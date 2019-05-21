@@ -16,6 +16,7 @@ DEFINE('QUESTION','Question');
 DEFINE('BUG','Error');
 DEFINE('SUGGEST','Suggest');
 DEFINE('OTHER','Other');
+DEFINE('TASK','task');
 DEFINE('ASSIGN','Assign');
 DEFINE('TITLE','Title');
 DEFINE('DESC','Description');
@@ -26,6 +27,8 @@ DEFINE('REQHELP','closed IDs list');
 DEFINE('INFO','');
 DEFINE('ACCESSDENIED','Access denied');
 DEFINE('NOTSTARTING','Requested not exists');
+DEFINE('TASKNOTFOUND','Task not found in database');
+DEFINE('WRONGSESSION','SESSION error -- timelimit?');
 DEFINE('MEMBERS','Members');
 DEFINE('ADMIN','Admin');
 

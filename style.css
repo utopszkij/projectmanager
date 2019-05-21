@@ -13,13 +13,6 @@
         padding:34px 1px 1px 1px; margin:34px 1px 1px 1px;
   		  border-style:solid; border-width:1px; border-color:black; background-color:white}
   .col h2 {position:absolute; z-index:2; display:inline-block; top:2px; left:2px; width:190px;}	
-  /*
-  canstart h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:208px; width:190px;}	
-  atwork  h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:408px; width:190px;}	
-  canverify h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:608px; width:190px;}	
-  atverify h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:808px; width:190px;}	
-  closed h2 {position:fixed; z-index:2; display:inline-block;top:36px; left:1008px; width:190px;}	
-  */
   members {display:none}
   
   button#deltask {background-color:red; color:white; margin:20px 5px 5px 5px}
@@ -27,6 +20,8 @@
   button#cancel {background-color:orange; color:black;  margin:20px 5px 5px 5px}	
   button#newTaskBtn {background-color:green; color:white; font-size:20px;}		  
   button#memberskBtn {background-color:silver; color:black; font-size:20px;}		  
+  
+  #popup {cursor: move}
   
   #database {width:1240px}
   task {display:block; background-color:#e0e0e0; font-size:14px; 

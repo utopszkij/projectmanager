@@ -60,8 +60,7 @@ http://szeszt.tk/projektmanager
 - PHP 7.0.33+, 
 - Javascript, 
 - JQuery 1.12.1+, 
-
-A repo tartalmaz mysql interface-t (database.php), de ez jelenleg nincs használva. Az adat tárolás most json Text fileokban van megoldva.
+- mysql
 
 ## Használt külső szolgáltatások, erőforrások:
 - jquery.com    (V 1.12.1)
@@ -231,9 +230,10 @@ http://szeszt.tk/projektmanager/doc/index.html
 3. config.txt átnevezése .config.php -ra és értelem szerü editálása.
 4. A szerver documentroot-ba másolni:
 app.php, index.html, style.css, .htaccess, config.php  
-fileok és
-controllers, images, js, langs, models, projects, views, log alkönyvtárak teljes tartalmukkal együtt.
-5. a projects és a log alkönyvtár és tartalma legyen írható a web szerver és a php számára.
+fileokat és a
+controllers, images, js, langs, models, views, log alkönyvtárak teljes tartalmukkal együtt.
+5. a log alkönyvtár és tartalma legyen írható a web szerver és a php számára.
+
 
 ## Programozó
 

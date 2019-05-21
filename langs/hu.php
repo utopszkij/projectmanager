@@ -17,6 +17,7 @@ DEFINE('QUESTION','Kérdés');
 DEFINE('BUG','Hiba');
 DEFINE('SUGGEST','Javaslat');
 DEFINE('OTHER','Egyéb');
+DEFINE('TASK','Feladat');
 DEFINE('ASSIGN','Felelős');
 DEFINE('TITLE','Cím');
 DEFINE('DESC','Leírás');
@@ -34,6 +35,8 @@ DEFINE('INFO','
 ');
 DEFINE('ACCESSDENIED','Hozááférés letiltva');
 DEFINE('NOTSTARTING','Az inditási feltételek nem teljesülnek');
+DEFINE('TASKNOTFOUND','A feladat nem található az adatbázisban');
+DEFINE('WRONGSESSION','SESSION hiba -- lejárt a timelimit?');
 DEFINE('MEMBERS','Tagok');
 DEFINE('ADMIN','Project adminisztrátor');
 ?>

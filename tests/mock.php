@@ -40,4 +40,8 @@ function getView($viewName) {
 function loadJavaScript($jsName, $params) {
     return '';
 }
+
+function txt($s) {
+    return $s;
+}
 ?>

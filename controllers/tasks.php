@@ -1,6 +1,12 @@
 <?php
 class TasksController {
 
+    protected function setHtmlHeader() {
+        if (!headers_sent()) {
+            header('Content-Type: json');
+        }
+    }
+    
 	/**
 	* show projectmanager main page
 	* @param Request $request
@@ -83,7 +89,6 @@ class TasksController {
 		// call viewer
 		$view = getView('tasks');
 		$view->show($p);
-		return;
 	}
 	
 	/**
@@ -106,7 +111,7 @@ class TasksController {
 	}
 	
 	/**
-	* save tasks into database AJAX backend server
+	* save complete project into database AJAX backend server
 	* @param Request $request
 	* - string projectid REQUED
 	* - jsonStr project   REQUED
@@ -114,109 +119,64 @@ class TasksController {
 	*     echo json {"fileTime":num, "errorMsg":""}  
 	*/
 	public function save(Request $request) {
+	    $this->setHtmlHeader();
 		$projectId = $request->input('projectid','0000');
 		$project = $request->input('project','');
 		$model = getModel('tasks');
-		if (!headers_sent()) {
-		    header('Content-Type: json');
-		}
-		echo $model->save($projectId, $project);
+		echo $model->save($request, $projectId, $project);
 	} 
 	
 	/**
-	 * Add new bug, query or suggest iframe module
+	 * insert new default task AJAX backend server
 	 * @param Request $request
-	 *   - projectid
-	 *   - title
-	 *   - desc
-	 *   - type 'bug' | 'query' | 'suggest'
-	 *   - email
+	 * - string projectid
+	 * - string id
+	 * - string sid
 	 * @return void
 	 */
-	public function addTask(Request $request) {
-	    $projectId = $request->input('projectid');
+	public function taskinsert(Request $request) {
+	    $this->setHtmlHeader();
+	    $projectId = $request->input('projectid','0000');
+	    $id = $request->input('id','0');
 	    $model = getModel('tasks');
-	    $res = JSON_decode($model->refresh($projectId, 0));
-	    $project = $res->project;
-	    $newTask = new stdClass();
-	    
-	    // új task.id meghatározása
-	    $newTask->id = 0;
-	    foreach ($project as $state) {
-	        foreach ($state as $task) {
-	            if (isset($task->id)) {
-	                if ($task->id > $newTask->id) {
-	                    $newTask->id = $task->id;
-	                }
-	            }
-	        }
-	    }
-	    
-	    $newTask->id++;
-	    $newTask->title = $request->input('title');
-	    $newTask->desc = $request->input('desc').
-	      '<span class="email">'.$request->input('email').'</span>';
-	    $newTask->type = $request->input('type');
-	    $newTask->assign = 'https://www.gravatar.com/avatar/';
-	    $newTask->req = '';
-	    $project->waiting[] = $newTask;
-	    $model->save($projectId, JSON_encode($project));
-	    echo '<html>
-            <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=1240px, initial-scale=1">
-            <title>projektmanager</title>
-            </head>
-            <body>
-            <div>
-            <p style="text-align:center; margin: 20px">
-            Message saved. Thanks.
-            </p>
-            </div>
-            </body>
-            </html>';
+	    echo $model->newTask($projectId, $id);
 	}
 	
 	/**
-	 * send new ticket form run in iframe
+	 * delete one task  AJAX backend server
 	 * @param Request $request
-	 * - projectid
+	 * - string projectid
+	 * - string id     taskId
+	 * - string sid
 	 * @return void
 	 */
-	public function newTicket(Request $request) {
-	    echo '<html>
-            <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=1240px, initial-scale=1">
-            <title>projektmanager</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            </head>
-            <body>
-            <div style="margin:5px; padding:5px;">
-            <form id="newTicketForm" method="post" action="./app.php">
-                <input type="hidden" name="option" value="tasks" /> 
-                <input type="hidden" name="task" value="addTask" /> 
-                <input type="hidden" name="projectid" value="'.$request->input('projectid').'" />
-                <h2>New error ticket, question or suggest</h2>
-                <p><label>Type</label><br />                
-                <select name="type">
-                    <option value="bug">Bug</option>
-                    <option value="question">Question</option>
-                    <option value="suggest">Suggest</option>
-                   </select></p> 
-                <p><label>Title</label><br />                
-                <input type="text" name="title" value="" style="width:400px" /></p>
-                <p><label>Description</label><br />                
-                <textarea name="desc" cols="40" rows="5"></textarea></p>
-                <p><label>E-mail</label><br />                
-                <input type="text" name="email" value="" style="width:400px" /></p>
-                <p class="buttonLine">
-                    <button type="submit" class="btn btn-primary">SEND</button>
-                </p>
-            </form>
-            </div>
-            </body>
-            </html>';
+	public function taskdelete(Request $request) {
+	    $this->setHtmlHeader();
+	    $projectId = $request->input('projectid','0000');
+	    $id = $request->input('id','0');
+	    $model = getModel('tasks');
+	    echo $model->delTask($request, $projectId, $id);
+	}
+		
+	/**
+	 * update one task AJAX backend server
+	 * @param Request $request
+	 * - string projectid
+	 * - string data task json string
+	 * - string state
+	 * - string sid
+	 * @return void
+	 */
+	public function taskupdate(Request $request) {
+	    $this->setHtmlHeader();
+	    $projectId = $request->input('projectid','0000');
+	    $state = $request->input('state','waiting');
+	    $data = $request->input('data','{"id":""}');
+	    $dataObj = JSON_decode($data);
+	    $dataObj->state = $state;
+	    $dataObj->project_id = $projectId;
+	    $model = getModel('tasks');
+	    echo $model->updateTask($request, $projectId, $dataObj);
 	}
 }
 ?>

@@ -106,12 +106,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">47</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">54</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -136,16 +136,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-722241283"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-887632843"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-722241283" class="accordion-body collapse in">
+            <div id="namespace-887632843" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
                     <ul>
                                                                                                     <li class="class"><a href="../classes/DB.html">DB</a></li>
                                                     <li class="class"><a href="../classes/Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/MembersController.html">MembersController</a></li>
+                                                    <li class="class"><a href="../classes/MembersModel.html">MembersModel</a></li>
+                                                    <li class="class"><a href="../classes/Relation.html">Relation</a></li>
                                                     <li class="class"><a href="../classes/Request.html">Request</a></li>
                                                     <li class="class"><a href="../classes/Table.html">Table</a></li>
                                                     <li class="class"><a href="../classes/Task.html">Task</a></li>
@@ -242,8 +245,10 @@
                                                                     <a href="../classes/Table.html#property_columns" class="">$columns</a><br />
                                                                     <a href="../classes/Table.html#property_alias" class="">$alias</a><br />
                                                                     <a href="../classes/Table.html#property_whereStr" class="">$whereStr</a><br />
+                                                                    <a href="../classes/Table.html#property_whereArray" class="">$whereArray</a><br />
                                                                     <a href="../classes/Table.html#property_groupStr" class="">$groupStr</a><br />
                                                                     <a href="../classes/Table.html#property_havingStr" class="">$havingStr</a><br />
+                                                                    <a href="../classes/Table.html#property_havingArray" class="">$havingArray</a><br />
                                                                     <a href="../classes/Table.html#property_orderStr" class="">$orderStr</a><br />
                                                                     <a href="../classes/Table.html#property_offset" class="">$offset</a><br />
                                                                     <a href="../classes/Table.html#property_limit" class="">$limit</a><br />
@@ -254,7 +259,8 @@
                         </section>
                         <section class="row-fluid private">
                             <section class="span4">
-                                                                    <em>No private methods found</em>
+                                                                    <a href="../classes/DB.html#method_writeLog" class="">writeLog()</a><br />
+                                                                    <a href="../classes/Table.html#method_createWhereHavingStr" class="">createWhereHavingStr()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No private properties found</em>
@@ -529,6 +535,30 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="property_whereArray" name="property_whereArray" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$whereArray</h3>
+                <pre class="signature">$whereArray : array</pre>
+                <p><em>where array</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; of Relation                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="property_groupStr" name="property_groupStr" class="anchor"></a>
             <article class="property">
                 <h3 class="protected ">$groupStr</h3>
@@ -563,6 +593,30 @@
                                 <h4>Type</h4>
                 string
                                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_havingArray" name="property_havingArray" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$havingArray</h3>
+                <pre class="signature">$havingArray : array</pre>
+                <p><em>having array</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; og Realtion                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -784,14 +838,14 @@
             <article class="method">
                 <h3 class="public ">loadObject()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">loadObject() : string|boolean</pre>
+                <pre class="signature" style="margin-right: 54px;">loadObject() : \recordObject|false</pre>
                 <p><em>load one record by $this-&gt;sqlString or from $dbResult</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    string|boolean
+                    \recordObject|false
                                     
                             </article>
         </div>
@@ -904,14 +958,14 @@
             <article class="method">
                 <h3 class="public ">quote()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">quote(string  <span class="argument">$str</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">quote(string|mixed  <span class="argument">$str</span>) : string|mixed</pre>
                 <p><em>quote string (adjust &quot; --&gt; \&quot;,  \n --&gt; &#039;\n&#039;</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>string</td>
+                                <td>string|mixed</td>
                                 <td>$str </td>
                                 <td></td>
                             </tr>
@@ -919,12 +973,13 @@
                 
                 
                                     <h4>Returns</h4>
-                    string
+                    string|mixed
                                     
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
                                                             <dl>
                                                     <dt>Inherited from</dt>
                     <dd><a href="../classes/DB.html"><div class="path-wrapper">\DB</div></a></dd>
@@ -1201,15 +1256,14 @@
             <article class="method">
                 <h3 class="public ">get()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get() : array</pre>
+                <pre class="signature" style="margin-right: 54px;">get() : \arrayOfRecordObject</pre>
                 <p><em>load record set</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    array
-                                            &mdash; <p>of record</p>
+                    \arrayOfRecordObject
                                     
                             </article>
         </div>
@@ -1232,14 +1286,14 @@
             <article class="method">
                 <h3 class="public ">first()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">first() : \record|boolean</pre>
+                <pre class="signature" style="margin-right: 54px;">first() : \recordObject|boolean</pre>
                 <p><em>load one record</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    \record|boolean
+                    \recordObject|boolean
                                     
                             </article>
         </div>
@@ -1262,14 +1316,14 @@
             <article class="method">
                 <h3 class="public ">where()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">where(array|string  <span class="argument">$par</span>, string  <span class="argument">$con = &#039; AND &#039;</span>, string  <span class="argument">$dest = &#039;whereStr&#039;</span>) : \Table</pre>
+                <pre class="signature" style="margin-right: 54px;">where(array|string|\Relation  <span class="argument">$par</span>, string  <span class="argument">$con = &#039; AND &#039;</span>, string  <span class="argument">$dest = &#039;whereArray&#039;</span>) : \Table</pre>
                 <p><em>add expression into existing whereStr</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>array|string</td>
+                                <td>array|string|<a href="../classes/Relation.html">\Relation</a></td>
                                 <td>$par </td>
                                 <td></td>
                             </tr>
@@ -1311,14 +1365,14 @@
             <article class="method">
                 <h3 class="public ">orWhere()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">orWhere(array|string  <span class="argument">$par</span>) : \Table</pre>
+                <pre class="signature" style="margin-right: 54px;">orWhere(array|string|\Relation  <span class="argument">$par</span>) : \Table</pre>
                 <p><em>add new extension into existing whereStr OR operand</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>array|string</td>
+                                <td>array|string|<a href="../classes/Relation.html">\Relation</a></td>
                                 <td>$par </td>
                                 <td></td>
                             </tr>
@@ -1388,14 +1442,14 @@
             <article class="method">
                 <h3 class="public ">having()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">having(array|string  <span class="argument">$par</span>) : \Table</pre>
+                <pre class="signature" style="margin-right: 54px;">having(array|string|\Relation  <span class="argument">$par</span>) : \Table</pre>
                 <p><em>add expression into existing havingeStr by AND operand</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>array|string</td>
+                                <td>array|string|<a href="../classes/Relation.html">\Relation</a></td>
                                 <td>$par </td>
                                 <td></td>
                             </tr>
@@ -1716,14 +1770,14 @@
             <article class="method">
                 <h3 class="public ">count()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">count() : \numeric</pre>
+                <pre class="signature" style="margin-right: 54px;">count() : integer</pre>
                 <p><em>get count of recordset</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    \numeric
+                    integer
                                     
                             </article>
         </div>
@@ -1771,7 +1825,63 @@
         </aside>
     </div>
 
-                                                                    </div>
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_writeLog" name="method_writeLog" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">writeLog()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">writeLog() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/DB.html"><div class="path-wrapper">\DB</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createWhereHavingStr" name="method_createWhereHavingStr" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">createWhereHavingStr()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createWhereHavingStr() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Table.html"><div class="path-wrapper">\Table</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
@@ -1820,7 +1930,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on April 19th, 2019 at 08:37.
+                    on May 21st, 2019 at 13:34.
                 </section>
             </section>
         </section>

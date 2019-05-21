@@ -234,4 +234,17 @@ function url(string $s): string {
     return $result;
 }
 
+/**
+ * language convertion
+ * @param string $s language token
+ * @return string translated text
+ */
+function txt(string $s): string {
+    $result = $s;
+    if (defined($s)) {
+        $result = constant($s);
+    }
+    return $result;
+}
+
 ?>
