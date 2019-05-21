@@ -1,5 +1,4 @@
-
-__php_incomplete_class²
+²
 appenditeratoriteratoriterator
 validappenditerator::valid
 nextappenditerator::next4
@@ -123,7 +122,15 @@ __tostring"badmethodcallexception::__tostring2
 getmessage"badmethodcallexception::getmessage<
 gettraceasstring(badmethodcallexception::gettraceasstring*
 getfilebadmethodcallexception::getfile*
-getcodebadmethodcallexception::getcodeÀ
+getcodebadmethodcallexception::getcodež
+curlfile,
+getpostfilenamecurlfile::getpostfilename$
+getmimetypecurlfile::getmimetype
+__wakeupcurlfile::__wakeup$
+getfilenamecurlfile::getfilename$
+setmimetypecurlfile::setmimetype$
+__constructcurlfile::__construct,
+setpostfilenamecurlfile::setpostfilenameÀ
 cachingiteratoriteratoriterator
 nextcachingiterator::next'
 	offsetgetcachingiterator::offsetget%
@@ -169,144 +176,7 @@ getmessage$closedgeneratorexception::getmessage>
 callclosure::call
 bindclosure::bind%
 fromcallableclosure::fromcallable
-bindtoclosure::bindtoâ
-dateinterval"
-__wakeupdateinterval::__wakeup
-formatdateinterval::format(
-__set_statedateinterval::__set_state:
-createfromdatestring"dateinterval::createfromdatestring(
-__constructdateinterval::__constructþ
-
-dateperiod(
-getstartdatedateperiod::getstartdate.
-getdateintervaldateperiod::getdateinterval 
-__wakeupdateperiod::__wakeup&
-__set_statedateperiod::__set_state$
-
-getenddatedateperiod::getenddate&
-__constructdateperiod::__constructê
-datetime 
-	getoffsetdatetime::getoffset
-adddatetime::add
-subdatetime::sub&
-gettimestampdatetime::gettimestamp
-__wakeupdatetime::__wakeup
-setdatedatetime::setdate
-formatdatetime::format
-diffdatetime::diff$
-settimezonedatetime::settimezone&
-settimestampdatetime::settimestamp$
-__constructdatetime::__construct"
-
-setisodatedatetime::setisodate
-settimedatetime::settime$
-gettimezonedatetime::gettimezone
-modifydatetime::modify$
-__set_statedatetime::__set_state.
-createfromformatdatetime::createfromformat(
-getlasterrorsdatetime::getlasterrorsÐ
-datetimeimmutable)
-	getoffsetdatetimeimmutable::getoffset
-adddatetimeimmutable::add
-subdatetimeimmutable::sub/
-gettimestampdatetimeimmutable::gettimestamp'
-__wakeupdatetimeimmutable::__wakeup%
-setdatedatetimeimmutable::setdate#
-formatdatetimeimmutable::format
-diffdatetimeimmutable::diff-
-settimezonedatetimeimmutable::settimezone/
-settimestampdatetimeimmutable::settimestamp-
-__constructdatetimeimmutable::__construct+
-
-setisodatedatetimeimmutable::setisodate%
-settimedatetimeimmutable::settime-
-gettimezonedatetimeimmutable::gettimezone#
-modifydatetimeimmutable::modify9
-createfrommutable$datetimeimmutable::createfrommutable-
-__set_statedatetimeimmutable::__set_state7
-createfromformat#datetimeimmutable::createfromformat1
-getlasterrors datetimeimmutable::getlasterrors
-datetimezone$
-	getoffsetdatetimezone::getoffset 
-getnamedatetimezone::getname(
-getlocationdatetimezone::getlocation.
-gettransitionsdatetimezone::gettransitions"
-__wakeupdatetimezone::__wakeup(
-__set_statedatetimezone::__set_state0
-listidentifiersdatetimezone::listidentifiers(
-__constructdatetimezone::__construct4
-listabbreviationsdatetimezone::listabbreviations\
-	directory
-readdirectory::read
-rewinddirectory::rewind
-closedirectory::close·
-directoryiteratorsplfileinfo
-nextdirectoryiterator::next%
-gettypedirectoryiterator::gettype%
-getsizedirectoryiterator::getsize/
-setinfoclassdirectoryiterator::setinfoclass+
-
-iswritabledirectoryiterator::iswritable/
-isexecutabledirectoryiterator::isexecutable-
-__constructdirectoryiterator::__construct
-seekdirectoryiterator::seek'
-getinodedirectoryiterator::getinode!
-validdirectoryiterator::valid#
-islinkdirectoryiterator::islink'
-getctimedirectoryiterator::getctime/
-getextensiondirectoryiterator::getextension%
-currentdirectoryiterator::current/
-setfileclassdirectoryiterator::setfileclass1
-_bad_state_ex directoryiterator::_bad_state_ex#
-isfiledirectoryiterator::isfile'
-getpermsdirectoryiterator::getperms1
-getlinktarget directoryiterator::getlinktarget-
-getpathnamedirectoryiterator::getpathname-
-getbasenamedirectoryiterator::getbasename
-keydirectoryiterator::key!
-isdirdirectoryiterator::isdir-
-getrealpathdirectoryiterator::getrealpath!
-isdotdirectoryiterator::isdot'
-getgroupdirectoryiterator::getgroup%
-getpathdirectoryiterator::getpath'
-getownerdirectoryiterator::getowner-
-getfilenamedirectoryiterator::getfilename'
-getmtimedirectoryiterator::getmtime-
-getfileinfodirectoryiterator::getfileinfo#
-rewinddirectoryiterator::rewind-
-getpathinfodirectoryiterator::getpathinfo'
-openfiledirectoryiterator::openfile'
-getatimedirectoryiterator::getatime+
-
-isreadabledirectoryiterator::isreadable+
-
-__tostringdirectoryiterator::__tostringò
-divisionbyzeroerrorarithmeticerror)
-__wakeupdivisionbyzeroerror::__wakeup)
-gettracedivisionbyzeroerror::gettrace'
-getlinedivisionbyzeroerror::getline-
-
-__tostringdivisionbyzeroerror::__tostring/
-__construct divisionbyzeroerror::__construct/
-getprevious divisionbyzeroerror::getprevious-
-
-getmessagedivisionbyzeroerror::getmessage9
-gettraceasstring%divisionbyzeroerror::gettraceasstring'
-getfiledivisionbyzeroerror::getfile'
-getcodedivisionbyzeroerror::getcodeÅ
-domainexceptionlogicexception%
-__wakeupdomainexception::__wakeup%
-gettracedomainexception::gettrace#
-getlinedomainexception::getline)
-
-__tostringdomainexception::__tostring+
-__constructdomainexception::__construct+
-getpreviousdomainexception::getprevious)
-
-getmessagedomainexception::getmessage5
-gettraceasstring!domainexception::gettraceasstring#
-getfiledomainexception::getfile#
-getcodedomainexception::getcodeš
+bindtoclosure::bindtoš
 domattrdomnode#
 getnodepathdomattr::getnodepath;
 comparedocumentposition domattr::comparedocumentposition#
@@ -682,20 +552,19 @@ getfeaturedomimplementation::getfeature3
 getdomimplementations.domimplementationsource::getdomimplementationsE
 getdomimplementation-domimplementationsource::getdomimplementation
 
-domlocatorƒ
-domnamednodemap
-itemdomnamednodemap::item-
-setnameditemdomnamednodemap::setnameditem1
-getnameditemnsdomnamednodemap::getnameditemns
-countdomnamednodemap::count7
-removenameditemns"domnamednodemap::removenameditemns1
-setnameditemnsdomnamednodemap::setnameditemns-
-getnameditemdomnamednodemap::getnameditem3
-removenameditem domnamednodemap::removenameditem_
+domlocator_
 domnamelist
 getnamedomnamelist::getname/
 getnamespaceuridomnamelist::getnamespaceuri
-domnamespacenodeÕ
+domnamespacenodeâ
+domnamednodemap
+itemdomnamednodemap::item-
+setnameditemdomnamednodemap::setnameditem1
+getnameditemnsdomnamednodemap::getnameditemns7
+removenameditemns"domnamednodemap::removenameditemns1
+setnameditemnsdomnamednodemap::setnameditemns-
+getnameditemdomnamednodemap::getnameditem3
+removenameditem domnamednodemap::removenameditemÕ
 domnode#
 getnodepathdomnode::getnodepath;
 comparedocumentposition domnode::comparedocumentposition#
@@ -720,10 +589,9 @@ getfeaturedomnode::getfeature#
 issupporteddomnode::issupported#
 isequalnodedomnode::isequalnode
 c14nfiledomnode::c14nfile
-	clonenodedomnode::clonenodeE
+	clonenodedomnode::clonenode(
 domnodelist
-itemdomnodelist::item
-countdomnodelist::countº
+itemdomnodelist::itemº
 domnotationdomnode'
 getnodepathdomnotation::getnodepath?
 comparedocumentposition$domnotation::comparedocumentposition'
@@ -828,7 +696,144 @@ insertdatadomtext::insertdata
 registernamespacedomxpath::registernamespace
 querydomxpath::query$
 __constructdomxpath::__construct
-evaluatedomxpath::evaluateª
+evaluatedomxpath::evaluateâ
+dateinterval"
+__wakeupdateinterval::__wakeup
+formatdateinterval::format(
+__set_statedateinterval::__set_state:
+createfromdatestring"dateinterval::createfromdatestring(
+__constructdateinterval::__constructþ
+
+dateperiod(
+getstartdatedateperiod::getstartdate.
+getdateintervaldateperiod::getdateinterval 
+__wakeupdateperiod::__wakeup&
+__set_statedateperiod::__set_state$
+
+getenddatedateperiod::getenddate&
+__constructdateperiod::__constructê
+datetime 
+	getoffsetdatetime::getoffset
+adddatetime::add
+subdatetime::sub&
+gettimestampdatetime::gettimestamp
+__wakeupdatetime::__wakeup
+setdatedatetime::setdate
+formatdatetime::format
+diffdatetime::diff$
+settimezonedatetime::settimezone&
+settimestampdatetime::settimestamp$
+__constructdatetime::__construct"
+
+setisodatedatetime::setisodate
+settimedatetime::settime$
+gettimezonedatetime::gettimezone
+modifydatetime::modify$
+__set_statedatetime::__set_state.
+createfromformatdatetime::createfromformat(
+getlasterrorsdatetime::getlasterrorsÐ
+datetimeimmutable)
+	getoffsetdatetimeimmutable::getoffset
+adddatetimeimmutable::add
+subdatetimeimmutable::sub/
+gettimestampdatetimeimmutable::gettimestamp'
+__wakeupdatetimeimmutable::__wakeup%
+setdatedatetimeimmutable::setdate#
+formatdatetimeimmutable::format
+diffdatetimeimmutable::diff-
+settimezonedatetimeimmutable::settimezone/
+settimestampdatetimeimmutable::settimestamp-
+__constructdatetimeimmutable::__construct+
+
+setisodatedatetimeimmutable::setisodate%
+settimedatetimeimmutable::settime-
+gettimezonedatetimeimmutable::gettimezone#
+modifydatetimeimmutable::modify9
+createfrommutable$datetimeimmutable::createfrommutable-
+__set_statedatetimeimmutable::__set_state7
+createfromformat#datetimeimmutable::createfromformat1
+getlasterrors datetimeimmutable::getlasterrors
+datetimezone$
+	getoffsetdatetimezone::getoffset 
+getnamedatetimezone::getname(
+getlocationdatetimezone::getlocation.
+gettransitionsdatetimezone::gettransitions"
+__wakeupdatetimezone::__wakeup(
+__set_statedatetimezone::__set_state0
+listidentifiersdatetimezone::listidentifiers(
+__constructdatetimezone::__construct4
+listabbreviationsdatetimezone::listabbreviations\
+	directory
+readdirectory::read
+rewinddirectory::rewind
+closedirectory::close·
+directoryiteratorsplfileinfo
+nextdirectoryiterator::next%
+gettypedirectoryiterator::gettype%
+getsizedirectoryiterator::getsize/
+setinfoclassdirectoryiterator::setinfoclass+
+
+iswritabledirectoryiterator::iswritable/
+isexecutabledirectoryiterator::isexecutable-
+__constructdirectoryiterator::__construct
+seekdirectoryiterator::seek'
+getinodedirectoryiterator::getinode!
+validdirectoryiterator::valid#
+islinkdirectoryiterator::islink'
+getctimedirectoryiterator::getctime/
+getextensiondirectoryiterator::getextension%
+currentdirectoryiterator::current/
+setfileclassdirectoryiterator::setfileclass1
+_bad_state_ex directoryiterator::_bad_state_ex#
+isfiledirectoryiterator::isfile'
+getpermsdirectoryiterator::getperms1
+getlinktarget directoryiterator::getlinktarget-
+getpathnamedirectoryiterator::getpathname-
+getbasenamedirectoryiterator::getbasename
+keydirectoryiterator::key!
+isdirdirectoryiterator::isdir-
+getrealpathdirectoryiterator::getrealpath!
+isdotdirectoryiterator::isdot'
+getgroupdirectoryiterator::getgroup%
+getpathdirectoryiterator::getpath'
+getownerdirectoryiterator::getowner-
+getfilenamedirectoryiterator::getfilename'
+getmtimedirectoryiterator::getmtime-
+getfileinfodirectoryiterator::getfileinfo#
+rewinddirectoryiterator::rewind-
+getpathinfodirectoryiterator::getpathinfo'
+openfiledirectoryiterator::openfile'
+getatimedirectoryiterator::getatime+
+
+isreadabledirectoryiterator::isreadable+
+
+__tostringdirectoryiterator::__tostringò
+divisionbyzeroerrorarithmeticerror)
+__wakeupdivisionbyzeroerror::__wakeup)
+gettracedivisionbyzeroerror::gettrace'
+getlinedivisionbyzeroerror::getline-
+
+__tostringdivisionbyzeroerror::__tostring/
+__construct divisionbyzeroerror::__construct/
+getprevious divisionbyzeroerror::getprevious-
+
+getmessagedivisionbyzeroerror::getmessage9
+gettraceasstring%divisionbyzeroerror::gettraceasstring'
+getfiledivisionbyzeroerror::getfile'
+getcodedivisionbyzeroerror::getcodeÅ
+domainexceptionlogicexception%
+__wakeupdomainexception::__wakeup%
+gettracedomainexception::gettrace#
+getlinedomainexception::getline)
+
+__tostringdomainexception::__tostring+
+__constructdomainexception::__construct+
+getpreviousdomainexception::getprevious)
+
+getmessagedomainexception::getmessage5
+gettraceasstring!domainexception::gettraceasstring#
+getfiledomainexception::getfile#
+getcodedomainexception::getcodeª
 emptyiterator
 validemptyiterator::valid
 nextemptyiterator::next!
@@ -980,8 +985,7 @@ iswritableglobiterator::iswritable*
 
 isreadableglobiterator::isreadable&
 
-__tostringglobiterator::__tostring
-hashcontext´
+__tostringglobiterator::__tostring´
 infiniteiteratoriteratoriterator 
 validinfiniteiterator::valid
 nextinfiniteiterator::next$
@@ -1047,124 +1051,7 @@ __tostringlogicexception::__tostring*
 getmessagelogicexception::getmessage4
 gettraceasstring logicexception::gettraceasstring"
 getfilelogicexception::getfile"
-getcodelogicexception::getcodeï
-maxdb
-preparemaxdb::prepare
-set_optmaxdb::set_opt#
-real_connectmaxdb::real_connect
-commitmaxdb::commit
-	stmt_initmaxdb::stmt_init-
-stmt_store_resultmaxdb::stmt_store_result)
-get_server_infomaxdb::get_server_info
-optionsmaxdb::options
-	select_dbmaxdb::select_db/
-get_client_versionmaxdb::get_client_version)
-close_long_datamaxdb::close_long_data+
-stmt_bind_resultmaxdb::stmt_bind_result%
-stmt_sqlstatemaxdb::stmt_sqlstate
-sqlstatemaxdb::sqlstate
-initmaxdb::init
-errnomaxdb::errno%
-affected_rowsmaxdb::affected_rows3
-stmt_result_metadatamaxdb::stmt_result_metadata
-executemaxdb::execute!
-fetch_assocmaxdb::fetch_assoc
-
-stmt_closemaxdb::stmt_close
-
-use_resultmaxdb::use_result!
-free_resultmaxdb::free_result/
-real_escape_stringmaxdb::real_escape_string
-pingmaxdb::ping!
-server_initmaxdb::server_init'
-send_long_datamaxdb::send_long_data+
-stmt_free_resultmaxdb::stmt_free_result-
-rpl_parse_enabledmaxdb::rpl_parse_enabled
-
-real_querymaxdb::real_query
-
-bind_parammaxdb::bind_param%
-stmt_num_rowsmaxdb::stmt_num_rows
-closemaxdb::close
-connectmaxdb::connect%
-escape_stringmaxdb::escape_string#
-stmt_executemaxdb::stmt_execute
-rollbackmaxdb::rollback
-statmaxdb::stat+
-enable_rpl_parsemaxdb::enable_rpl_parse
-ssl_setmaxdb::ssl_set)
-stmt_bind_parammaxdb::stmt_bind_param
-
-send_querymaxdb::send_query)
-client_encodingmaxdb::client_encoding
-killmaxdb::kill#
-fetch_fieldsmaxdb::fetch_fields#
-store_resultmaxdb::store_result+
-embedded_connectmaxdb::embedded_connect
-	insert_idmaxdb::insert_id#
-get_metadatamaxdb::get_metadata/
-fetch_field_directmaxdb::fetch_field_direct#
-more_resultsmaxdb::more_results
-fetchmaxdb::fetch
-reportmaxdb::report%
-warning_countmaxdb::warning_count!
-field_countmaxdb::field_count-
-disable_rpl_parsemaxdb::disable_rpl_parse
-	rpl_probemaxdb::rpl_probe)
-get_client_infomaxdb::get_client_info
-	fetch_rowmaxdb::fetch_row
-	thread_idmaxdb::thread_id!
-multi_querymaxdb::multi_query
-
-autocommitmaxdb::autocommit!
-fetch_fieldmaxdb::fetch_field
-num_rowsmaxdb::num_rows#
-master_querymaxdb::master_query!
-change_usermaxdb::change_user!
-bind_resultmaxdb::bind_result%
-connect_errnomaxdb::connect_errno
-
-stmt_fetchmaxdb::stmt_fetch
-infomaxdb::info'
-get_proto_infomaxdb::get_proto_info=
-disable_reads_from_master maxdb::disable_reads_from_master%
-fetch_lengthsmaxdb::fetch_lengths'
-rpl_query_typemaxdb::rpl_query_type!
-param_countmaxdb::param_count
-querymaxdb::query3
-stmt_close_long_datamaxdb::stmt_close_long_data
-
-field_tellmaxdb::field_tell
-
-num_fieldsmaxdb::num_fields!
-thread_safemaxdb::thread_safe1
-stmt_send_long_datamaxdb::stmt_send_long_data
-
-stmt_errnomaxdb::stmt_errno
-	data_seekmaxdb::data_seek%
-connect_errormaxdb::connect_error+
-stmt_param_countmaxdb::stmt_param_count
-
-stmt_errormaxdb::stmt_error/
-stmt_affected_rowsmaxdb::stmt_affected_rows
-errormaxdb::error#
-fetch_objectmaxdb::fetch_object/
-character_set_namemaxdb::character_set_name%
-get_host_infomaxdb::get_host_info#
-stmt_preparemaxdb::stmt_prepare;
-enable_reads_from_mastermaxdb::enable_reads_from_master
-
-stmt_resetmaxdb::stmt_reset
-debugmaxdb::debug/
-get_server_versionmaxdb::get_server_version'
-stmt_data_seekmaxdb::stmt_data_seek
-
-server_endmaxdb::server_end!
-next_resultmaxdb::next_result!
-fetch_arraymaxdb::fetch_array)
-dump_debug_infomaxdb::dump_debug_info
-
-field_seekmaxdb::field_seekŽ
+getcodelogicexception::getcodeŽ
 multipleiterator 
 validmultipleiterator::valid
 nextmultipleiterator::next2
@@ -1177,109 +1064,7 @@ field_seekmaxdb::field_seekŽ
 detachiterator multipleiterator::detachiterator,
 __constructmultipleiterator::__construct2
 attachiterator multipleiterator::attachiterator
-keymultipleiterator::keyÌ
-mysqli0
-real_escape_stringmysqli::real_escape_string
-preparemysqli::prepare
-set_optmysqli::set_opt$
-real_connectmysqli::real_connect
-pingmysqli::ping
-commitmysqli::commit,
-reap_async_querymysqli::reap_async_query
-pollmysqli::poll
-	stmt_initmysqli::stmt_init"
-__constructmysqli::__construct*
-get_client_infomysqli::get_client_info"
-multi_querymysqli::multi_query 
-
-autocommitmysqli::autocommit
-	savepointmysqli::savepoint 
-
-real_querymysqli::real_query0
-character_set_namemysqli::character_set_name*
-get_server_infomysqli::get_server_info
-optionsmysqli::options
-	select_dbmysqli::select_db"
-change_usermysqli::change_user
-closemysqli::close
-connectmysqli::connect&
-escape_stringmysqli::escape_string
-rollbackmysqli::rollback
-initmysqli::init
-statmysqli::stat
-debugmysqli::debug.
-begin_transactionmysqli::begin_transaction
-ssl_setmysqli::ssl_set
-querymysqli::query
-refreshmysqli::refresh.
-release_savepointmysqli::release_savepoint
-killmysqli::kill$
-store_resultmysqli::store_result$
-get_warningsmysqli::get_warnings"
-next_resultmysqli::next_result4
-get_connection_statsmysqli::get_connection_stats 
-
-use_resultmysqli::use_result$
-more_resultsmysqli::more_results"
-thread_safemysqli::thread_safe"
-set_charsetmysqli::set_charset*
-dump_debug_infomysqli::dump_debug_info"
-get_charsetmysqli::get_charset
-mysqli_driverÓ
-mysqli_result)
-__constructmysqli_result::__construct+
-fetch_fieldsmysqli_result::fetch_fields+
-fetch_objectmysqli_result::fetch_object)
-fetch_assocmysqli_result::fetch_assoc%
-	fetch_rowmysqli_result::fetch_row)
-fetch_arraymysqli_result::fetch_array7
-fetch_field_direct!mysqli_result::fetch_field_direct)
-free_resultmysqli_result::free_result)
-fetch_fieldmysqli_result::fetch_field%
-	data_seekmysqli_result::data_seek
-freemysqli_result::free'
-
-field_seekmysqli_result::field_seek
-closemysqli_result::close%
-	fetch_allmysqli_result::fetch_allþ
-mysqli_sql_exceptionruntimeexception*
-__wakeupmysqli_sql_exception::__wakeup*
-gettracemysqli_sql_exception::gettrace(
-getlinemysqli_sql_exception::getline.
-
-__tostring mysqli_sql_exception::__tostring0
-__construct!mysqli_sql_exception::__construct0
-getprevious!mysqli_sql_exception::getprevious.
-
-getmessage mysqli_sql_exception::getmessage:
-gettraceasstring&mysqli_sql_exception::gettraceasstring(
-getfilemysqli_sql_exception::getfile(
-getcodemysqli_sql_exception::getcode‡
-mysqli_stmt
-preparemysqli_stmt::prepare!
-attr_getmysqli_stmt::attr_get/
-result_metadatamysqli_stmt::result_metadata-
-send_long_datamysqli_stmt::send_long_data'
-__constructmysqli_stmt::__construct
-executemysqli_stmt::execute)
-store_resultmysqli_stmt::store_result)
-get_warningsmysqli_stmt::get_warnings'
-next_resultmysqli_stmt::next_result%
-
-get_resultmysqli_stmt::get_result)
-more_resultsmysqli_stmt::more_results'
-free_resultmysqli_stmt::free_result
-fetchmysqli_stmt::fetch!
-num_rowsmysqli_stmt::num_rows%
-
-bind_parammysqli_stmt::bind_param
-resetmysqli_stmt::reset'
-bind_resultmysqli_stmt::bind_result#
-	data_seekmysqli_stmt::data_seek
-closemysqli_stmt::close!
-attr_setmysqli_stmt::attr_set.
-mysqli_warning
-nextmysqli_warning::next´
+keymultipleiterator::key´
 norewinditeratoriteratoriterator 
 validnorewinditerator::valid
 nextnorewinditerator::next$
@@ -1326,32 +1111,7 @@ __tostringoverflowexception::__tostring-
 getmessageoverflowexception::getmessage7
 gettraceasstring#overflowexception::gettraceasstring%
 getfileoverflowexception::getfile%
-getcodeoverflowexception::getcode¥
-parentiteratorrecursivefilteriterator
-validparentiterator::valid
-nextparentiterator::next"
-currentparentiterator::current 
-rewindparentiterator::rewind4
-getinneriterator parentiterator::getinneriterator*
-__constructparentiterator::__construct*
-haschildrenparentiterator::haschildren
-keyparentiterator::key*
-getchildrenparentiterator::getchildren 
-acceptparentiterator::accept…
-
-parseerrorerror 
-__wakeupparseerror::__wakeup 
-gettraceparseerror::gettrace
-getlineparseerror::getline$
-
-__tostringparseerror::__tostring&
-__constructparseerror::__construct&
-getpreviousparseerror::getprevious$
-
-getmessageparseerror::getmessage0
-gettraceasstringparseerror::gettraceasstring
-getfileparseerror::getfile
-getcodeparseerror::getcode†
+getcodeoverflowexception::getcode†
 pdo
 rollbackpdo::rollback
 preparepdo::prepare)
@@ -1409,7 +1169,32 @@ nextrowsetpdostatement::nextrowset
 fetchpdostatement::fetch$
 	bindvaluepdostatement::bindvalue$
 	errorinfopdostatement::errorinfo$
-	errorcodepdostatement::errorcodeØ
+	errorcodepdostatement::errorcode¥
+parentiteratorrecursivefilteriterator
+validparentiterator::valid
+nextparentiterator::next"
+currentparentiterator::current 
+rewindparentiterator::rewind4
+getinneriterator parentiterator::getinneriterator*
+__constructparentiterator::__construct*
+haschildrenparentiterator::haschildren
+keyparentiterator::key*
+getchildrenparentiterator::getchildren 
+acceptparentiterator::accept…
+
+parseerrorerror 
+__wakeupparseerror::__wakeup 
+gettraceparseerror::gettrace
+getlineparseerror::getline$
+
+__tostringparseerror::__tostring&
+__constructparseerror::__construct&
+getpreviousparseerror::getprevious$
+
+getmessageparseerror::getmessage0
+gettraceasstringparseerror::gettraceasstring
+getfileparseerror::getfile
+getcodeparseerror::getcodeØ
 pharrecursivedirectoryiterator,
 buildfromiteratorphar::buildfromiterator
 loadpharphar::loadphar
@@ -1688,11 +1473,7 @@ isreadablepharfileinfo::isreadable4
 getcompressedsizepharfileinfo::getcompressedsize*
 iscompressedpharfileinfo::iscompressed&
 
-__tostringpharfileinfo::__tostring€
-php_user_filter!
-filterphp_user_filter::filter#
-onclosephp_user_filter::onclose%
-oncreatephp_user_filter::oncreate¼
+__tostringpharfileinfo::__tostring¼
 rangeexceptionruntimeexception$
 __wakeuprangeexception::__wakeup$
 gettracerangeexception::gettrace"
@@ -1890,7 +1671,7 @@ getpostfix!recursivetreeiterator::getpostfix+
 
 reflection0
 getmodifiernamesreflection::getmodifiernames
-exportreflection::export¸
+exportreflection::export
 reflectionclass?
 getreflectionconstant&reflectionclass::getreflectionconstant+
 __constructreflectionclass::__construct+
@@ -1915,9 +1696,7 @@ getmethodsreflectionclass::getmethods/
 getnamespacename!reflectionclass::getnamespacename/
 isiterateablereflectionclass::isiterateable)
 
-isinternalreflectionclass::isinternal)
-
-isiterablereflectionclass::isiterable-
+isinternalreflectionclass::isinternal-
 issubclassofreflectionclass::issubclassof+
 iscloneablereflectionclass::iscloneable)
 
@@ -2133,7 +1912,7 @@ __tostringreflectionmethod::__tostring:
 
 __tostringreflectionnamedtype::__tostring-
 
-allowsnullreflectionnamedtype::allowsnullÿ
+allowsnullreflectionnamedtype::allowsnullÓ
 reflectionobjectreflectionclass@
 getreflectionconstant'reflectionobject::getreflectionconstant,
 __constructreflectionobject::__construct,
@@ -2158,9 +1937,7 @@ getmethodsreflectionobject::getmethods0
 getnamespacename"reflectionobject::getnamespacename0
 isiterateablereflectionobject::isiterateable*
 
-isinternalreflectionobject::isinternal*
-
-isiterablereflectionobject::isiterable.
+isinternalreflectionobject::isinternal.
 issubclassofreflectionobject::issubclassof,
 iscloneablereflectionobject::iscloneable*
 
@@ -2284,7 +2061,73 @@ __tostringruntimeexception::__tostring,
 getmessageruntimeexception::getmessage6
 gettraceasstring"runtimeexception::gettraceasstring$
 getfileruntimeexception::getfile$
-getcoderuntimeexception::getcodeô
+getcoderuntimeexception::getcodeê
+snmp
+set	snmp::set
+geterrnosnmp::geterrno
+geterrorsnmp::geterror
+get	snmp::get 
+setsecuritysnmp::setsecurity
+getnextsnmp::getnext 
+__constructsnmp::__construct
+closesnmp::close
+walk
+snmp::walk±
+snmpexceptionruntimeexception#
+__wakeupsnmpexception::__wakeup#
+gettracesnmpexception::gettrace!
+getlinesnmpexception::getline'
+
+__tostringsnmpexception::__tostring)
+__constructsnmpexception::__construct)
+getprevioussnmpexception::getprevious'
+
+getmessagesnmpexception::getmessage3
+gettraceasstringsnmpexception::gettraceasstring!
+getfilesnmpexception::getfile!
+getcodesnmpexception::getcodeÏ
+sqlite3
+preparesqlite3::prepare+
+createcollationsqlite3::createcollation#
+querysinglesqlite3::querysingle)
+createfunctionsqlite3::createfunction
+querysqlite3::query%
+escapestringsqlite3::escapestring
+changessqlite3::changes+
+createaggregatesqlite3::createaggregate#
+__constructsqlite3::__construct
+versionsqlite3::version#
+busytimeoutsqlite3::busytimeout
+openblobsqlite3::openblob'
+lasterrorcodesqlite3::lasterrorcode'
+loadextensionsqlite3::loadextension-
+enableexceptionssqlite3::enableexceptions
+closesqlite3::close
+opensqlite3::open+
+lastinsertrowidsqlite3::lastinsertrowid
+execsqlite3::exec%
+lasterrormsgsqlite3::lasterrormsg÷
+sqlite3result'
+
+numcolumnssqlite3result::numcolumns'
+
+fetcharraysqlite3result::fetcharray
+resetsqlite3result::reset#
+finalizesqlite3result::finalize'
+
+columnnamesqlite3result::columnname'
+
+columntypesqlite3result::columntype™
+sqlite3stmt!
+readonlysqlite3stmt::readonly
+clearsqlite3stmt::clear#
+	bindvaluesqlite3stmt::bindvalue#
+	bindparamsqlite3stmt::bindparam
+resetsqlite3stmt::reset%
+
+paramcountsqlite3stmt::paramcount
+executesqlite3stmt::execute
+closesqlite3stmt::closeô
 sessionhandler
 readsessionhandler::read"
 destroysessionhandler::destroy(
@@ -2334,7 +2177,60 @@ attributessimplexmliterator::attributes%
 __tostringsimplexmliterator::__tostring-
 haschildrensimplexmliterator::haschildren
 keysimplexmliterator::key-
-getchildrensimplexmliterator::getchildrenÈ
+getchildrensimplexmliterator::getchildrenŠ
+
+soapclient&
+__setcookiesoapclient::__setcookie$
+
+__gettypessoapclient::__gettypes,
+__getfunctionssoapclient::__getfunctions*
+__setlocationsoapclient::__setlocation&
+__dorequestsoapclient::__dorequest>
+__getlastrequestheaders#soapclient::__getlastrequestheaders2
+__getlastresponsesoapclient::__getlastresponse0
+__setsoapheaderssoapclient::__setsoapheaders$
+
+__soapcallsoapclient::__soapcall(
+__getcookiessoapclient::__getcookies
+__callsoapclient::__call@
+__getlastresponseheaders$soapclient::__getlastresponseheaders0
+__getlastrequestsoapclient::__getlastrequest$
+
+soapclientsoapclient::soapclient¡
+	soapfault	exception!
+	soapfaultsoapfault::soapfault
+__wakeupsoapfault::__wakeup
+gettracesoapfault::gettrace
+getlinesoapfault::getline#
+
+__tostringsoapfault::__tostring%
+__constructsoapfault::__construct%
+getprevioussoapfault::getprevious#
+
+getmessagesoapfault::getmessage/
+gettraceasstringsoapfault::gettraceasstring
+getfilesoapfault::getfile
+getcodesoapfault::getcode2
+
+soapheader$
+
+soapheadersoapheader::soapheader.
+	soapparam!
+	soapparamsoapparam::soapparamÞ
+
+soapserver 
+setclasssoapserver::setclass*
+addsoapheadersoapserver::addsoapheader,
+setpersistencesoapserver::setpersistence$
+
+soapserversoapserver::soapserver"
+	setobjectsoapserver::setobject
+faultsoapserver::fault
+handlesoapserver::handle&
+addfunctionsoapserver::addfunction(
+getfunctionssoapserver::getfunctions&
+soapvar
+soapvarsoapvar::soapvarÈ
 spldoublylinkedlist!
 nextspldoublylinkedlist::next
 addspldoublylinkedlist::add+
@@ -2668,51 +2564,7 @@ __tostringspltempfileobject::__tostring%
 fputcsvspltempfileobject::fputcsv-
 haschildrenspltempfileobject::haschildren
 eofspltempfileobject::eof!
-fgetcspltempfileobject::fgetcÏ
-sqlite3
-preparesqlite3::prepare+
-createcollationsqlite3::createcollation#
-querysinglesqlite3::querysingle)
-createfunctionsqlite3::createfunction
-querysqlite3::query%
-escapestringsqlite3::escapestring
-changessqlite3::changes+
-createaggregatesqlite3::createaggregate#
-__constructsqlite3::__construct
-versionsqlite3::version#
-busytimeoutsqlite3::busytimeout
-openblobsqlite3::openblob'
-lasterrorcodesqlite3::lasterrorcode'
-loadextensionsqlite3::loadextension-
-enableexceptionssqlite3::enableexceptions
-closesqlite3::close
-opensqlite3::open+
-lastinsertrowidsqlite3::lastinsertrowid
-execsqlite3::exec%
-lasterrormsgsqlite3::lasterrormsg÷
-sqlite3result'
-
-numcolumnssqlite3result::numcolumns'
-
-fetcharraysqlite3result::fetcharray
-resetsqlite3result::reset#
-finalizesqlite3result::finalize'
-
-columnnamesqlite3result::columnname'
-
-columntypesqlite3result::columntype™
-sqlite3stmt!
-readonlysqlite3stmt::readonly
-clearsqlite3stmt::clear#
-	bindvaluesqlite3stmt::bindvalue#
-	bindparamsqlite3stmt::bindparam
-resetsqlite3stmt::reset%
-
-paramcountsqlite3stmt::paramcount
-executesqlite3stmt::execute
-closesqlite3stmt::close
-
-stdclassú
+fgetcspltempfileobject::fgetcú
 	typeerrorerror
 __wakeuptypeerror::__wakeup
 gettracetypeerror::gettrace
@@ -2768,9 +2620,9 @@ readstringxmlreader::readstring7
 movetoattributenoxmlreader::movetoattributeno
 expandxmlreader::expand+
 getattributenoxmlreader::getattributeno-
-lookupnamespacexmlreader::lookupnamespace
+lookupnamespacexmlreader::lookupnamespace1
+movetoattributensxmlreader::movetoattributens
 xmlxmlreader::xml1
-movetoattributensxmlreader::movetoattributens1
 setparserpropertyxmlreader::setparserproperty5
 movetonextattributexmlreader::movetonextattribute1
 getparserpropertyxmlreader::getparserproperty
@@ -2826,7 +2678,20 @@ endcommentxmlwriter::endcomment
 
 endelementxmlwriter::endelement'
 writeelementxmlwriter::writeelement'
-startelementxmlwriter::startelementú
+startelementxmlwriter::startelementë
+xsltprocessor3
+importstylesheetxsltprocessor::importstylesheet3
+setsecurityprefsxsltprocessor::setsecurityprefs;
+registerphpfunctions#xsltprocessor::registerphpfunctions+
+setprofilingxsltprocessor::setprofiling1
+hasexsltsupportxsltprocessor::hasexsltsupport+
+getparameterxsltprocessor::getparameter+
+setparameterxsltprocessor::setparameter/
+transformtourixsltprocessor::transformtouri1
+removeparameterxsltprocessor::removeparameter3
+getsecurityprefsxsltprocessor::getsecurityprefs/
+transformtoxmlxsltprocessor::transformtoxml/
+transformtodocxsltprocessor::transformtodocô
 
 ziparchive6
 setcompressionindexziparchive::setcompressionindex(
@@ -2851,14 +2716,11 @@ deletenameziparchive::deletename
 
 addpatternziparchive::addpattern.
 setcommentindexziparchive::setcommentindex2
-setarchivecommentziparchive::setarchivecomment2
-setencryptionnameziparchive::setencryptionname
-closeziparchive::close
-countziparchive::count&
+setarchivecommentziparchive::setarchivecomment
+closeziparchive::close&
 unchangeallziparchive::unchangeallD
 setexternalattributesindex&ziparchive::setexternalattributesindex&
-addemptydirziparchive::addemptydir4
-setencryptionindexziparchive::setencryptionindex&
+addemptydirziparchive::addemptydir&
 deleteindexziparchive::deleteindexD
 getexternalattributesindex&ziparchive::getexternalattributesindex.
 unchangearchiveziparchive::unchangearchive$
@@ -2872,24 +2734,237 @@ locatenameziparchive::locatename&
 setpasswordziparchive::setpassword$
 
 renamenameziparchive::renamename
-openziparchive::open:
-defaultcontroller%
-defaultdefaultcontroller::defaultÂ
-taskscontroller'
-	newtickettaskscontroller::newticket
-savetaskscontroller::save
-showtaskscontroller::show#
-refreshtaskscontroller::refresh#
-addtasktaskscontroller::addtask
-taskž
+openziparchive::open
+__php_incomplete_classk
+finfo
+filefinfo::file
+	set_flagsfinfo::set_flags
+finfofinfo::finfo
+bufferfinfo::bufferÌ
+mysqli0
+real_escape_stringmysqli::real_escape_string
+preparemysqli::prepare
+set_optmysqli::set_opt$
+real_connectmysqli::real_connect
+pingmysqli::ping
+commitmysqli::commit,
+reap_async_querymysqli::reap_async_query
+pollmysqli::poll
+	stmt_initmysqli::stmt_init"
+__constructmysqli::__construct*
+get_client_infomysqli::get_client_info"
+multi_querymysqli::multi_query 
 
-tasksmodel.
-checktaskactiontasksmodel::checktaskaction0
+autocommitmysqli::autocommit
+	savepointmysqli::savepoint 
+
+real_querymysqli::real_query0
+character_set_namemysqli::character_set_name*
+get_server_infomysqli::get_server_info
+optionsmysqli::options
+	select_dbmysqli::select_db"
+change_usermysqli::change_user
+closemysqli::close
+connectmysqli::connect&
+escape_stringmysqli::escape_string
+rollbackmysqli::rollback
+initmysqli::init
+statmysqli::stat
+debugmysqli::debug.
+begin_transactionmysqli::begin_transaction
+ssl_setmysqli::ssl_set
+querymysqli::query
+refreshmysqli::refresh.
+release_savepointmysqli::release_savepoint
+killmysqli::kill$
+store_resultmysqli::store_result$
+get_warningsmysqli::get_warnings"
+next_resultmysqli::next_result4
+get_connection_statsmysqli::get_connection_stats 
+
+use_resultmysqli::use_result$
+more_resultsmysqli::more_results"
+thread_safemysqli::thread_safe"
+set_charsetmysqli::set_charset*
+dump_debug_infomysqli::dump_debug_info"
+get_charsetmysqli::get_charset
+mysqli_driverÓ
+mysqli_result)
+__constructmysqli_result::__construct+
+fetch_fieldsmysqli_result::fetch_fields+
+fetch_objectmysqli_result::fetch_object)
+fetch_assocmysqli_result::fetch_assoc%
+	fetch_rowmysqli_result::fetch_row)
+fetch_arraymysqli_result::fetch_array7
+fetch_field_direct!mysqli_result::fetch_field_direct)
+free_resultmysqli_result::free_result)
+fetch_fieldmysqli_result::fetch_field%
+	data_seekmysqli_result::data_seek
+freemysqli_result::free'
+
+field_seekmysqli_result::field_seek
+closemysqli_result::close%
+	fetch_allmysqli_result::fetch_allþ
+mysqli_sql_exceptionruntimeexception*
+__wakeupmysqli_sql_exception::__wakeup*
+gettracemysqli_sql_exception::gettrace(
+getlinemysqli_sql_exception::getline.
+
+__tostring mysqli_sql_exception::__tostring0
+__construct!mysqli_sql_exception::__construct0
+getprevious!mysqli_sql_exception::getprevious.
+
+getmessage mysqli_sql_exception::getmessage:
+gettraceasstring&mysqli_sql_exception::gettraceasstring(
+getfilemysqli_sql_exception::getfile(
+getcodemysqli_sql_exception::getcode‡
+mysqli_stmt
+preparemysqli_stmt::prepare!
+attr_getmysqli_stmt::attr_get/
+result_metadatamysqli_stmt::result_metadata-
+send_long_datamysqli_stmt::send_long_data'
+__constructmysqli_stmt::__construct
+executemysqli_stmt::execute)
+store_resultmysqli_stmt::store_result)
+get_warningsmysqli_stmt::get_warnings'
+next_resultmysqli_stmt::next_result%
+
+get_resultmysqli_stmt::get_result)
+more_resultsmysqli_stmt::more_results'
+free_resultmysqli_stmt::free_result
+fetchmysqli_stmt::fetch!
+num_rowsmysqli_stmt::num_rows%
+
+bind_parammysqli_stmt::bind_param
+resetmysqli_stmt::reset'
+bind_resultmysqli_stmt::bind_result#
+	data_seekmysqli_stmt::data_seek
+closemysqli_stmt::close!
+attr_setmysqli_stmt::attr_set.
+mysqli_warning
+nextmysqli_warning::next€
+php_user_filter!
+filterphp_user_filter::filter#
+onclosephp_user_filter::onclose%
+oncreatephp_user_filter::oncreate
+
+stdclassœ
+tidy"
+repairstringtidy::repairstring
+
+gethtmlvertidy::gethtmlver
+
+getreleasetidy::getrelease
+	getoptdoctidy::getoptdoc
+	getstatustidy::getstatus 
+parsestringtidy::parsestring
+	getconfigtidy::getconfig
+	parsefiletidy::parsefile
+body
+tidy::body 
+__constructtidy::__construct
+isxhtmltidy::isxhtml 
+cleanrepairtidy::cleanrepair
+isxmltidy::isxml
+head
+tidy::head
+getopttidy::getopt
+root
+tidy::root
+diagnosetidy::diagnose
+html
+tidy::html
+
+repairfiletidy::repairfile¢
+tidynode
+istexttidynode::istext
+isphptidynode::isphp$
+hassiblingstidynode::hassiblings
+isjstetidynode::isjste
+ishtmltidynode::ishtml
+isasptidynode::isasp 
+	iscommenttidynode::iscomment$
+haschildrentidynode::haschildren 
+	getparenttidynode::getparent
+yii
+appyii::appi
+yii1.1\capplication-
+
+getrequestyii1.1\capplication::getrequest#
+getdbyii1.1\capplication::getdbL
+yii1.1\cdbconnection4
+createcommand#yii1.1\cdbconnection::createcommandÀ
+yii1.1\cdbcommand%
+settextyii1.1\cdbcommand::settext'
+andwhereyii1.1\cdbcommand::andwhere#
+havingyii1.1\cdbcommand::having)
+	rightjoinyii1.1\cdbcommand::rightjoin'
+leftjoinyii1.1\cdbcommand::leftjoin1
+getconnection yii1.1\cdbcommand::getconnection!
+resetyii1.1\cdbcommand::reset!
+whereyii1.1\cdbcommand::where!
+unionyii1.1\cdbcommand::union
+joinyii1.1\cdbcommand::join%
+orwhereyii1.1\cdbcommand::orwhereD
+jfactory
+getdbojfactory::getdbo
+getuserjfactory::getuserb
+joomla\cms\factory$
+getdbojoomla\cms\factory::getdbo&
+getuserjoomla\cms\factory::getuserH
+joomla3\jdatabasedriver-
+getquery!joomla3\jdatabasedriver::getquery^
+joomla\input\inputH
+getinputforrequestmethod,joomla\input\input::getinputforrequestmethod:
+defaultcontroller%
+defaultdefaultcontroller::default¬
+memberscontroller3
+saveallmembers!memberscontroller::saveallmembers/
+memberupdatememberscontroller::memberupdate1
+sethtmlheader memberscontroller::sethtmlheader¦
+taskscontroller)
+
+taskinserttaskscontroller::taskinsert
+savetaskscontroller::save
+showtaskscontroller::show)
+
+taskupdatetaskscontroller::taskupdate#
+refreshtaskscontroller::refresh/
+sethtmlheadertaskscontroller::sethtmlheader)
+
+taskdeletetaskscontroller::taskdeleteÈ
+membersmodel.
+saveallmembersmembersmodel::saveallmembers:
+deleteinvalidmembers"membersmodel::deleteinvalidmembers>
+saveallmembersfromjson$membersmodel::saveallmembersfromjson,
+setlastupdatemembersmodel::setlastupdate4
+updatememberadminmembersmodel::updatememberadmin(
+__constructmembersmodel::__construct
+task„
+
+tasksmodel
+deltasktasksmodel::deltask$
+
+updatetasktasksmodel::updatetask6
+savealltaskfromjsontasksmodel::savealltaskfromjson"
+	nochangedtasksmodel::nochanged0
 contentnotchangetasksmodel::contentnotchange
-savetasksmodel::save 
+savetasksmodel::save6
+selftaskstatechangetasksmodel::selftaskstatechange$
+
+pickuptasktasksmodel::pickuptask 
 gettaskstasksmodel::gettasks
-refreshtasksmodel::refresh 
-findtasktasksmodel::findtask0
+refreshtasksmodel::refresh>
+accesrightnewtaskupdate#tasksmodel::accesrightnewtaskupdate8
+publicenablednewtask tasksmodel::publicenablednewtask 
+findtasktasksmodel::findtask&
+__constructtasksmodel::__construct(
+loadoldtaskstasksmodel::loadoldtasks*
+dodeletedtasktasksmodel::dodeletedtask 
+ismembertasksmodel::ismember
+newtasktasksmodel::newtask*
+setlastupdatetasksmodel::setlastupdate.
+checktaskactiontasksmodel::checktaskaction0
 savechecknoadmintasksmodel::savechecknoadmin$
 	tasksview
 showtasksview::show

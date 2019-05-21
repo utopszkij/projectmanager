@@ -9,10 +9,7 @@ class TasksView {
 	* @return void
 	*/
 	public function show($p) {
-	    if (!defined('LNGDEF')) {
-	        include './langs/'.$p->lng.'.php'; 	
-	    }
-		?>
+	    ?>    
 <!doctype html>
 <html lang="hu">
 <head>
@@ -62,15 +59,6 @@ class TasksView {
 			$("#popup").hide();
 		});
 		$("#popup").show(); 
-		/*
-			var res = wondow.confirm(str);
-			if (res & (yesfun != undefined)) {
-				yesfun();
-			} 
-			if (!res & (nofun != undefined)) {
-				nofun();
-			}
-		*/ 
 	};
 	global.post = function(url, options, fun) {
 		$.post(url, options, fun);
@@ -85,9 +73,9 @@ class TasksView {
         border-style:solid; border-width:1px; text-align:center">
 		<p class="alert alert-danger"></p>
 		<div>
-			<button type="button" id="popupYes"><?php echo YES; ?></button>
-			<button type="button" id="popupNo"><?php echo NO; ?></button>
-			<button type="button" id="popupClose"><?php echo CLOSE; ?></button>
+			<button type="button" id="popupYes"><?php echo txt('YES'); ?></button>
+			<button type="button" id="popupNo"><?php echo txt('NO'); ?></button>
+			<button type="button" id="popupClose"><?php echo txt('CLOSE'); ?></button>
 		</div>
     </div>
 	<div id="buttonLine">
@@ -128,7 +116,7 @@ class TasksView {
 	<!-- data from database end -->
 
 	<div class="clear"></div>
-	<div id="info"><?php echo INFO; ?></div>
+	<div id="info"><?php echo txt('INFO'); ?></div>
 	<div style="display:none">
 		<task id="taskInit">
 			<id>01</id>
@@ -146,27 +134,28 @@ class TasksView {
 			<input type="text" disabled="disabled" id="id" value="01" />
 		</div>
 		<div>
-			<label><?php echo TITLE; ?> :</label>
+			<label><?php echo txt('TITLE'); ?> :</label>
 			<input type="text" id="title" />
 		</div>
 		<div>
-			<label><?php echo DESC; ?> :</label>
+			<label><?php echo txt('DESC'); ?> :</label>
 			<textarea id="desc" cols="80" rows="6"></textarea>
 		</div>
 		<div>
 			<fieldset>
 				<legend></legend>
-				<label><?php echo TYPE; ?> :</label>
+				<label><?php echo txt('TYPE'); ?> :</label>
 				<select id="type">
-					<option value="question"><?php echo QUESTION; ?></option>
-					<option value="bug"><?php echo BUG; ?></option>
-					<option value="suggest"><?php echo SUGGEST; ?></option>
-					<option value="other"><?php echo OTHER; ?></option>
+					<option value="task"><?php echo txt('TASK'); ?></option>
+					<option value="question"><?php echo txt('QUESTION'); ?></option>
+					<option value="bug"><?php echo txt('BUG'); ?></option>
+					<option value="suggest"><?php echo txt('SUGGEST'); ?></option>
+					<option value="other"><?php echo txt('OTHER'); ?></option>
 				</select>
 			</fieldset>
 			<fieldset>
 				<legend></legend>
-				<label><?php echo ASSIGN; ?> :</label>
+				<label><?php echo txt('ASSIGN'); ?> :</label>
 				<select id="assign">
 					<option value="https://www.gravatar.com/avatar/">?</option>			
 				</select>
@@ -175,25 +164,25 @@ class TasksView {
 		<div>	
 			<fieldset>
 				<legend></legend>
-				<label><?php echo STATE; ?> :</label>
+				<label><?php echo txt('STATE'); ?> :</label>
 				<select id="state">
-					<option value="waiting"><?php echo WAITING; ?></option>
-					<option value="canStart"><?php echo CANSTART; ?></option>
-					<option value="atWork"><?php echo ATWORK; ?></option>
-					<option value="canVerify"><?php echo CANVERIFY; ?></option>
-					<option value="atVerify"><?php echo ATVERIFY; ?></option>
-					<option value="closed"><?php echo CLOSED; ?></option>
+					<option value="waiting"><?php echo txt('WAITING'); ?></option>
+					<option value="canStart"><?php echo txt('CANSTART'); ?></option>
+					<option value="atWork"><?php echo txt('ATWORK'); ?></option>
+					<option value="canVerify"><?php echo txt('CANVERIFY'); ?></option>
+					<option value="atVerify"><?php echo txt('ATVERIFY'); ?></option>
+					<option value="closed"><?php echo txt('CLOSED'); ?></option>
 				</select>
 			</fieldset>
 		</div>
 		<div>
-			<label><?php echo REQ; ?> <br>( <?php echo REQHELP; ?> ):</label>
+			<label><?php echo txt('REQ'); ?> <br>( <?php echo txt('REQHELP'); ?> ):</label>
 			<input type="text" id="req" style="width:290px" />
 		</div>
 		<div style="text-align:center">
-			<button type="button" id="Ok"><?php echo OK; ?></button>&nbsp;
-			<button type="button" id="cancel"><?php echo CANCEL; ?></button>&nbsp;&nbsp;&nbsp;
-			<button type="button" id="deltask"><?php echo DELTASK; ?></button>
+			<button type="button" id="Ok"><?php echo txt('OK'); ?></button>&nbsp;
+			<button type="button" id="cancel"><?php echo txt('CANCEL'); ?></button>&nbsp;&nbsp;&nbsp;
+			<button type="button" id="deltask"><?php echo txt('DELTASK'); ?></button>
 		</div>
 		</form>
 	</div> <!-- taskForm -->
@@ -202,10 +191,10 @@ class TasksView {
 		<p style="text-align:right">
 			<button type="button" onclick="$('#membersForm').toggle();" title="close">X</button>		
 		</p>
-		<h3><?php echo MEMBERS; ?></h3>
+		<h3><?php echo txt('MEMBERS'); ?></h3>
 		<table style="width:100%">
 		<thead>
-			<tr><th float="left" style="width:100px"><?php echo ADMIN; ?></th><th></th></tr>
+			<tr><th float="left" style="width:100px"><?php echo txt('ADMIN'); ?></th><th></th></tr>
 		</thead>
 		<tbody>
 		</tbody>

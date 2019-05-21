@@ -106,12 +106,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">47</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">54</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -136,16 +136,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-415813755"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-82813402"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-415813755" class="accordion-body collapse in">
+            <div id="namespace-82813402" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
                     <ul>
                                                                                                     <li class="class"><a href="../classes/DB.html">DB</a></li>
                                                     <li class="class"><a href="../classes/Filter.html">Filter</a></li>
+                                                    <li class="class"><a href="../classes/MembersController.html">MembersController</a></li>
+                                                    <li class="class"><a href="../classes/MembersModel.html">MembersModel</a></li>
+                                                    <li class="class"><a href="../classes/Relation.html">Relation</a></li>
                                                     <li class="class"><a href="../classes/Request.html">Request</a></li>
                                                     <li class="class"><a href="../classes/Table.html">Table</a></li>
                                                     <li class="class"><a href="../classes/Task.html">Task</a></li>
@@ -192,8 +195,9 @@
                                                                     <a href="../classes/TasksController.html#method_show" class="">show()</a><br />
                                                                     <a href="../classes/TasksController.html#method_refresh" class="">refresh()</a><br />
                                                                     <a href="../classes/TasksController.html#method_save" class="">save()</a><br />
-                                                                    <a href="../classes/TasksController.html#method_addTask" class="">addTask()</a><br />
-                                                                    <a href="../classes/TasksController.html#method_newTicket" class="">newTicket()</a><br />
+                                                                    <a href="../classes/TasksController.html#method_taskinsert" class="">taskinsert()</a><br />
+                                                                    <a href="../classes/TasksController.html#method_taskdelete" class="">taskdelete()</a><br />
+                                                                    <a href="../classes/TasksController.html#method_taskupdate" class="">taskupdate()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -204,7 +208,7 @@
                         </section>
                         <section class="row-fluid protected">
                             <section class="span4">
-                                                                    <em>No protected methods found</em>
+                                                                    <a href="../classes/TasksController.html#method_setHtmlHeader" class="">setHtmlHeader()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No protected properties found</em>
@@ -357,7 +361,7 @@ autput: {
                 <h3 class="public ">save()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">save(\Request  <span class="argument">$request</span>) : \void,</pre>
-                <p><em>save tasks into database AJAX backend server</em></p>
+                <p><em>save complete project into database AJAX backend server</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -394,12 +398,12 @@ autput: {
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_addTask" name="method_addTask" class="anchor"></a>
+            <a id="method_taskinsert" name="method_taskinsert" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">addTask()</h3>
+                <h3 class="public ">taskinsert()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">addTask(\Request  <span class="argument">$request</span>) : void</pre>
-                <p><em>Add new bug, query or suggest iframe module</em></p>
+                <pre class="signature" style="margin-right: 54px;">taskinsert(\Request  <span class="argument">$request</span>) : void</pre>
+                <p><em>insert new default task AJAX backend server</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -408,13 +412,9 @@ autput: {
                                 <td><a href="../classes/Request.html">\Request</a></td>
                                 <td>$request </td>
                                 <td><ul>
-<li>projectid
-<ul>
-<li>title</li>
-<li>desc</li>
-<li>type 'bug' | 'query' | 'suggest'</li>
-<li>email</li>
-</ul></li>
+<li>string projectid</li>
+<li>string id</li>
+<li>string sid</li>
 </ul></td>
                             </tr>
                                             </table>
@@ -438,12 +438,12 @@ autput: {
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_newTicket" name="method_newTicket" class="anchor"></a>
+            <a id="method_taskdelete" name="method_taskdelete" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">newTicket()</h3>
+                <h3 class="public ">taskdelete()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">newTicket(\Request  <span class="argument">$request</span>) : void</pre>
-                <p><em>send new ticket form run in iframe</em></p>
+                <pre class="signature" style="margin-right: 54px;">taskdelete(\Request  <span class="argument">$request</span>) : void</pre>
+                <p><em>delete one task  AJAX backend server</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -452,7 +452,9 @@ autput: {
                                 <td><a href="../classes/Request.html">\Request</a></td>
                                 <td>$request </td>
                                 <td><ul>
-<li>projectid</li>
+<li>string projectid</li>
+<li>string id     taskId</li>
+<li>string sid</li>
 </ul></td>
                             </tr>
                                             </table>
@@ -474,7 +476,76 @@ autput: {
         </aside>
     </div>
 
-                                                                    </div>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_taskupdate" name="method_taskupdate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">taskupdate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">taskupdate(\Request  <span class="argument">$request</span>) : void</pre>
+                <p><em>update one task AJAX backend server</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Request.html">\Request</a></td>
+                                <td>$request </td>
+                                <td><ul>
+<li>string projectid</li>
+<li>string data task json string</li>
+<li>string state</li>
+<li>string sid</li>
+</ul></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksController.html"><div class="path-wrapper">\TasksController</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setHtmlHeader" name="method_setHtmlHeader" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setHtmlHeader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setHtmlHeader() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TasksController.html"><div class="path-wrapper">\TasksController</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
@@ -523,7 +594,7 @@ autput: {
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on April 19th, 2019 at 08:37.
+                    on May 21st, 2019 at 13:34.
                 </section>
             </section>
         </section>

@@ -15,11 +15,11 @@
 *    filter($tableName, $alias='', $columns='*') : Filter
 *    transaction(function);
 * Table class
-*    where($whereStr or [field, value] vagy [field, relStr, value]) : Table 
-*    orWhere($whereStr or [field, value] vagy [field, relStr, value]) : Table
+*    where($whereStr or [field, value] or [field, relStr, value]) or Relation  : Table 
+*    orWhere($whereStr or [field, value] or [field, relStr, value]) or Relation: Table
 *    group([field, field, ...]) : table   
-*    having($whereStr or [field, value] vagy [field, relStr, value]) : Table 
-*    orHaving($whereStr or [field, value] vagy [field, relStr, value]) : Table
+*    having($whereStr or [field, value] or [field, relStr, value]) or Relation : Table 
+*    orHaving($whereStr or [field, value] or [field, relStr, value]) or Relation : Table
 *    offset($num) : Table
 *    limit($num) : Table
 *    order([fild, filed,...]) : Table
@@ -30,6 +30,7 @@
 *    insert(record)
 *    delete(record)
 *    getInsertedId() : numeric
+*    getLastUpdate() : numeric - timestamp
 *    getErrorNum() : numeric
 *    getErrorMsg() : string
 * Filer class
@@ -61,6 +62,39 @@ if (MYSQLHOST != '') {
 }
 if (!DEFINED('MYSQLLOG')) {
     DEFINE('MYSQLLOG',false);
+}
+
+class Relation {
+    public $concat = ''; // 'AND' | 'OR' | ''
+    public $relations = false; // false | array of Relation
+    public $fieldName = '';
+    public $rel = ''; // '<' | '<=' | '=' | ">=' | '>' | '<>' | ''
+    public $value = '';
+    
+    /**
+     * get sql string
+     * @return string
+     */
+    public function getSQL(): string {
+        $result = ' '.$this->concat.' ';
+        if ($this->relations) {
+            $res = '';
+            foreach ($this->relations as $relation) {
+                if ($res == '') {
+                    $relation->concat = '';
+                }
+                $res .= $relation->getSQL();
+            }
+            $result .= '('.$res.')';
+        } else {
+            if ($this->rel == '') {
+                $result .= $this->filedName;
+            } else {
+                $result .= '`'.$this->fieldName.'` '.$this->rel.' '.DB::quote($this->value);
+            }
+        }
+        return $result;
+    }
 }
 
 class DB {
@@ -102,7 +136,8 @@ class DB {
 	/**
 	 * set sql string
 	 * @param string $sql
-	 * @return void
+	 * @return void		        $this->$dest[] = new Relation();
+
 	 */
 	public function setQuery(string $sql) {
 		$this->sql = $sql;
@@ -162,6 +197,13 @@ class DB {
                 $cursor->close();
             }
         }
+        $this->writeLog();
+        return $result;
+	}
+    /**
+     * @param fp
+     */
+     private function writeLog() {
         if (MYSQLLOG) {
             if (file_exists('./log/mysql.log')) {
                 $fp = fopen('./log/mysql.log','a+');
@@ -172,8 +214,8 @@ class DB {
             fwrite($fp, $this->getErrorMsg()."\n");
             fclose($fp);
         }
-        return $result;
-	}
+     }
+
 	
 	/**
 	 * load one record by $this->sqlString or from $dbResult
@@ -200,7 +242,8 @@ class DB {
 	/**
 	 * execute $this->sql
 	 * @return bool
-	 */
+	 */	
+	
 	public function query() : bool {
 	    global $dbResult;
 	    $this->errorMsg = '';
@@ -234,16 +277,7 @@ class DB {
                 }
             }
         }
-        if (MYSQLLOG) {
-            if (file_exists('./log/mysql.log')) {
-                $fp = fopen('./log/mysql.log','a+');
-            } else {
-                $fp = fopen('./log/mysql.log','w+');
-            }
-            fwrite($fp, date('Y-m-d H:i:s').' '.$this->sql."\n");
-            fwrite($fp, $this->getErrorMsg()."\n");
-            fclose($fp);
-        }
+        $this->writeLog();
         return $result;
 	}
 	
@@ -265,10 +299,10 @@ class DB {
 	
 	/**
 	 * quote string (adjust " --> \",  \n --> '\n' 
-	 * @param string $str
-	 * @return string
+	 * @param string|mixed $str
+	 * @return string|mixed
 	 */
-	public function quote(string $str) : string {
+	public static function quote($str) {
         // global $mysqli;	    
 	    // $result = $mysqli->real_escape_string($str);
         $str = str_replace('"','\"',$str);
@@ -368,6 +402,12 @@ class Table extends DB {
    protected $whereStr = '';
    
    /**
+    * where array
+    * @var array of Relation
+    */
+   protected $whereArray = array(); // array of Relation
+   
+   /**
     * sql group by string
     * @var string
     */
@@ -378,6 +418,12 @@ class Table extends DB {
     * @var string
     */
    protected $havingStr = '';
+   
+   /**
+    * having array 
+    * @var array og Realtion
+    */
+   protected $havingArray = array();
    
    /**
     * sql order by string
@@ -414,7 +460,8 @@ class Table extends DB {
 	 * @return arrayOfRecordObject
 	 */
 	public function get() {
-		if ($this->whereStr == '') $this->whereStr = '1';
+	    $this->createWhereHavingStr();
+	    if ($this->whereStr == '') $this->whereStr = '1';
 		if ($this->orderStr == '') $this->orderStr = '1';
 		if ($this->offset == '') $this->offset = '0';
 		$sqlStr = 'SELECT '.$this->columns.' FROM '.$this->fromStr.' '.$this->alias;
@@ -430,7 +477,21 @@ class Table extends DB {
 		}
 		$this->setQuery($sqlStr);
 		return $this->loadObjectList();
-	}	
+	}
+    /**
+     * 
+     */
+     private function createWhereHavingStr() {
+        $this->whereStr = '';
+	    foreach ($this->whereArray as $rel) {
+	        $this->whereStr .= $rel->getSQL();
+	    }
+	    $this->havingStr = '';
+	    foreach ($this->havingArray as $rel) {
+	        $this->havingStr .= $rel->getSQL();
+	    }
+    }
+	
 	
 	/**
 	 * load one record
@@ -448,13 +509,14 @@ class Table extends DB {
 	
 	/**
 	 * add expression into existing whereStr  
-	 * @param array|string $par
+	 * @param array|string|Relation $par
 	 * @param string $con  OPTIONAL default = 'AND'
 	 * @param string $dest OPTIONAL default = 'whereStr'
 	 * @return Table $this
 	 */
-	public function where($par, string $con = ' AND ', string $dest = 'whereStr') {
-		if ($this->$dest != '') $this->$dest .= $con;
+	public function where($par, string $con = ' AND ', string $dest = 'whereArray') {
+		/*
+	    if ($this->$dest != '') $this->$dest .= $con;
 		if (is_string($par)) {
 			$this->$dest .= $par;		
 		} else if (is_array($par)) {
@@ -463,17 +525,46 @@ class Table extends DB {
 		    if ((count($par) == 3) && (is_string($par[0]))) 
 					$this->$dest .= '`'.$par[0].'` '.$par[1].' '.$this->quote($par[2]);
 		}
+		*/
+		$this->$dest[] = new Relation();
+		$relation = $this->$dest[count($this->$dest) - 1];
+		if (count($this->$dest) == 1) {
+		    $relation->concat = '';
+		} else {
+		    $relation->concat = $con;
+		}
+		if (is_string($par)) {
+		        $relation->filedName = $par;
+		        $relation->rel = '';
+		        $relation->value = '';
+		        // $this->$dest .= $par;
+		} else if (is_array($par)) {
+		    if ((count($par) == 2) && (is_string($par[0]))) {
+		            // $this->$dest .= '`'.$par[0].'` = '.$this->quote($par[1]);
+		        $relation->fieldName = $par[0];
+		        $relation->rel = '=';
+		        $relation->value = $par[1];
+		    }
+		    if ((count($par) == 3) && (is_string($par[0]))) {
+		        // $this->$dest .= '`'.$par[0].'` '.$par[1].' '.$this->quote($par[2]);
+		        $relation->fieldName = $par[0];
+		        $relation->rel = $par[1];
+		        $relation->value = $par[2];
+		    }
+		} else if (is_object($par)) {
+		    $relation->relation = $par;
+		}
+		    
 		return $this;	
 	}	
 	
 	/**
 	 * add new extension into existing whereStr OR operand
-	 * @param array|string $par
+	 * @param array|string|Relation $par
 	 * @return Table $this
 	 */
 	public function orWhere($par) {
-		$this->where($par, ' OR (','where');
-		$this->whereStr .= ')';
+		$this->where($par, ' OR ','whereArray');
 		return $this;	
 	}
 
@@ -493,11 +584,11 @@ class Table extends DB {
 	
 	/**
 	 * add expression into existing havingeStr by AND operand
-	 * @param array|string $par
+	 * @param array|string|Relation $par
 	 * @return Table $this
 	 */
 	public function having($par) {
-		$this->where($par,' AND ','having');
+		$this->where($par,' AND ','havingArray');
 		return $this;
 	}
 
@@ -508,8 +599,7 @@ class Table extends DB {
 	 * @return Table $this
 	 */
 	public function orHaving($par) {
-		$this->where($par,' OR (','having');
-		$this->having .= ')';		
+		$this->where($par,' OR ','havingArray');
 		return $this;
 	}
 		
@@ -548,7 +638,8 @@ class Table extends DB {
 	 * @return Table
 	 */
 	public function delete() {
-		if ($this->whereStr == '') $this->whereStr = '1';
+	    $this->createWhereHavingStr();
+	    if ($this->whereStr == '') $this->whereStr = '1';
 		$sqlStr = 'DELETE FROM '.$this->fromStr.
 		' WHERE '.$this->whereStr;
 		$this->setQuery($sqlStr);
@@ -562,7 +653,8 @@ class Table extends DB {
 	 * @return Table
 	 */
 	public function update($record) {
-		if ($this->whereStr == '') $this->whereStr = '1';
+	    $this->createWhereHavingStr();
+	    if ($this->whereStr == '') $this->whereStr = '1';
 		$s = '';
 		foreach ($record as $fn => $fv) {
 			if ($s != '') $s .= ',';
@@ -580,7 +672,6 @@ class Table extends DB {
 	 * @return Table
 	 */
 	public function insert($record) {
-		if ($this->whereStr == '') $this->whereStr = '1';
 		$fnames = '';
 		$values = '';
 		foreach ($record as $fn => $fv) {
@@ -609,7 +700,15 @@ class Table extends DB {
 	 * @return int
 	 */
 	public function count() : int {
-		if ($this->whereStr == '') $this->whereStr = '1';
+	    $this->whereStr = '';
+	    foreach ($this->whereArray as $rel) {
+	        $this->whereStr .= $rel->getSQL();
+	    }
+	    $this->havingStr = '';
+	    foreach ($this->havingArray as $rel) {
+	        $this->havingStr .= $rel->getSQL();
+	    }
+	    if ($this->whereStr == '') $this->whereStr = '1';
 		$sqlStr = 'SELECT count(*) AS cc FROM '.$this->fromStr.' WHERE '.$this->whereStr;
 		$this->setQuery($sqlStr);
 		$res = $this->loadObject(); 
@@ -654,7 +753,8 @@ class Filter extends Table {
 	 * @return arrayOfRecordObject|false
 	 */
 	public function get() {
-		if ($this->whereStr == '') $this->whereStr = '1';
+	    $this->createWhereHavingStr();
+	    if ($this->whereStr == '') $this->whereStr = '1';
 		if ($this->orderStr == '') $this->orderStr = '1';
 		if ($this->offset == '') $this->offset = '0';
 		$sqlStr = 'SELECT '.$this->columns.' FROM '.$this->formStr.' '.$this->alias;

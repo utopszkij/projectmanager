@@ -1,21 +1,17 @@
+/**
+ * projectmanage tasks.js   unittest
+ */
 
-// mock
+// include nodejs modules (dom, jquery)
 var assert = require('assert');
 const { JSDOM } = require('jsdom');
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 const $ = global.jQuery = require('jquery')(window);
-window.setTimeout = function(s) {};
-window.scrollTo = function(x,y) {};
-document = {};
-document.documentElement = {};
-document.documentElement.scrollTop = 0;
-global.postResult = {};
-global.alert = function(str) {};
-global.confirm = function(str,yesfun, nofun) { yesfun(); };
-global.post = function(url, options, fun) {
-	fun(global.postResult);
-}	
+
+// mock document object and some browser function
+var mock = require('./mock.js');
+mock.init(window);
 
 // params for controller	  
 var projectId  = '';	
@@ -27,7 +23,7 @@ var REFRESHMIN = 2;
 var REFRESHMAX = 10;
 var SESSIONCOUNT = 1;
 
-// test html kialakitása
+// create test html 
 $('body').append('<button type="tuppon" id="newTaskBtn">New task</button>');
 $('body').append('<button type="tuppon" id="membersBtn">New task</button>');
 $('body').append('<div id="database"></div>');
@@ -56,7 +52,7 @@ $('#taskForm').append('<input id="desc" />');
 $('#taskForm').append('<input id="type" />');
 $('#taskForm').append('<input id="req" />');
 $('#taskForm').append('<select id="assign"><option value="user2">user2</option></select>');
-$('#taskForm').append('<button type="button" id="deltask">del task </button>')
+$('#taskForm').append('<button type="button" id="deltask">del task </button>');
 $('#taskForm').append('<button type="button" id="Ok">OK</button>');
 
 $('body').append('<form id="membersForm">');
@@ -64,13 +60,16 @@ $('#membersForm').append('<table>'+
 		'<tbody></tbody>'+
 		'</table>');
 
-//include js file for test
+//include js file for test (must pageOnLoad() root level function)
 var fs = require('fs');
 eval(fs.readFileSync('./js/tasks.js')+'');
 
-//jquery pageOnload futtatása
-pageOnLoad();
+//run jquery pageOnload 
+if (pageOnLoad != undefined) {
+	pageOnLoad();
+}	
 
+// test cases
 describe('tests.js', function() {
 	
 	it('test_stateToJson', function() {
@@ -176,16 +175,15 @@ describe('tests.js', function() {
 		assert.ok($('#taskForm:visible'));
 	});
 	
-	
 	it('test_okClickAdmin', function() {
 		// set logged User is admin
 		loggedUser = 'admin1';
-		$('#taskForm').find('id').val(111);
-		$('#taskForm').find('title').val('test111');
-		$('#taskForm').find('desc').val('test111');
-		$('#taskForm').find('type').val('bug');
-		$('#taskForm').find('req').val('');
-		$('#taskForm').find('assign').val('user1');
+		$('#taskForm').find('#id').val(1);
+		$('#taskForm').find('#title').val('test111');
+		$('#taskForm').find('#desc').val('test111');
+		$('#taskForm').find('#type').val('bug');
+		$('#taskForm').find('#req').val('');
+		$('#taskForm').find('#assign').val('user1');
 		var res = $('#Ok').click();
 		assert.ok($('#taskForm:hidden'));
 	});
@@ -193,31 +191,32 @@ describe('tests.js', function() {
 	it('test_okClickMember', function() {
 		// set logged User is admin
 		loggedUser = 'user1';
-		$('#taskForm').find('id').val(111);
-		$('#taskForm').find('title').val('test111');
-		$('#taskForm').find('desc').val('test111');
-		$('#taskForm').find('type').val('bug');
-		$('#taskForm').find('req').val('');
-		$('#taskForm').find('assign').val('user1');
+		$('#taskForm').find('#id').val(1);
+		$('#taskForm').find('#title').val('test111');
+		$('#taskForm').find('#desc').val('test111');
+		$('#taskForm').find('#type').val('bug');
+		$('#taskForm').find('#req').val('');
+		$('#taskForm').find('#assign').val('user1');
 		var res = $('#Ok').click();
 		assert.ok($('#taskForm:hidden'));
 	});
 	
 	it('test_okClickGuest', function() {
-		// set logged User is admin
+		// set logged User is guest
 		loggedUser = 'guest';
-		$('#taskForm').find('id').val(111);
-		$('#taskForm').find('title').val('test111');
-		$('#taskForm').find('desc').val('test111');
-		$('#taskForm').find('type').val('bug');
-		$('#taskForm').find('req').val('');
-		$('#taskForm').find('assign').val('user1');
+		$('#taskForm').find('#id').val(1);
+		$('#taskForm').find('#title').val('test111');
+		$('#taskForm').find('#desc').val('test111');
+		$('#taskForm').find('#type').val('bug');
+		$('#taskForm').find('#req').val('');
+		$('#taskForm').find('#assign').val('user1');
 		var res = $('#Ok').click();
 		assert.ok($('#taskForm:hidden'));
 	});
 	
 	it('test_delClickAdmin', function() {
 		loggedUser = 'admin1';
+		$('#taskForm #id').val('1');
 		$('#deltask').click();
 		assert.ok(true);
 	});
@@ -271,6 +270,7 @@ describe('tests.js', function() {
 		taskDrop(null, {"offset": offset, "draggable": task});
 		assert.ok(true);
 	});
+	
 
 	it('test_taskDropGuest', function() {
 		loggedUser = 'guest';
