@@ -58,7 +58,9 @@
 global $mysqli, $dbResult;
 $dbResult = [];
 if (MYSQLHOST != '') {
-    $mysqli = new mysqli(MYSQLHOST, MYSQLUSER, MYSQLPSW, MYSQLDB);
+    $mysqli = new mysqli(MYSQLHOST, MYSQLUSER, MYSQLPSW);
+    $mysqli->query('CREATE DATABASE IF NOT EXISTS '.MYSQLDB);
+    $mysqli->select_db(MYSQLDB);
 }
 if (!DEFINED('MYSQLLOG')) {
     DEFINE('MYSQLLOG',false);
