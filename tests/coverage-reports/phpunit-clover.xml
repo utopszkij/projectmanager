@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1558505615">
-  <project timestamp="1558505615">
+<coverage generated="1558591422">
+  <project timestamp="1558591422">
     <file name="/var/www/html/projectmanager/controllers/default.php">
       <class name="DefaultController" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="8" coveredelements="8"/>
@@ -136,7 +136,7 @@
     </file>
     <file name="/var/www/html/projectmanager/models/members.php">
       <class name="MembersModel" namespace="global">
-        <metrics complexity="22" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="58" elements="75" coveredelements="61"/>
+        <metrics complexity="22" methods="6" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="56" elements="75" coveredelements="57"/>
       </class>
       <line num="11" type="method" name="__construct" complexity="1" crap="1" count="6"/>
       <line num="12" type="stmt" count="6"/>
@@ -178,7 +178,7 @@
       <line num="87" type="stmt" count="0"/>
       <line num="88" type="stmt" count="0"/>
       <line num="90" type="stmt" count="1"/>
-      <line num="99" type="method" name="deleteInvalidMembers" visibility="protected" complexity="6" crap="6" count="2"/>
+      <line num="99" type="method" name="deleteInvalidMembers" visibility="protected" complexity="6" crap="6.01" count="2"/>
       <line num="100" type="stmt" count="2"/>
       <line num="101" type="stmt" count="2"/>
       <line num="102" type="stmt" count="2"/>
@@ -194,9 +194,9 @@
       <line num="114" type="stmt" count="1"/>
       <line num="115" type="stmt" count="1"/>
       <line num="116" type="stmt" count="1"/>
-      <line num="117" type="stmt" count="2"/>
+      <line num="117" type="stmt" count="0"/>
       <line num="121" type="stmt" count="2"/>
-      <line num="130" type="method" name="saveAllMembers" visibility="public" complexity="5" crap="5" count="2"/>
+      <line num="130" type="method" name="saveAllMembers" visibility="public" complexity="5" crap="5.01" count="2"/>
       <line num="131" type="stmt" count="2"/>
       <line num="134" type="stmt" count="2"/>
       <line num="135" type="stmt" count="2"/>
@@ -209,18 +209,18 @@
       <line num="142" type="stmt" count="1"/>
       <line num="145" type="stmt" count="2"/>
       <line num="147" type="stmt" count="2"/>
-      <line num="148" type="stmt" count="2"/>
+      <line num="148" type="stmt" count="0"/>
       <line num="153" type="stmt" count="2"/>
       <line num="155" type="stmt" count="2"/>
       <line num="156" type="stmt" count="2"/>
-      <metrics loc="158" ncloc="117" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="58" elements="75" coveredelements="61"/>
+      <metrics loc="158" ncloc="117" classes="1" methods="6" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="56" elements="75" coveredelements="57"/>
     </file>
     <file name="/var/www/html/projectmanager/models/tasks.php">
       <class name="Task" namespace="global">
         <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </class>
       <class name="TasksModel" namespace="global">
-        <metrics complexity="97" methods="21" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="211" coveredstatements="193" elements="232" coveredelements="204"/>
+        <metrics complexity="97" methods="21" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="211" coveredstatements="192" elements="232" coveredelements="203"/>
       </class>
       <line num="21" type="method" name="__construct" complexity="1" crap="1" count="21"/>
       <line num="22" type="stmt" count="21"/>
@@ -345,15 +345,15 @@
       <line num="312" type="stmt" count="6"/>
       <line num="313" type="stmt" count="6"/>
       <line num="314" type="stmt" count="6"/>
-      <line num="315" type="stmt" count="6"/>
+      <line num="315" type="stmt" count="3"/>
       <line num="318" type="stmt" count="6"/>
-      <line num="327" type="method" name="doDeletedTask" visibility="protected" complexity="3" crap="3.03" count="6"/>
+      <line num="327" type="method" name="doDeletedTask" visibility="protected" complexity="3" crap="3.21" count="6"/>
       <line num="328" type="stmt" count="6"/>
       <line num="329" type="stmt" count="6"/>
       <line num="330" type="stmt" count="6"/>
       <line num="331" type="stmt" count="6"/>
       <line num="332" type="stmt" count="0"/>
-      <line num="333" type="stmt" count="6"/>
+      <line num="333" type="stmt" count="0"/>
       <line num="336" type="stmt" count="6"/>
       <line num="344" type="method" name="loadOldTasks" visibility="protected" complexity="6" crap="6" count="6"/>
       <line num="345" type="stmt" count="6"/>
@@ -454,7 +454,7 @@
       <line num="541" type="stmt" count="3"/>
       <line num="544" type="stmt" count="3"/>
       <line num="549" type="stmt" count="7"/>
-      <metrics loc="552" ncloc="382" classes="1" methods="21" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="211" coveredstatements="193" elements="232" coveredelements="204"/>
+      <metrics loc="552" ncloc="382" classes="1" methods="21" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="211" coveredstatements="192" elements="232" coveredelements="203"/>
     </file>
     <file name="/var/www/html/projectmanager/views/tasks.php">
       <class name="TasksView" namespace="global">
@@ -465,6 +465,6 @@
       <line num="207" type="stmt" count="6"/>
       <metrics loc="208" ncloc="200" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
     </file>
-    <metrics files="6" loc="1159" ncloc="847" classes="6" methods="39" coveredmethods="22" conditionals="0" coveredconditionals="0" statements="386" coveredstatements="353" elements="425" coveredelements="375"/>
+    <metrics files="6" loc="1159" ncloc="847" classes="6" methods="39" coveredmethods="20" conditionals="0" coveredconditionals="0" statements="386" coveredstatements="350" elements="425" coveredelements="370"/>
   </project>
 </coverage>
