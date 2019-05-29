@@ -11,5 +11,6 @@ exports.init = function(window) {
 	global.post = function(url, options, fun) {
 		fun(global.postResult);
 	}	
+	global.working = function(show) {};
 };
 

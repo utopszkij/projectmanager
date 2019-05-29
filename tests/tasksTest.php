@@ -22,10 +22,14 @@ class TasksTest extends TestCase
         $this->controller = new TasksController();
         $this->request = new Request();
         $REQUEST = $this->request;
+    }
+    
+    public function test_start() {
         $db = new DB();
-        $db->statement('CREATE DATABSE IF NOT EXISTS test');
+        $db->statement('CREATE DATABASE IF NOT EXISTS test');
         $db->statement('DROP TABLE IF EXISTS tasks');
         $db->statement('DROP TABLE IF EXISTS members');
+        $this->assertEquals('',$db->getErrorMsg());
     }
     
     public function test_saveNewOtherByAdmin() {

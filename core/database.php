@@ -133,6 +133,8 @@ class DB {
    function __construct() {
     	global $mysqli;
         $this->mysqli = $mysqli;
+        $this->errorMsg = '';
+        $this->errorNum = 0;
    }
    
 	/**

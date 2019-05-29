@@ -52,7 +52,68 @@ function loadJavaScript(string $jsName, $params) {
 	}
 	echo 'var sid = "'.session_id().'";'."\n";
 	include_once './js/'.$jsName.'.js';
+	echo '$("#working").hide()'."\n";
 	echo "\n".'</script>'."\n";
+}
+
+/**
+ * echo javascript code, inject params and language constanses
+ * must in html:  <body ng-app="app">
+ *                  <div ng-controller="ctrl">
+ *                      ....
+ *                      <?php loadJavaSciptAngular('jsName', $params); ?>
+ *                  </div>
+ *                </body>  
+ * @param string $jsName javascript file full path
+ * @param array $params  {"name":value, ....}
+ * @return void
+ */
+function loadJavaScriptAngular(string $jsName, $params) {
+    ?>
+    <script src="https://code.angularjs.org/1.7.8/angular.js"></script>
+    <script type="text/javascript">
+    angular.module("app", []).controller("ctrl", function($scope) {
+        <?php 
+        $languages = get_defined_constants(true);
+        echo '$scope.LNG = [];'."\n";
+        foreach ($languages['user'] as $fn => $fv) {
+            if (substr($fn,0,5) != 'MYSQL') {
+                echo '$scope.LNG["'.$fn.'"] = '.JSON_encode($fv).';'."\n";
+            }
+        }
+        echo '$scope.txt = function(token) {
+            if ($scope.LNG[token] == undefined) {
+                return token;
+            } else {
+                return $scope.LNG[token];
+            }
+        };
+        ';
+        foreach ($params as $fn => $fv) {
+            if ($fn != '') {
+                if (is_array($fv)) {
+                    echo '$scope.'."$fn = ".JSON_encode($fv).";\n";
+                } else if (is_object($fv)) {
+                    echo '$scope.'."$fn = ".JSON_encode($fv).";\n";
+                } else if (is_string($fv)) {
+                    $fv = str_replace("'", "\\'", $fv);
+                    $fv = str_replace("\n", "\\n", $fv);
+                    $fv = str_replace("\r", "\\r", $fv);
+                    $fv = str_replace("\t", "\\t", $fv);
+                    echo '$scope.'."$fn = '$fv';\n";
+                }	else {
+                    echo '$scope.'."$fn = $fv;\n";
+                }
+            }
+        }
+        echo '$scope.sid = "'.session_id().'";'."\n";
+        include_once './js/'.$jsName.'.js';
+        ?>
+        $("#scope").show();
+        $("#working").hide();
+    }); // controller function
+    </script>
+    <?php
 }
 
 /**
@@ -247,4 +308,90 @@ function txt(string $s): string {
     return $result;
 }
 
+/**
+ * return hTML head 
+ *    include javascript global.alert, global.confirm, global.post, globa.working functions
+ * must use htmlPopup() in HTML body tag    
+ * @return string
+ */
+function htmlHead(): string {
+    return '
+    <!doctype html>
+    <html lang="hu">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1240px, initial-scale=1">
+    <title>projektmanager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+    var global = {};
+    global.alert = function(str) {
+        // window.alert(str);
+        $("#popupYes").hide();
+        $("#popupNo").hide();
+        $("#popupClose").show();
+        $("#popup p").html(str);
+        $("#popup").show();
+        $("#popupClose").click(function(){
+            $("#popup").hide();
+        });
+    };
+    global.confirm = function(str, yesfun, nofun) {
+        if (yesfun != undefined) {
+            $("#popupYes").mouseup(yesfun);
+        } else {
+            $("#popupYes").mouseup(function() {});
+        }
+        if (nofun != undefined) {
+            $("#popupNo").mouseup(nofun);
+        } else {
+            $("#popupNo").mouseup(function() {});
+        }
+        $("#popupYes").show();
+        $("#popupNo").show();
+        $("#popupClose").hide();
+        $("#popup p").html(str);
+        $("#popupNo").click(function(){
+            $("#popup").hide();
+        });
+            $("#popupYes").click(function(){
+                $("#popup").hide();
+            });
+                $("#popup").show();
+    };
+    global.working = function(show) {
+        if (show) {
+            $("#working").show();
+        } else {
+            $("#working").hide();
+        }
+    };
+    global.post = function(url, options, fun) {
+        $.post(url, options, fun);
+    }
+    </script>
+    ';
+}
+
+/**
+ * retrun popup html code (use this HTML global.alert, global.confirm functions in htmlHead)
+ * @return string
+ */
+function htmlPopup(): string {
+   return '
+    <div id="popup" style="display:none">
+        <p class="alert alert-danger"></p>
+        <div id="popupButtons">
+            <button type="button" id="popupYes">'.txt('YES').'</button>
+			<button type="button" id="popupNo">'.txt('NO').'</button>
+			<button type="button" id="popupClose">'.txt('CLOSE').'</button>
+		</div>
+    </div>
+    <div id="working"><span>'.txt('WORKING').'...</span></div>
+	';    
+}
 ?>

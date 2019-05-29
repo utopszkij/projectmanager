@@ -41,7 +41,18 @@ function loadJavaScript($jsName, $params) {
     return '';
 }
 
+function loadJavaScriptAngular($jsName, $params) {
+    return '';
+}
+
 function txt($s) {
     return $s;
+}
+
+function htmlHead() {
+    return '';
+}
+function htmlPopup() {
+    return '';
 }
 ?>

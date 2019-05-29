@@ -9,75 +9,10 @@ class TasksView {
 	* @return void
 	*/
 	public function show($p) {
-	    ?>    
-<!doctype html>
-<html lang="hu">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=1240px, initial-scale=1">
-  <title>projektmanager</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="./style.css">
-  <?php if ($p->extraCSS != '') :?>
-	  <link rel="stylesheet" href="<?php echo $p->extraCSS; ?>">
-  <?php endif; ?>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script type="text/javascript">
-	var global = {};
-	global.alert = function(str) {
-		// window.alert(str);
-		$("#popupYes").hide(); 
-		$("#popupNo").hide(); 
-		$("#popupClose").show();
-		$("#popup p").html(str);
-		$("#popup").show(); 
-		$("#popupClose").click(function(){
-			$("#popup").hide();
-		});
-	};
-	global.confirm = function(str, yesfun, nofun) {
-		if (yesfun != undefined) {
-			$("#popupYes").mouseup(yesfun);
-		} else {
-			$("#popupYes").mouseup(function() {});
-		}
-		if (nofun != undefined) {
-			$("#popupNo").mouseup(nofun);
-		} else {
-			$("#popupNo").mouseup(function() {});
-		}	
-		$("#popupYes").show(); 
-		$("#popupNo").show(); 
-		$("#popupClose").hide();
-		$("#popup p").html(str);
-		$("#popupNo").click(function(){
-			$("#popup").hide();
-		});
-		$("#popupYes").click(function(){
-			$("#popup").hide();
-		});
-		$("#popup").show(); 
-	};
-	global.post = function(url, options, fun) {
-		$.post(url, options, fun);
-	}	
-  </script>
-  <?php loadJavaScript('tasks',$p); ?>	
-</head>
+	    echo htmlHead();
+        ?>	    
 <body>
-    <div id="popup" style="display:none; z-index:20; position:fixed;
-        top:100px; left:100px; width:auto; max-width:70%; height:auto;
-        background-color:#f0f0f0; padding:10px; margin:5px;
-        border-style:solid; border-width:1px; text-align:center">
-		<p class="alert alert-danger"></p>
-		<div>
-			<button type="button" id="popupYes"><?php echo txt('YES'); ?></button>
-			<button type="button" id="popupNo"><?php echo txt('NO'); ?></button>
-			<button type="button" id="popupClose"><?php echo txt('CLOSE'); ?></button>
-		</div>
-    </div>
+	<?php echo htmlPopup(); ?>
 	<div id="buttonLine">
 		<button type="button" class="" title="newTask" id="newTaskBtn">+ Új feladat</button>
 		&nbsp;
@@ -202,6 +137,10 @@ class TasksView {
 	</div>
 	
 </body>
+<?php loadJavaScript('tasks', $p); ?>
+<script type="text/javascript">
+	pageOnload();
+</script>
 </html>
 <?php 		
 	}

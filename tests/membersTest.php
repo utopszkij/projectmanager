@@ -22,12 +22,16 @@ class MembersTest extends TestCase
         $this->controller = new MembersController();
         $this->request = new Request();
         $REQUEST = $this->request;
-        $db = new DB();
-        $db->statement('CREATE DATABSE IF NOT EXISTS test');
-        $db->statement('DROP TABLE IF EXISTS tasks');
-        $db->statement('DROP TABLE IF EXISTS members');
     }
     
+    public function test_start() {
+        $db = new DB();
+        $db->statement('CREATE DATABASE IF NOT EXISTS test');
+        $db->statement('DROP TABLE IF EXISTS tasks');
+        $db->statement('DROP TABLE IF EXISTS members');
+        $this->assertEquals('',$db->getErrorMsg());
+    }
+        
     public function test_memberupdate_Member() {
         $this->request->set('projectid','testProject');
         $this->request->set('sessionid',0);

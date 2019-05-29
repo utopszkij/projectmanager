@@ -763,13 +763,10 @@
 		$('#popup').draggable();
 	}
     if (users.length > 0) {
-		   console.log('member load');
 		   
 		   //copy admins from members dom element into admins array
 			var oldMembers = $('members').find('member');
-
-			console.log(oldMembers.length);
-			
+		
 			var i;
 			var s = '';
 			for (i=0; i < oldMembers.length; i++) {

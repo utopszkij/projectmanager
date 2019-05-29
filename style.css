@@ -21,7 +21,18 @@
   button#newTaskBtn {background-color:green; color:white; font-size:20px;}		  
   button#memberskBtn {background-color:silver; color:black; font-size:20px;}		  
   
-  #popup {cursor: move}
+  #popup {cursor: move; position:fixed; z-index:99; left:50px; top:50px;
+    width:auto; height:auto;
+    background-color:#F0F0F0; color:black; padding:1px; border-style:solid; border-width:1px;}
+  #popup .popupCloseDiv {text-align:right; margin:0px; padding:0px;}
+  #popup p {padding:20px; margin:20px; text-align:center}
+  #popupButtons {padding:10px; text-align:center}  
+  
+  #working {position:fixed; z-index:100; left:200px; top:200px;
+    background-image:url('./core/working.gif');
+    text-align:center; margin:20px;
+    width:128px; height:128px; font-size:10px; font-weight:bold; color:red; }
+  #working span {display:none}   
   
   #database {width:1240px}
   task {display:block; background-color:#e0e0e0; font-size:14px; 
